@@ -10,7 +10,7 @@ class Environment
 {
     #[ORM\Id]
     #[ORM\Column(type: 'string', length: 10)]
-    private ?int $environmentId = null;
+    private ?string $environmentId = null;
 
     #[ORM\Column(length: 50)]
     private ?string $environmentName = null;
