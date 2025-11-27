@@ -28,3 +28,4 @@ jobs:
       - name: Validate Doctrine schema
         working-directory: ./SAE
         run: php bin/console doctrine:schema:validate --skip-sync
+        
