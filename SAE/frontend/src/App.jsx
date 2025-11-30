@@ -1,0 +1,36 @@
+import { useState, useEffect } from 'react'
+import './App.css'
+
+function App() {
+  const [apiData, setApiData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/test')
+      .then(response => response.json())
+      .then(data => {
+        setApiData(data)
+        setLoading(false)
+      })
+      .catch(err => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading) return <div>Chargement...</div>
+  if (error) return <div>Erreur: {error}</div>
+
+  return (
+    <div className="App">
+      <h1>React + Symfony API</h1>
+      <div>
+        <h2>Réponse de l'API :</h2>
+        <pre>{JSON.stringify(apiData, null, 2)}</pre>
+      </div>
+    </div>
+  )
+}
+
+export default App
