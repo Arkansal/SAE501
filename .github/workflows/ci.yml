@@ -20,12 +20,14 @@ jobs:
           extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql
           coverage: none
       - name: Install Composer dependencies
-        working-directory: ./SAE
+        working-directory: ./SAE/backend
         run: composer install --prefer-dist --no-progress
-      - name: Check PHP Syntax
-        working-directory: ./SAE
+
+      - name: Check PHP syntax
+        working-directory: ./SAE/backend
         run: find src/ -name "*.php" -exec php -l {} \;
+
       - name: Validate Doctrine schema
-        working-directory: ./SAE
+        working-directory: ./SAE/backend
         run: php bin/console doctrine:schema:validate --skip-sync
         
