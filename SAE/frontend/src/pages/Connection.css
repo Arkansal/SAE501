@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+.connection-container {
+  min-height: 100vh;
+  padding: 0;
+  font-family: Quicksand, sans-serif;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.connection-content {
+  flex: 1;
+  padding: 0px 0px 50px 0px;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* Header section */
+.header-section h1 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #3825A5;
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+/* Form styles */
+.connection-form {
+  margin-bottom: 40px;
+}
+
+.connection-form h2 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #FF0000;
+  margin: 16px 0 24px 0;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.form-input {
+  width: 87%;
+  padding: 12px 16px;
+  border: 1px solid #E0EFFF;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-family: Quicksand, sans-serif;
+  background: #E0EFFF;
+  color: #2D2C7E;
+  outline: none;
+  transition: all 0.2s ease;
+  font-weight: 700;
+}
+
+.form-input::placeholder {
+  color: #2D2C7E;
+  font-weight: 700;
+}
+
+.form-input:focus {
+  border-color: #3825A5;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(56, 37, 165, 0.1);
+}
+
+/* Checkbox */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin: 16px 32px 16px;
+  gap: 8px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #E0EFFF;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  font-size: 0.95rem;
+  color: #000000;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* Submit button */
+.submit-button {
+  width: 100%;
+  padding: 14px;
+  background: #3825A5;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 0 0 16px 0;
+  transition: all 0.3s ease;
+  font-family: Quicksand, sans-serif;
+}
+
+.submit-button:hover {
+  background: #2D2C7E;
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+/* Form links */
+.form-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.forgot-password,
+.create-account {
+  font-size: 0.8rem;
+  color: #2D2C7E;
+  text-decoration: none;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.forgot-password:hover,
+.create-account:hover {
+  text-decoration: underline;
+}
+
+/* Section logo */
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.logo {
+  width: 140px;
+  height: 140px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 480px) {
+  .connection-content {
+    padding: 0px 0px 50px 0px;
+  }
+  
+  .header-section h1 {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+  }
+  
+  .connection-form h2 {
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+  }
+  
+  .form-input {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+  
+  .checkbox-group label {
+    font-size: 0.9rem;
+  }
+  
+  .submit-button {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+  
+  .forgot-password,
+  .create-account {
+    font-size: 0.8rem;
+  }
+  
+  .form-links {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .logo {
+    width: 160px;
+    height: 160px;
+  }
+  
+}
+
+/* Pour très petits écrans */
+@media (max-width: 360px) {
+  .connection-content {
+    padding: 0px 0px 50px 0px;
+  }
+  
+  .header-section h1 {
+    font-size: 1.3rem;
+  }
+  
+  .connection-form h2 {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+  
+  .form-input {
+    font-size: 0.85rem;
+  }
+  
+  .checkbox-group label {
+    font-size: 0.85rem;
+  }
+  
+  .submit-button {
+    font-size: 0.85rem;
+  }
+  
+  .forgot-password,
+  .create-account {
+    font-size: 0.8rem;
+  }
+  
+  .logo {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Animation d'apparition */
+.connection-content {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
