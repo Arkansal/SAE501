@@ -25,8 +25,8 @@ class Animal
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $type = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $image = null;
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $image = null;
 
     #[ORM\Column(length: 50)]
     private ?string $extinctLevel = null;
@@ -91,15 +91,15 @@ class Animal
         return $this;
     }
 
-    public function getImage(): ?string
+
+    public function getImage(): ?array
     {
         return $this->image;
     }
 
-    public function setImage(string $image): static
+    public function setImage(?array $image): static
     {
         $this->image = $image;
-
         return $this;
     }
 

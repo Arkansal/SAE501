@@ -12,7 +12,7 @@ class Environment
     #[ORM\Column(type: 'string', length: 10)]
     private ?string $environmentId = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 100)]
     private ?string $environmentName = null;
 
     #[ORM\Column(length: 255, nullable: true)]
