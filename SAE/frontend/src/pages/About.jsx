@@ -6,10 +6,10 @@ function About() {
   return (
     <div className="about-container">
       <div className="about-content">
-        <div>
+        <div className="text-section">
           <h1>Artémis</h1>
         </div>
-        <div>
+        <div className="text-section">
           <p>
             Nous sommes une association à but non lucratif 
             engagée pour la préservation des êtres vivants 
@@ -39,8 +39,10 @@ function About() {
             utilisateur optimale.
           </p>
         </div>
-        <div class="logo">
-            <img src={artemisLogo} alt="Artémis" />
+        <div className="logo-section">
+            <div className="logo">
+                <img src={artemisLogo} alt="Artémis" />
+            </div>
         </div>
       </div>
     </div>

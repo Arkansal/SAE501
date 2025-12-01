@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import About from './pages/About'
+
 function Home() {
   const [apiData, setApiData] = useState(null)
   const [loading, setLoading] = useState(true)
