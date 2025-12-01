@@ -283,13 +283,13 @@
   },
   {
     "assessment_id": 518440,
-    "code_iso": "ITA-IT",
+    "code_iso": "IT",
     "origin": "Native",
     "presence_type": "Extant"
   },
   {
     "assessment_id": 518549,
-    "code_iso": "SAR-OO",
+    "code_iso": "SA",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -457,7 +457,7 @@
   },
   {
     "assessment_id": 519247,
-    "code_iso": "YUG-KO",
+    "code_iso": "RU",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -703,7 +703,7 @@
   },
   {
     "assessment_id": 546843,
-    "code_iso": "AZO-OO",
+    "code_iso": "AZ",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -721,7 +721,7 @@
   },
   {
     "assessment_id": 1306343,
-    "code_iso": "NZS-OO",
+    "code_iso": "NZ",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -733,7 +733,7 @@
   },
   {
     "assessment_id": 1306343,
-    "code_iso": "MAQ-OO",
+    "code_iso": "MA",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -757,25 +757,25 @@
   },
   {
     "assessment_id": 1380378,
-    "code_iso": "MDR-OO",
+    "code_iso": "MG",
     "origin": "Native",
     "presence_type": "Extant"
   },
   {
     "assessment_id": 1380378,
-    "code_iso": "AZO-OO",
+    "code_iso": "AZ",
     "origin": "Native",
     "presence_type": "Presence Uncertain"
   },
   {
     "assessment_id": 1380378,
-    "code_iso": "CNY-OO",
+    "code_iso": "CN",
     "origin": "Native",
     "presence_type": "Extant"
   },
   {
     "assessment_id": 1424721,
-    "code_iso": "CNY-OO",
+    "code_iso": "CN",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -1021,19 +1021,19 @@
   },
   {
     "assessment_id": 2775649,
-    "code_iso": "FRA-FR",
+    "code_iso": "FR",
     "origin": "Native",
     "presence_type": "Extant"
   },
   {
     "assessment_id": 2775649,
-    "code_iso": "POR-OO",
+    "code_iso": "PT",
     "origin": "Native",
     "presence_type": "Extant"
   },
   {
     "assessment_id": 2775649,
-    "code_iso": "SPA-SP",
+    "code_iso": "ES",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -1321,7 +1321,7 @@
   },
   {
     "assessment_id": 2789048,
-    "code_iso": "KRI-OO",
+    "code_iso": "CR",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -1585,19 +1585,13 @@
   },
   {
     "assessment_id": 2896811,
-    "code_iso": "FRA-FR",
+    "code_iso": "FR",
     "origin": "Native",
     "presence_type": "Extant"
   },
   {
     "assessment_id": 2896811,
-    "code_iso": "SPA-SP",
-    "origin": "Native",
-    "presence_type": "Extant"
-  },
-  {
-    "assessment_id": 2952954,
-    "code_iso": "SIC-SI",
+    "code_iso": "ES",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -1609,7 +1603,13 @@
   },
   {
     "assessment_id": 2952954,
-    "code_iso": "COR-OO",
+    "code_iso": "IT",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 2952954,
+    "code_iso": "KR",
     "origin": "Introduced",
     "presence_type": "Extant"
   },
@@ -1897,13 +1897,13 @@
   },
   {
     "assessment_id": 2955856,
-    "code_iso": "BOR-SR",
+    "code_iso": "BA",
     "origin": "Native",
     "presence_type": "Extant"
   },
   {
     "assessment_id": 2955856,
-    "code_iso": "BOR-KA",
+    "code_iso": "BA",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -1933,13 +1933,13 @@
   },
   {
     "assessment_id": 2955856,
-    "code_iso": "MLY-PM",
+    "code_iso": "MY",
     "origin": "Native",
     "presence_type": "Extant"
   },
   {
     "assessment_id": 2955856,
-    "code_iso": "SUM-OO",
+    "code_iso": "CH",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -1957,13 +1957,13 @@
   },
   {
     "assessment_id": 2955856,
-    "code_iso": "BOR-SB",
+    "code_iso": "BA",
     "origin": "Native",
     "presence_type": "Extant"
   },
   {
     "assessment_id": 3031266,
-    "code_iso": "CNY-OO",
+    "code_iso": "CN",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -2125,13 +2125,13 @@
   },
   {
     "assessment_id": 3139783,
-    "code_iso": "RU-EU",
+    "code_iso": "RU",
     "origin": "Native",
     "presence_type": "Extant"
   },
   {
     "assessment_id": 3153168,
-    "code_iso": "MXT-CI",
+    "code_iso": "MX",
     "origin": "Native",
     "presence_type": "Extant"
   },
@@ -2149,7 +2149,7 @@
   },
   {
     "assessment_id": 3153291,
-    "code_iso": "MXT-CI",
+    "code_iso": "MX",
     "origin": "Native",
     "presence_type": "Extant"
   },

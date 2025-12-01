@@ -25,11 +25,8 @@ class Animal
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $type = null;
 
-    /**
-     * @var list<string> The user roles
-     */
-    #[ORM\Column(nullable: true)]
-    private ?array $images = null;
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $image = null;
 
     #[ORM\Column(length: 50)]
     private ?string $extinctLevel = null;
@@ -94,21 +91,15 @@ class Animal
         return $this;
     }
 
-    
+
     public function getImage(): ?array
     {
-        $images = $this->images;
-
-        return array_unique($images);
+        return $this->image;
     }
 
-    /**
-     * @param list<array> $images
-     */
-    public function setImage(?array $images): static
+    public function setImage(?array $image): static
     {
-        $this->images = $images;
-
+        $this->image = $image;
         return $this;
     }
 
