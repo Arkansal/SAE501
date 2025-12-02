@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
+import About from './pages/About'
+import Connection from './pages/Connection'
 
-function App() {
+function Home() {
   const [apiData, setApiData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -32,5 +35,15 @@ function App() {
     </div>
   )
 }
-
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/connection" element={<Connection />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
+  )
+}
 export default App
