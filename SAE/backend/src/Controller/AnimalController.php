@@ -23,7 +23,53 @@ class AnimalController extends AbstractController
                 'family' => $animal->getFamily(),
                 'type' => $animal->getType(),
                 'extinctLevel' => $animal->getExtinctLevel(),
-                'images' => $animal->getImage(), // Array d'URLs
+                'images' => $animal->getImage(),
+            ];
+        }, $animals);
+        
+        return $this->json($data);
+    }
+
+    #[Route('/animals/{id}', name: 'animal_detail', methods: ['GET'])]
+    public function detail(int $id, AnimalRepository $animalRepository): JsonResponse
+    {
+        $animal = $animalRepository->find($id);
+        
+        if (!$animal) {
+            return $this->json(['error' => 'Animal not found'], 404);
+        }
+        
+        $data = [
+            'id' => $animal->getId(),
+            'commonName' => $animal->getCommonName(),
+            'scientificName' => $animal->getScientificName(),
+            'family' => $animal->getFamily(),
+            'type' => $animal->getType(),
+            'extinctLevel' => $animal->getExtinctLevel(),
+            'images' => $animal->getImage(),
+        ];
+        
+        return $this->json($data);
+    }
+
+    #[Route('/animalSearch/{keyword}', name: 'animal_search', methods: ['GET'])]
+    public function search(string $keyword, AnimalRepository $animalRepository): JsonResponse
+    {
+        $animals = $animalRepository->createQueryBuilder('a')
+            ->andWhere('(a.commonName LIKE :keyword OR a.scientificName LIKE :keyword)')
+            ->setParameter('keyword', $keyword . '%')
+            ->getQuery()
+            ->getResult();
+        
+        $data = array_map(function($animal) {
+            return [
+                'id' => $animal->getId(),
+                'commonName' => $animal->getCommonName(),
+                'scientificName' => $animal->getScientificName(),
+                'family' => $animal->getFamily(),
+                'type' => $animal->getType(),
+                'extinctLevel' => $animal->getExtinctLevel(),
+                'images' => $animal->getImage(),
             ];
         }, $animals);
         
