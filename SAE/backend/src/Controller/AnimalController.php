@@ -81,20 +81,61 @@ class AnimalController extends AbstractController
     }
 
     #[Route('/animals', name: 'animals_create', methods: ['POST'])]
-    public function create(Request $request, EntityManagerInterface $em): JsonResponse
+    public function create(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository): JsonResponse
     {
-        if (!isset($_REQUEST['id'])) {
-            return new JsonResponse(['error' => 'ID is required'], 400);
-        } else {
-            if (!isset($_REQUEST['scientificName'])) {
-                return new JsonResponse(['message' => 'Scientific Name is required'], 400);
-            } else {
-                if (!isset($_REQUEST['extinctLevel'])) {
-                    return new JsonResponse(['message' => 'Extinct Level is required'], 400);
-                } else {
-                    return new JsonResponse(['message' => $request], 201);
-                }
-            }
+        $data = json_decode($request->getContent(), true);
+
+        if (!$data) {
+            return $this->json(['error' => 'Invalid JSON'], Response::HTTP_BAD_REQUEST);
         }
+
+        if (!isset($data['id']) || !preg_match('/^[1-9][0-9]*$/', (string)$data['id'])) {
+            return $this->json(['error' => 'ID must be a positive integer'], Response::HTTP_BAD_REQUEST);
+        }
+
+        if ($animalRepository->find($data['id'])) {
+            return $this->json(['error' => 'Animal with this ID already exists'], Response::HTTP_CONFLICT);
+        }
+
+        if (!isset($data['scientificName']) || !preg_match('/^[A-Za-zÀ-ÖØ-öø-ÿ\s\-\']{2,200}$/', $data['scientificName'])) {
+            return $this->json(['error' => 'Scientific name must be 2-200 characters (letters, spaces, hyphens, apostrophes)'], Response::HTTP_BAD_REQUEST);
+        }
+
+        if (!isset($data['extinctLevel']) || !preg_match('/^[A-Z]{2}$/', $data['extinctLevel'])) {
+            return $this->json(['error' => 'Extinct level must be 2 uppercase letters (ex: VU, LC, EN)'], Response::HTTP_BAD_REQUEST);
+        }
+
+        if (isset($data['commonName']) && !preg_match('/^[A-Za-zÀ-ÖØ-öø-ÿ\s\-\']{2,100}$/', $data['commonName'])) {
+            return $this->json(['error' => 'Common name must be 2-100 characters'], Response::HTTP_BAD_REQUEST);
+        }
+
+        if (isset($data['family']) && !preg_match('/^[A-Za-zÀ-ÖØ-öø-ÿ\s\-\']{2,100}$/', $data['family'])) {
+            return $this->json(['error' => 'Family must be 2-100 characters'], Response::HTTP_BAD_REQUEST);
+        }
+
+        if (isset($data['type']) && !preg_match('/^[A-Za-zÀ-ÖØ-öø-ÿ\s\-\']{2,100}$/', $data['type'])) {
+            return $this->json(['error' => 'Type must be 2-100 characters'], Response::HTTP_BAD_REQUEST);
+        }
+
+        if (isset($data['images']) && !is_array($data['images'])) {
+            return $this->json(['error' => 'Images must be an array'], Response::HTTP_BAD_REQUEST);
+        }
+
+        $animal = new Animal();
+        $animal->setId((int)$data['id']); // ← ICI : utilise la vraie valeur
+        $animal->setScientificName($data['scientificName']);
+        $animal->setExtinctLevel($data['extinctLevel']);
+        $animal->setCommonName($data['commonName'] ?? null);
+        $animal->setFamily($data['family'] ?? null);
+        $animal->setType($data['type'] ?? null);
+        $animal->setImage($data['images'] ?? []);
+
+        $em->persist($animal);
+        $em->flush();
+
+        return $this->json([
+            'message' => 'Animal enregistré',
+            'id' => $animal->getId()
+        ], Response::HTTP_CREATED);
     }
 }
