@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import About from './pages/About'
 import Connection from './pages/Connection'
+import Register from './pages/Register'
 
 function Home() {
   const [apiData, setApiData] = useState(null)
@@ -41,6 +42,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/connection" element={<Connection />} />
+         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </Router>

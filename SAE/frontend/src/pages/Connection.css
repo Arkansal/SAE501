@@ -64,7 +64,7 @@
 .form-input:focus {
   border-color: #3825A5;
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(56, 37, 165, 0.1);
+  /* box-shadow: 0 0 0 3px rgba(56, 37, 165, 0.1); */
 }
 
 /* Checkbox */
@@ -167,7 +167,7 @@
   
   .header-section h1 {
     font-size: 1.4rem;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
   }
   
   .connection-form h2 {

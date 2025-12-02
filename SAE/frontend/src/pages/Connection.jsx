@@ -41,6 +41,7 @@ function Connection() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="form-input"
+              required
             />
           </div>
 
@@ -50,6 +51,7 @@ function Connection() {
               id="remember"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
+              required
             />
             <label htmlFor="remember">Se souvenir de moi</label>
           </div>
@@ -60,7 +62,7 @@ function Connection() {
 
           <div className="form-links">
             <a href="#" className="forgot-password">Mot de passe oublié ?</a>
-            <a href="#" className="create-account">Créer un compte</a>
+            <a href="/register" className="create-account">Créer un compte</a>
           </div>
         </form>
          <div className="logo-section">
