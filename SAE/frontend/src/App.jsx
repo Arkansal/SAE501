@@ -4,6 +4,7 @@ import './App.css'
 import About from './pages/About'
 import Connection from './pages/Connection'
 import Register from './pages/Register'
+import Contact from './pages/Contact'
 
 function Home() {
   const [apiData, setApiData] = useState(null)
@@ -44,6 +45,7 @@ function App() {
         <Route path="/connection" element={<Connection />} />
          <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   )
