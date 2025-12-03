@@ -148,57 +148,55 @@ class AnimalController extends AbstractController
         return $this->json($data);
     }
 
-
+    /**
+     * Create new animal
+     */
     #[Route('/animals', name: 'animals_create', methods: ['POST'])]
-    #[OA\Post(
-        path: '/animals',
-        summary: 'Créer un nouvel animal',
-        requestBody: new OA\RequestBody(
-            required: true,
-            content: new OA\JsonContent(
-                required: ['id', 'scientificName', 'extinctLevel'],
-                properties: [
-                    new OA\Property(property: 'id', type: 'integer', example: 123456),
-                    new OA\Property(property: 'scientificName', type: 'string', example: 'Panthera leo'),
-                    new OA\Property(property: 'commonName', type: 'string', example: 'Lion'),
-                    new OA\Property(property: 'family', type: 'string', example: 'Felidae'),
-                    new OA\Property(property: 'type', type: 'string', example: 'MAMMALIA'),
-                    new OA\Property(property: 'extinctLevel', type: 'string', example: 'VU'),
-                    new OA\Property(property: 'images', type: 'array', items: new OA\Items(type: 'string'))
-                ]
-            )
-        ),
-        tags: ['Animals'],
-        responses: [
-            new OA\Response(
-                response: 201,
-                description: 'Animal créé avec succès',
-                content: new OA\JsonContent(
-                    properties: [
-                        new OA\Property(property: 'message', type: 'string'),
-                        new OA\Property(property: 'id', type: 'integer')
-                    ]
-                )
-            ),
-            new OA\Response(response: 400, description: 'Données invalides'),
-            new OA\Response(response: 409, description: 'Animal existe déjà')
-        ]
+    #[OA\Response(
+        response: 201,
+        description: 'Animal créé avec succès',
+        content: new OA\JsonContent(
+            type: 'object',
+            properties: [
+                new OA\Property(property: 'message', type: 'string', example: 'Animal créé avec succès'),
+                new OA\Property(property: 'id', type: 'integer', example: 123456)
+            ]
+        )
     )]
+    #[OA\Response(
+        response: 400,
+        description: 'Données invalides'
+    )]
+    #[OA\Response(
+        response: 409,
+        description: 'Animal existe déjà'
+    )]
+    #[OA\RequestBody(
+        required: true,
+        content: new OA\JsonContent(
+            type: 'object',
+            required: ['id', 'scientificName', 'extinctLevel'],
+            properties: [
+                new OA\Property(property: 'id', type: 'integer', example: 123456),
+                new OA\Property(property: 'scientificName', type: 'string', example: 'Panthera leo'),
+                new OA\Property(property: 'commonName', type: 'string', example: 'Lion'),
+                new OA\Property(property: 'family', type: 'string', example: 'Felidae'),
+                new OA\Property(property: 'type', type: 'string', example: 'MAMMALIA'),
+                new OA\Property(property: 'extinctLevel', type: 'string', example: 'VU'),
+                new OA\Property(property: 'images', type: 'array', items: new OA\Items(type: 'string'))
+            ]
+        )
+    )]
+    #[OA\Post(tags: ['Animals'])]
     public function create(Request $request, ValidatorInterface $validator, EntityManagerInterface $em, AnimalRepository $animalRepository): JsonResponse
     {
-
         $data = json_decode($request->getContent(), true);
-
         if (!$data) {
             return $this->json(['error' => 'Invalid JSON'], Response::HTTP_BAD_REQUEST);
         }
-
-
         if (isset($data['id']) && $animalRepository->find($data['id'])) {
             return $this->json(['error' => 'Animal with this ID already exists'], Response::HTTP_CONFLICT);
         }
-
-
         $animal = new Animal();
         $animal->setId($data['id'] ?? null);
         $animal->setScientificName($data['scientificName'] ?? null);
@@ -207,10 +205,7 @@ class AnimalController extends AbstractController
         $animal->setType($data['type'] ?? null);
         $animal->setExtinctLevel($data['extinctLevel'] ?? null);
         $animal->setImage($data['images'] ?? []);
-
-
         $errors = $validator->validate($animal);
-
         if (count($errors) > 0) {
             $errorMessages = [];
             foreach ($errors as $error) {
@@ -218,11 +213,8 @@ class AnimalController extends AbstractController
             }
             return $this->json(['errors' => $errorMessages], Response::HTTP_BAD_REQUEST);
         }
-
-
         $em->persist($animal);
         $em->flush();
-
         return $this->json([
             'message' => 'Animal créé avec succès',
             'id' => $animal->getId()

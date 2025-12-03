@@ -21,3 +21,7 @@
 # Exemples dans .gitignore
 DEVCONTAINER.md
 .vscode/
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
