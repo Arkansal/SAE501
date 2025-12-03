@@ -151,7 +151,7 @@ class AnimalController extends AbstractController
 
     #[Route('/animals', name: 'animals_create', methods: ['POST'])]
     #[OA\Post(
-        path: '/api/animals',
+        path: '/animals',
         summary: 'Créer un nouvel animal',
         requestBody: new OA\RequestBody(
             required: true,
@@ -237,29 +237,29 @@ class AnimalController extends AbstractController
     #[OA\Put(
         responses: [
             new OA\Response(
-            response: 200,
-            description: 'Animal updated successfully',
-            content: new OA\JsonContent(
-                type: 'object',
-                properties: [
-                    new OA\Property(property: 'message', type: 'string'),
-                    new OA\Property(
-                        property: 'animal',
-                        type: 'object',
-                        properties: [
-                            new OA\Property(property: 'id', type: 'integer'),
-                            new OA\Property(property: 'commonName', type: 'string'),
-                            new OA\Property(property: 'scientificName', type: 'string'),
-                            new OA\Property(property: 'family', type: 'string'),
-                            new OA\Property(property: 'type', type: 'string'),
-                            new OA\Property(property: 'extinctLevel', type: 'string'),
-                            new OA\Property(property: 'images', type: 'array', items: new Items(type: 'string')),
-                        ]
-                    ),
-                ]
-            )
-        ),
-    ],
+                response: 200,
+                description: 'Animal updated successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string'),
+                        new OA\Property(
+                            property: 'animal',
+                            type: 'object',
+                            properties: [
+                                new OA\Property(property: 'id', type: 'integer'),
+                                new OA\Property(property: 'commonName', type: 'string'),
+                                new OA\Property(property: 'scientificName', type: 'string'),
+                                new OA\Property(property: 'family', type: 'string'),
+                                new OA\Property(property: 'type', type: 'string'),
+                                new OA\Property(property: 'extinctLevel', type: 'string'),
+                                new OA\Property(property: 'images', type: 'array', items: new Items(type: 'string')),
+                            ]
+                        ),
+                    ]
+                )
+            ),
+        ],
         description: 'Animal updated successfully',
         tags: ['Animals'],
         requestBody: new OA\RequestBody(

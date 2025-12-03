@@ -13,13 +13,15 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use OpenApi\Attributes\Items as Items;
 
+#[Route('/api', name: 'api_')]
 final class UserController extends AbstractController
 {
     /**
      * Get all users
      */
-    #[Route('/api/users', name: 'api_users_list', methods: ['GET'])]
+    #[Route('/users', name: 'api_users_list', methods: ['GET'])]
     #[OA\Response(
         response: 200,
         description: 'Returns the list of all users',
@@ -42,7 +44,7 @@ final class UserController extends AbstractController
     /**
      * Get user details by ID
      */
-    #[Route('/api/users/{id}', name: 'api_user_detail', methods: ['GET'])]
+    #[Route('/users/{id}', name: 'api_user_detail', methods: ['GET'])]
     #[OA\Response(
         response: 200,
         description: 'Returns the details of a user by ID',
@@ -66,7 +68,7 @@ final class UserController extends AbstractController
     /**
      * Add a user
      */
-    #[Route('/api/users/{id}', name: 'api_user_add', methods: ['POST'])]
+    #[Route('/users/{id}', name: 'api_user_add', methods: ['POST'])]
     #[OA\Response(
         response: 201,
         description: 'Creates a new user',
@@ -93,7 +95,47 @@ final class UserController extends AbstractController
         ], Response::HTTP_CREATED);
     }
     // PUT
-    #[Route('/api/users/{id}', name: 'user_update', methods: ['PUT'])]
+    #[Route('/users/{id}', name: 'user_update', methods: ['PUT'])]
+    #[
+        OA\Put(
+            responses: [
+                new OA\Response(
+                    response: 200,
+                    description: 'User updated successfully',
+                    content: new OA\JsonContent(
+                        type: 'object',
+                        properties: [
+                            new OA\Property(property: 'message', type: 'string'),
+                            new OA\Property(
+                                property: 'user',
+                                type: 'object',
+                                properties: [
+                                    new OA\Property(property: 'userId', type: 'integer'),
+                                    new OA\Property(property: 'email', type: 'string'),
+                                    new OA\Property(property: 'username', type: 'string'),
+                                    new OA\Property(property: 'role', type: 'array', items: new Items(type: 'string')),
+                                ]
+                            ),
+                        ]
+                    )
+                )
+            ],
+            description: 'Update an existing user',
+            tags: ['Users'],
+            requestBody: new OA\RequestBody(
+                required: true,
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'email', type: 'string', example: 'example@mail.com'),
+                        new OA\Property(property: 'password', type: 'string', example: 'newpassword123'),
+                        new OA\Property(property: 'username', type: 'string', example: 'newusername'),
+                        new OA\Property(property: 'role', type: 'array', items: new Items(type: 'string'), example: ['ROLE_USER']),
+                    ]
+                )
+            )
+        )
+    ]
     public function update(
         int $userId,
         Request $request,
@@ -136,7 +178,39 @@ final class UserController extends AbstractController
         ]);
     }
     //DELETE
-    #[Route('/api/users/{id}', name: 'user_delete', methods: ['DELETE'])]
+    #[Route('/users/{id}', name: 'user_delete', methods: ['DELETE'])]
+    #[OA\Delete(
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'User deleted successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string'),
+                    ]
+                )
+            )
+        ],
+        description: 'Delete an existing user',
+        tags: ['Users'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                type: 'object',
+                properties: [
+                    new OA\Property(
+                        property: 'userId',
+                        type: 'integer',
+                        description: 'ID of the user to delete'
+                    ),
+                ],
+                example: [
+                    'userId' => 1,
+                ]
+            )
+        )
+    )]
     public function delete(
         int $userId,
         UserRepository $userRepository,
