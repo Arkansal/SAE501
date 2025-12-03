@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Animal;
+use OpenApi\Attributes as OA;
+use OpenApi\Attributes\Items;
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +16,30 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/api', name: 'api_')]
 class AnimalController extends AbstractController
 {
+
+    /**
+     * List all animals
+     */
     #[Route('/animals', name: 'animals_list', methods: ['GET'])]
+    #[OA\Response(
+        response: 200,
+        description: 'Returns the list of all animals',
+        content: new OA\JsonContent(
+            type: 'array',
+            items: new OA\Items(
+                type: 'object',
+                properties: [
+                    new OA\Property(property: 'id', type: 'integer', example: 1),
+                    new OA\Property(property: 'commonName', type: 'string', example: 'African Elephant'),
+                    new OA\Property(property: 'scientificName', type: 'string', example: 'Loxodonta africana'),
+                    new OA\Property(property: 'family', type: 'string', example: 'Elephantidae'),
+                    new OA\Property(property: 'type', type: 'string', example: 'Mammal'),
+                    new OA\Property(property: 'extinctLevel', type: 'string', example: 'VU'),
+                    new OA\Property(property: 'images', type: 'array', items: new Items(type: 'string', example: 'https://example.com/image.jpg')),
+                ]
+            )
+        )
+    )]
     public function list(AnimalRepository $animalRepository): JsonResponse
     {
         $animals = $animalRepository->findAll();
@@ -34,7 +59,26 @@ class AnimalController extends AbstractController
         return $this->json($data);
     }
 
+    /**
+     * Give an animal with his ID
+     */
     #[Route('/animals/{id}', name: 'animal_detail', methods: ['GET'])]
+    #[OA\Response(
+        response: 200,
+        description: 'Returns the details of an animal by ID',
+        content: new OA\JsonContent(
+            type: 'object',
+            properties: [
+                new OA\Property(property: 'id', type: 'integer', example: 1),
+                new OA\Property(property: 'commonName', type: 'string', example: 'African Elephant'),
+                new OA\Property(property: 'scientificName', type: 'string', example: 'Loxodonta africana'),
+                new OA\Property(property: 'family', type: 'string', example: 'Elephantidae'),
+                new OA\Property(property: 'type', type: 'string', example: 'Mammal'),
+                new OA\Property(property: 'extinctLevel', type: 'string', example: 'VU'),
+                new OA\Property(property: 'images', type: 'array', items: new Items(type: 'string', example: 'https://example.com/image.jpg')),
+            ]
+        )
+    )]
     public function detail(int $id, AnimalRepository $animalRepository): JsonResponse
     {
         $animal = $animalRepository->find($id);
@@ -56,6 +100,26 @@ class AnimalController extends AbstractController
         return $this->json($data);
     }
 
+       /**
+     * Search animals by keyword
+     */
+    #[Route('/animals/{id}', name: 'animal_detail', methods: ['GET'])]
+    #[OA\Response(
+        response: 200,
+        description: 'Returns the details of an animal by ID',
+        content: new OA\JsonContent(
+            type: 'object',
+            properties: [
+                new OA\Property(property: 'id', type: 'integer', example: 1),
+                new OA\Property(property: 'commonName', type: 'string', example: 'African Elephant'),
+                new OA\Property(property: 'scientificName', type: 'string', example: 'Loxodonta africana'),
+                new OA\Property(property: 'family', type: 'string', example: 'Elephantidae'),
+                new OA\Property(property: 'type', type: 'string', example: 'Mammal'),
+                new OA\Property(property: 'extinctLevel', type: 'string', example: 'VU'),
+                new OA\Property(property: 'images', type: 'array', items: new Items(type: 'string', example: 'https://example.com/image.jpg')),
+            ]
+        )
+    )]
     #[Route('/animalSearch/{keyword}', name: 'animal_search', methods: ['GET'])]
     public function search(string $keyword, AnimalRepository $animalRepository): JsonResponse
     {
@@ -80,7 +144,42 @@ class AnimalController extends AbstractController
         return $this->json($data);
     }
 
+    /**
+     * Create a new animal
+     */
     #[Route('/animals', name: 'animals_create', methods: ['POST'])]
+    #[OA\Response(
+        response: 201,
+        description: 'Creates a new animal',
+        content: new OA\JsonContent(
+            type: 'object',
+            properties: [
+                new OA\Property(property: 'message', type: 'string', example: 'Animal enregistré'),
+                new OA\Property(property: 'id', type: 'integer', example: 1),
+            ]
+        )
+    )]
+    #[OA\Parameter(
+        name: 'id',
+        in: 'query',
+        description: 'Unique identifier for the animal (positive integer)',
+        required: true,
+        schema: new OA\Schema(type: 'integer', example: 1)
+    )]
+    #[OA\Parameter(
+        name: 'scientificName',
+        in: 'query',
+        description: 'Scientific name of the animal (2-200 characters)',
+        required: true,
+        schema: new OA\Schema(type: 'string', example: "Loxodonta africana")
+    )]
+    #[OA\Parameter(
+        name: 'extinctLevel',
+        in: 'query',
+        description: 'Extinct level of the animal (2 uppercase letters, e.g., VU, LC, EN)',
+        required: true,
+        schema: new OA\Schema(type: 'string', example: "VU")
+    )]
     public function create(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);

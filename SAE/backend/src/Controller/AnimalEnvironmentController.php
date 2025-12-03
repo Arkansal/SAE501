@@ -2,15 +2,37 @@
 
 namespace App\Controller;
 
-use App\Repository\AnimalEnvironmentRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use OpenApi\Attributes as OA;
+use App\Repository\AnimalRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\EnvironmentRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\AnimalEnvironmentRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/api', name: 'api_')]
 final class AnimalEnvironmentController extends AbstractController
 {
+    /**
+     * Get all environments for an animal with his Id
+     */
     #[Route('/environments/{animalId}', name: 'environment_detail', methods: ['GET'])]
+    #[OA\Response(
+        response: 200,
+        description: 'Returns a list of environments for the specified animal',
+        content: new OA\JsonContent(
+            type: 'array',
+            items: new OA\Items(
+                type: 'object',
+                properties: [
+                    new OA\Property(property: 'environmentName', type: 'string'),
+                    new OA\Property(property: 'type', type: 'string'),
+                ]
+            )
+        )
+        )]
     public function getEnvironmentsByAnimal(int $animalId, AnimalEnvironmentRepository $animalEnvironmentRepository): JsonResponse
     {
         $environments = $animalEnvironmentRepository->findBy(['animal' => $animalId]);
@@ -21,5 +43,56 @@ final class AnimalEnvironmentController extends AbstractController
             ];
         }, $environments);
         return $this->json($data);
+    }
+
+    /**
+     * Add an environment for an animal
+     */
+    #[Route('/environments', name: 'environment_add', methods: ['POST'])]
+    #[OA\Response(
+        response: 201,
+        description: 'Environment added to animal successfully',
+        content: new OA\JsonContent(
+            type: 'object',
+            properties: [
+                new OA\Property(property: 'message', type: 'string'),
+            ]
+        )
+    )]
+    #[OA\Parameter(
+        name: 'animalId',
+        in: 'query',
+        description: 'ID of the animal',
+        required: true,
+        schema: new OA\Schema(type: 'string', example: "1")
+    )]
+    #[OA\Parameter(
+        name: 'environmentId',
+        in: 'query',
+        description: 'ID of the environment',
+        required: true,
+        schema: new OA\Schema(type: 'string', example: "1")
+    )]
+    public function addEnvironmentForAnimal(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository, EnvironmentRepository $environmentRepository): JsonResponse {
+        $data = json_decode($request->getContent(), true);
+        if(!isset($data)) {
+            return $this->json(['error' => 'Invalid JSON data'], 400);
+        }
+
+        if(!isset($data['animalId']) || !isset($data['environmentId'])) {
+            return $this->json(['error' => 'Missing required fields'], 400);
+        }
+
+        $animal = $animalRepository->findOneBy(['id' => $data['animalId']]);
+        $environment = $environmentRepository->findOneBy(['id' => $data['environmentId']]);
+        if(!$animal || !$environment) {
+            return $this->json(['error' => 'Animal or Environment not found'], 404);
+        }
+        $animalEnvironment = new \App\Entity\AnimalEnvironment();
+        $animalEnvironment->setAnimal($animal);
+        $animalEnvironment->setEnvironment($environment);
+        $em->persist($animalEnvironment);
+        $em->flush();
+        return $this->json(['message' => 'Environment added to animal successfully'], 201);
     }
 }
