@@ -9,8 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use OpenApi\Attributes as OA;
-use OpenApi\Attributes\Items;
+use Symfony\Component\HttpFoundation\Response;
 
 #[Route('/api', name: 'api_')]
 class AnimalController extends AbstractController
@@ -35,6 +34,7 @@ class AnimalController extends AbstractController
             )
         )
     )]
+    #[OA\Get(tags: ['Animals'])]
     public function list(AnimalRepository $animalRepository): JsonResponse
     {
         $animals = $animalRepository->findAll();
@@ -55,7 +55,7 @@ class AnimalController extends AbstractController
     }
 
     /**
-     * Give an animal with his ID
+     * Get animal details by ID
      */
     #[Route('/animals/{id}', name: 'animal_detail', methods: ['GET'])]
     #[OA\Response(
@@ -74,6 +74,7 @@ class AnimalController extends AbstractController
             ]
         )
     )]
+    #[OA\Get(tags: ['Animals'])]
     public function detail(int $id, AnimalRepository $animalRepository): JsonResponse
     {
         $animal = $animalRepository->find($id);
@@ -95,13 +96,13 @@ class AnimalController extends AbstractController
         return $this->json($data);
     }
 
-       /**
+    /**
      * Search animals by keyword
      */
-    #[Route('/animals/{id}', name: 'animal_detail', methods: ['GET'])]
+    #[Route('/animalSearch/{keyword}', name: 'animal_search', methods: ['GET'])]
     #[OA\Response(
         response: 200,
-        description: 'Returns the details of an animal by ID',
+        description: 'Returns the details of an animal by keyword',
         content: new OA\JsonContent(
             type: 'object',
             properties: [
@@ -115,7 +116,9 @@ class AnimalController extends AbstractController
             ]
         )
     )]
-    #[Route('/animalSearch/{keyword}', name: 'animal_search', methods: ['GET'])]
+    #[OA\Get(
+        tags: ['Animals']
+    )]
     public function search(string $keyword, AnimalRepository $animalRepository): JsonResponse
     {
         $animals = $animalRepository->createQueryBuilder('a')
@@ -139,91 +142,97 @@ class AnimalController extends AbstractController
         return $this->json($data);
     }
 
+    /**
+     * Create a new animal
+     */
     #[Route('/animals', name: 'animals_create', methods: ['POST'])]
-    public function create(Request $request, EntityManagerInterface $em): JsonResponse
+    #[OA\Response(
+        response: 201,
+        description: 'Creates a new animal',
+        content: new OA\JsonContent(
+            type: 'object',
+            properties: [
+                new OA\Property(property: 'message', type: 'string', example: 'Animal enregistré'),
+                new OA\Property(property: 'id', type: 'integer', example: 1),
+            ]
+        )
+    )]
+    #[OA\Parameter(
+        name: 'id',
+        in: 'query',
+        description: 'Unique identifier for the animal (positive integer)',
+        required: true,
+        schema: new OA\Schema(type: 'integer', example: 1)
+    )]
+    #[OA\Parameter(
+        name: 'scientificName',
+        in: 'query',
+        description: 'Scientific name of the animal (2-200 characters)',
+        required: true,
+        schema: new OA\Schema(type: 'string', example: "Loxodonta africana")
+    )]
+    #[OA\Parameter(
+        name: 'extinctLevel',
+        in: 'query',
+        description: 'Extinct level of the animal (2 uppercase letters, e.g., VU, LC, EN)',
+        required: true,
+        schema: new OA\Schema(type: 'string', example: "VU")
+    )]
+    public function create(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository): JsonResponse
     {
-        if (!isset($_REQUEST['id'])) {
-            return new JsonResponse(['error' => 'ID is required'], 400);
-        } else {
-            if (!isset($_REQUEST['scientificName'])) {
-                return new JsonResponse(['message' => 'Scientific Name is required'], 400);
-            } else {
-                if (!isset($_REQUEST['extinctLevel'])) {
-                    return new JsonResponse(['message' => 'Extinct Level is required'], 400);
-                } else {
-                    return new JsonResponse(['message' => $request], 201);
-                }
-            }
-        }
-    }
-    // PUT
-    #[Route('/animals/{id}', name: 'animal_update', methods: ['PUT'])]
-    public function update(
-        int $id,
-        Request $request,
-        AnimalRepository $animalRepository,
-        EntityManagerInterface $entityManager,        
-    ): JsonResponse
-    
-    {
-        $animal = $animalRepository->find($id);
-        
-        if (!$animal) {
-            return $this->json(['error' => 'Animal not found'], 404);
-        }
-        
         $data = json_decode($request->getContent(), true);
-        
-        if (isset($data['commonName'])) {
-            $animal->setCommonName($data['commonName']);
+
+        if (!$data) {
+            return $this->json(['error' => 'Invalid JSON'], Response::HTTP_BAD_REQUEST);
         }
-        if (isset($data['scientificName'])) {
-            $animal->setScientificName($data['scientificName']);
+
+        if (!isset($data['id']) || !preg_match('/^[1-9][0-9]*$/', (string)$data['id'])) {
+            return $this->json(['error' => 'ID must be a positive integer'], Response::HTTP_BAD_REQUEST);
         }
-        if (isset($data['family'])) {
-            $animal->setFamily($data['family']);
+
+        if ($animalRepository->find($data['id'])) {
+            return $this->json(['error' => 'Animal with this ID already exists'], Response::HTTP_CONFLICT);
         }
-        if (isset($data['type'])) {
-            $animal->setType($data['type']);
+
+        if (!isset($data['scientificName']) || !preg_match('/^[A-Za-zÀ-ÖØ-öø-ÿ\s\-\']{2,200}$/', $data['scientificName'])) {
+            return $this->json(['error' => 'Scientific name must be 2-200 characters (letters, spaces, hyphens, apostrophes)'], Response::HTTP_BAD_REQUEST);
         }
-        if (isset($data['extinctLevel'])) {
-            $animal->setExtinctLevel($data['extinctLevel']);
+
+        if (!isset($data['extinctLevel']) || !preg_match('/^[A-Z]{2}$/', $data['extinctLevel'])) {
+            return $this->json(['error' => 'Extinct level must be 2 uppercase letters (ex: VU, LC, EN)'], Response::HTTP_BAD_REQUEST);
         }
-        if (isset($data['images'])) {
-            $animal->setImage($data['images']);
+
+        if (isset($data['commonName']) && !preg_match('/^[A-Za-zÀ-ÖØ-öø-ÿ\s\-\']{2,100}$/', $data['commonName'])) {
+            return $this->json(['error' => 'Common name must be 2-100 characters'], Response::HTTP_BAD_REQUEST);
         }
-        
-        $entityManager->flush();
-        
+
+        if (isset($data['family']) && !preg_match('/^[A-Za-zÀ-ÖØ-öø-ÿ\s\-\']{2,100}$/', $data['family'])) {
+            return $this->json(['error' => 'Family must be 2-100 characters'], Response::HTTP_BAD_REQUEST);
+        }
+
+        if (isset($data['type']) && !preg_match('/^[A-Za-zÀ-ÖØ-öø-ÿ\s\-\']{2,100}$/', $data['type'])) {
+            return $this->json(['error' => 'Type must be 2-100 characters'], Response::HTTP_BAD_REQUEST);
+        }
+
+        if (isset($data['images']) && !is_array($data['images'])) {
+            return $this->json(['error' => 'Images must be an array'], Response::HTTP_BAD_REQUEST);
+        }
+
+        $animal = new Animal();
+        $animal->setId((int)$data['id']); // ← ICI : utilise la vraie valeur
+        $animal->setScientificName($data['scientificName']);
+        $animal->setExtinctLevel($data['extinctLevel']);
+        $animal->setCommonName($data['commonName'] ?? null);
+        $animal->setFamily($data['family'] ?? null);
+        $animal->setType($data['type'] ?? null);
+        $animal->setImage($data['images'] ?? []);
+
+        $em->persist($animal);
+        $em->flush();
+
         return $this->json([
-            'message' => 'Animal updated successfully',
-            'animal' => [
-                'id' => $animal->getId(),
-                'commonName' => $animal->getCommonName(),
-                'scientificName' => $animal->getScientificName(),
-                'family' => $animal->getFamily(),
-                'type' => $animal->getType(),
-                'extinctLevel' => $animal->getExtinctLevel(),
-                'images' => $animal->getImage(),
-            ],
-        ]);
-    }
-    //DELETE
-    #[Route('/animals/{id}', name: 'animal_delete', methods: ['DELETE'])]
-    public function delete(
-        int $id,
-        AnimalRepository $animalRepository,
-        EntityManagerInterface $entityManager
-    ): JsonResponse {
-        $animal = $animalRepository->find($id);
-        
-        if (!$animal) {
-            return $this->json(['error' => 'Animal not found'], 404);
-        }
-        
-        $entityManager->remove($animal);
-        $entityManager->flush();
-        
-        return $this->json(['message' => 'Animal deleted successfully']);
+            'message' => 'Animal enregistré',
+            'id' => $animal->getId()
+        ], Response::HTTP_CREATED);
     }
 }

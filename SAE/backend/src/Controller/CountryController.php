@@ -32,6 +32,7 @@ class CountryController extends AbstractController
             )
         )
     )]
+    #[OA\Get(tags: ['Countries'])]
     public function list(CountryRepository $countryRepository): JsonResponse
     {
         $countries = $countryRepository->findAll();
@@ -74,6 +75,7 @@ class CountryController extends AbstractController
         required: true,
         schema: new OA\Schema(type: 'string', example: "United States")
     )]
+    #[OA\Post(tags: ['Countries'])]
     public function addCountry(Request $request, EntityManagerInterface $em, CountryRepository $countryRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -138,7 +140,7 @@ class CountryController extends AbstractController
     #[Route('/country', name: 'country_delete', methods: ['DELETE'])]
     public function delete(
         int $codeIso,
-        animalCountryRepository $animalCountryRepository,
+        CountryRepository $CountryRepository,
         EntityManagerInterface $entityManager
     ): JsonResponse {
         $country = $countryRepository->find($codeIso);
