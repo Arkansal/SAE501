@@ -97,4 +97,54 @@ final class AnimalEnvironmentController extends AbstractController
         $em->flush();
         return $this->json(['message' => 'Environment added to animal successfully'], 201);
     }
+    // PUT
+    #[Route('/environments/{animalId}', name: 'animal_environment_update', methods: ['PUT'])]
+    public function update(
+        int $animalId,
+        Request $request,
+        AnimalEnvironmentRepository $animalEnvironmentRepository,
+        EntityManagerInterface $entityManager,        
+    ): JsonResponse
+    
+    {
+        $animalEnvironment = $animalEnvironmentRepository->find($animalId);
+        
+        if (!$animalEnvironment) {
+            return $this->json(['error' => 'Environment not found for this animal'], 404);
+        }
+        
+        $data = json_decode($request->getContent(), true);
+        
+        if (isset($data['environmentId'])) {
+            $animalEnvironment->setEnvironment($data['environmentId']);
+        }
+        
+        $entityManager->flush();
+        
+        return $this->json([
+            'message' => 'Environment to animal updated successfully',
+            'animal' => [
+                'animalId' => $animalEnvironment->getId(),
+                'environmentId' => $animalEnvironment->getEnvironment(),
+            ],
+        ]);
+    }
+    //DELETE
+    #[Route('/environments/{animalId}', name: 'animal_environment_delete', methods: ['DELETE'])]
+    public function delete(
+        int $animalId,
+        animalEnvironmentRepository $animalEnvironmentRepository,
+        EntityManagerInterface $entityManager
+    ): JsonResponse {
+        $animalEnvironment = $animalEnvironmentRepository->find($animalId);
+        
+        if (!$animalEnvironment) {
+            return $this->json(['error' => 'Environment not found for this animal'], 404);
+        }
+        
+        $entityManager->remove($animalEnvironment);
+        $entityManager->flush();
+        
+        return $this->json(['message' => 'Environment deleted to an animal successfully']);
+    }
 }

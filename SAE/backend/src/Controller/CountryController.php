@@ -104,4 +104,54 @@ class CountryController extends AbstractController
 
         return $this->json(['message' => 'Country added successfully'], 201);
     }
+    // PUT
+    #[Route('/country', name: 'country_update', methods: ['PUT'])]
+    public function update(
+        int $codeIso,
+        Request $request,
+        CountryRepository $countryRepository,
+        EntityManagerInterface $entityManager,        
+    ): JsonResponse
+    
+    {
+        $country = $countryRepository->find($codeIso);
+        
+        if (!$country) {
+            return $this->json(['error' => 'Country not found'], 404);
+        }
+        
+        $data = json_decode($request->getContent(), true);
+        
+        if (isset($data['countryName'])) {
+            $country->setCountryName($data['countryName']);
+        }
+        
+        $entityManager->flush();
+        
+        return $this->json([
+            'message' => 'Country updated successfully',
+            'country' => [
+                'codeIso' => $country->getCodeIso(),
+                'countryName' => $country->getCountryName(),
+            ],
+        ]);
+    }
+    //DELETE
+    #[Route('/country', name: 'country_delete', methods: ['DELETE'])]
+    public function delete(
+        int $codeIso,
+        CountryRepository $countryRepository,
+        EntityManagerInterface $entityManager
+    ): JsonResponse {
+        $country = $countryRepository->find($codeIso);
+        
+        if (!$country) {
+            return $this->json(['error' => 'Country not found'], 404);
+        }
+        
+        $entityManager->remove($country);
+        $entityManager->flush();
+        
+        return $this->json(['message' => 'Country deleted successfully']);
+    }
 }

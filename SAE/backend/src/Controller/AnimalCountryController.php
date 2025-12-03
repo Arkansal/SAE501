@@ -103,4 +103,62 @@ final class AnimalCountryController extends AbstractController
         $em->flush();
         return $this->json(['message' => 'Country added to animal successfully'], 201);
     }
+    // PUT
+    #[Route('/countries/{animalId}', name: 'animal_country_update', methods: ['PUT'])]
+    public function update(
+        int $animalId,
+        Request $request,
+        AnimalCountryRepository $animalCountryRepository,
+        EntityManagerInterface $entityManager,        
+    ): JsonResponse
+    
+    {
+        $animalCountry = $animalCountryRepository->find($animalId);
+        
+        if (!$animalCountry) {
+            return $this->json(['error' => 'Country not found for this animal'], 404);
+        }
+        
+        $data = json_decode($request->getContent(), true);
+        
+        if (isset($data['codeIso'])) {
+            $animalCountry->setScientificName($data['codeIso']);
+        }
+        if (isset($data['origin'])) {
+            $animalCountry->setFamily($data['origin']);
+        }
+        if (isset($data['presenceType'])) {
+            $animalCountry->setType($data['presenceType']);
+        }
+        
+        $entityManager->flush();
+        
+        return $this->json([
+            'message' => 'Country to animal updated successfully',
+            'animalCountry' => [
+                'animalId' => $animalCountry->getId(),
+                'codeIso' => $animalCountry->getCodeIso(),
+                'origin' => $animalCountry->getOrigin(),
+                'presenceType' => $animalCountry->getPresenceType(),
+            ],
+        ]);
+    }
+    //DELETE
+    #[Route('/countries/{animalId}', name: 'animal_country_delete', methods: ['DELETE'])]
+    public function delete(
+        int $animalId,
+        AnimalCountryRepository $animalCountryRepository,
+        EntityManagerInterface $entityManager
+    ): JsonResponse {
+        $animalCountry = $animalCountryRepository->find($animalId);
+        
+        if (!$animalCountry) {
+            return $this->json(['error' => 'Country not found for this animal'], 404);
+        }
+        
+        $entityManager->remove($animalCountry);
+        $entityManager->flush();
+        
+        return $this->json(['message' => 'Country deleted to an animal successfully']);
+    }
 }

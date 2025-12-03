@@ -82,4 +82,58 @@ final class EnvironmentController extends AbstractController
 
         return $this->json(['message' => 'Environment added successfully'], JsonResponse::HTTP_CREATED);
     }
+    // PUT
+    #[Route('/api/environments', name: 'environment_update', methods: ['PUT'])]
+    public function update(
+        int $environmentId,
+        Request $request,
+        EnvironmentRepository $environmentRepository,
+        EntityManagerInterface $entityManager,        
+    ): JsonResponse
+    
+    {
+        $environment = $environmentRepository->find($environmentId);
+        
+        if (!$environment) {
+            return $this->json(['error' => 'Environment not found'], 404);
+        }
+        
+        $data = json_decode($request->getContent(), true);
+        
+        if (isset($data['environmentName'])) {
+            $environment->setEnvironmentName($data['environmentName']);
+        }
+        if (isset($data['environmentType'])) {
+            $environment->setEnvironmentType($data['environmentType']);
+        }
+        
+        $entityManager->flush();
+        
+        return $this->json([
+            'message' => 'Environment updated successfully',
+            'environment' => [
+                'environmentId' => $environment->getEnvironmentId(),
+                'environmentName' => $environment->getEnvironmentName(),
+                'environmentType' => $environment->getEnvironmentType(),
+            ],
+        ]);
+    }
+    //DELETE
+    #[Route('/api/environments', name: 'environment_delete', methods: ['DELETE'])]
+    public function delete(
+        int $environmentId,
+        EnvironmentRepository $environmentRepository,
+        EntityManagerInterface $entityManager
+    ): JsonResponse {
+        $environment = $environmentRepository->find($environmentId);
+        
+        if (!$environment) {
+            return $this->json(['error' => 'Environment not found'], 404);
+        }
+        
+        $entityManager->remove($environment);
+        $entityManager->flush();
+        
+        return $this->json(['message' => 'Environment deleted successfully']);
+    }
 }
