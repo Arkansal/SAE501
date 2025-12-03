@@ -41,6 +41,7 @@ class AnimalController extends AbstractController
             )
         )
     )]
+    #[OA\Get(tags: ['Animals'])]
     public function list(AnimalRepository $animalRepository): JsonResponse
     {
         $animals = $animalRepository->findAll();

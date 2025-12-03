@@ -31,6 +31,7 @@ final class EnvironmentController extends AbstractController
             )
         )
     )]
+    #[OA\Get(tags: ['Environments'])]
     public function getAllEnvironments(EnvironmentRepository $environmentRepository): JsonResponse
     {
         $environments = $environmentRepository->findAll();
@@ -60,6 +61,7 @@ final class EnvironmentController extends AbstractController
             ]
         )
     )]
+    #[OA\Post(tags: ['Environments'])]
     public function addEnvironment(EnvironmentRepository $environmentRepository, EntityManagerInterface $em, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);

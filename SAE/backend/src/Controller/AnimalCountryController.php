@@ -34,6 +34,7 @@ final class AnimalCountryController extends AbstractController
             )
         )
         )]
+    #[OA\Get(tags: ['Countries'])]
     public function getCountriesByAnimal(int $animalId, AnimalCountryRepository $animalCountryRepository): JsonResponse
     {
         $countries = $animalCountryRepository->findBy(['animal' => $animalId]);
@@ -77,6 +78,7 @@ final class AnimalCountryController extends AbstractController
         required: true,
         schema: new OA\Schema(type: 'string', example: "US")
     )]
+    #[OA\Post(tags: ['Countries'])]
     public function addCountryForAnimal(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository, CountryRepository $countryRepository): JsonResponse {
         $data = json_decode($request->getContent(), true);
         if(!$data) {

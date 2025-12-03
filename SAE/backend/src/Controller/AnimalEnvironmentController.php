@@ -33,6 +33,7 @@ final class AnimalEnvironmentController extends AbstractController
             )
         )
         )]
+    #[OA\Get(tags: ['Environments'])]
     public function getEnvironmentsByAnimal(int $animalId, AnimalEnvironmentRepository $animalEnvironmentRepository): JsonResponse
     {
         $environments = $animalEnvironmentRepository->findBy(['animal' => $animalId]);
@@ -73,6 +74,7 @@ final class AnimalEnvironmentController extends AbstractController
         required: true,
         schema: new OA\Schema(type: 'string', example: "1")
     )]
+    #[OA\Post(tags: ['Environments'])]
     public function addEnvironmentForAnimal(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository, EnvironmentRepository $environmentRepository): JsonResponse {
         $data = json_decode($request->getContent(), true);
         if(!isset($data)) {
