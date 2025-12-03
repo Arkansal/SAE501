@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Response;
 
 final class EnvironmentController extends AbstractController
 {
@@ -83,7 +84,46 @@ final class EnvironmentController extends AbstractController
         return $this->json(['message' => 'Environment added successfully'], JsonResponse::HTTP_CREATED);
     }
     // PUT
+    /**
+     * Update an environment
+     */
     #[Route('/api/environments', name: 'environment_update', methods: ['PUT'])]
+    #[OA\Put(
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Environment updated successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string'),
+                        new OA\Property(
+                            property: 'environment',
+                            type: 'object',
+                            properties: [
+                                new OA\Property(property: 'environmentId', type: 'integer'),
+                                new OA\Property(property: 'environmentName', type: 'string'),
+                                new OA\Property(property: 'environmentType', type: 'string'),
+                            ]
+                        ),
+                    ]
+                )
+            )
+                    ],
+        description: 'Update an existing environment',
+        tags: ['Environments'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                type: 'object',
+                properties: [
+                    new OA\Property(property: 'environmentId', type: 'integer'),
+                    new OA\Property(property: 'environmentName', type: 'string'),
+                    new OA\Property(property: 'environmentType', type: 'string'),
+                ]
+            )
+        )
+    )]
     public function update(
         int $environmentId,
         Request $request,
@@ -119,7 +159,35 @@ final class EnvironmentController extends AbstractController
         ]);
     }
     //DELETE
+    /**
+     * Delete an environment
+     */
     #[Route('/api/environments', name: 'environment_delete', methods: ['DELETE'])]
+    #[OA\Delete(
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Environment deleted successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string'),
+                    ]
+                )
+            )
+        ],
+        description: 'Delete an existing environment',
+        tags: ['Environments'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                type: 'object',
+                properties: [
+                    new OA\Property(property: 'environmentId', type: 'integer'),
+                ]
+            )
+        )
+    )]
     public function delete(
         int $environmentId,
         EnvironmentRepository $environmentRepository,
