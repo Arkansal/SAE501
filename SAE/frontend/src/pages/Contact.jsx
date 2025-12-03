@@ -37,39 +37,39 @@ function Contact() {
   return (
     <div className="contact-container">
       <div className="contact-content">
-        <div className="header-section">
+        <div className="contact-header-section">
           <h1>Contact</h1>
         </div>
 
         <form onSubmit={handleSubmit} className="contact-form">
-          <div className="input-group">
+          <div className="contact-input-group">
             <input
               type="text"
               placeholder="Pseudo prérempli"
               value={pseudo}
               onChange={(e) => setPseudo(e.target.value)}
-              className="form-input"
+              className="contact-form-input"
               required
             />
           </div>
 
-          <div className="input-group">
+          <div className="contact-input-group">
             <input
               type="email"
               placeholder="e-mail prérempli"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="form-input"
+              className="contact-form-input"
               required
             />
           </div>
 
-          <div className="input-group">
+          <div className="contact-input-group">
             <textarea
               placeholder="Message..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="form-textarea"
+              className="contact-form-textarea"
               rows="6"
               required
             />
@@ -77,15 +77,15 @@ function Contact() {
 
           <button 
             type="submit" 
-            className="submit-button"
+            className="contact-submit-button"
             disabled={loading}
           >
             {loading ? 'Envoi...' : 'Envoyer'}
           </button>
         </form>
 
-        <div className="logo-section">
-          <div className="logo">
+        <div className="contact-logo-section">
+          <div className="contact-logo">
             <img src={artemisLogo} alt="Artémis" />
           </div>
         </div>
