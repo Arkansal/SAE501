@@ -140,7 +140,7 @@ class CountryController extends AbstractController
     #[Route('/country', name: 'country_delete', methods: ['DELETE'])]
     public function delete(
         int $codeIso,
-        CountryRepository $CountryRepository,
+        CountryRepository $countryRepository,
         EntityManagerInterface $entityManager
     ): JsonResponse {
         $country = $countryRepository->find($codeIso);
