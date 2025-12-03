@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -14,24 +15,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Assert\NotNull(message: 'ID cannot be null')]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    #[Assert\NotBlank(message: 'Email cannot be blank')]
+    #[Assert\Email(message: 'The email {{ value }} is not a valid email.')]
+    #[Assert\Length(
+        max: 180,
+        maxMessage: 'Email cannot be longer than {{ limit }} characters'
+    )]
     private ?string $email = null;
 
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
+    #[Assert\NotNull(message: 'Roles cannot be null')]
+    #[Assert\Type(
+        type: 'array',
+        message: 'Roles must be of type array'
+    )]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Password cannot be blank')]
+    #[Assert\Length(
+        min: 8,
+        max: 255,
+        minMessage: 'Password must be at least {{ limit }} characters long',
+        maxMessage: 'Password cannot be longer than {{ limit }} characters'
+    )]
     private ?string $password = null;
 
     #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Length(
+        max: 50,
+        maxMessage: 'Pseudo cannot be longer than {{ limit }} characters'
+    )]
     private ?string $pseudo = null;
 
     public function getId(): ?int
