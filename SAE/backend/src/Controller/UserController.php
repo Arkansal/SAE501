@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 final class UserController extends AbstractController
 {
@@ -29,9 +30,10 @@ final class UserController extends AbstractController
         $users = $userRepository->findAll();
         $data = array_map(function ($user) {
             return [
-                'id' => $user->getId(),
+                'userId' => $user->getId(),
                 'username' => $user->getPseudo(),
                 'email' => $user->getEmail(),
+                'role' => $user->getRoles(),
             ];
         }, $users);
         return $this->json($data);
@@ -53,9 +55,10 @@ final class UserController extends AbstractController
             return $this->json(['message' => 'User not found'], Response::HTTP_NOT_FOUND);
         }
         $data = [
-            'id' => $user->getId(),
+            'userId' => $user->getUserId(),
             'username' => $user->getPseudo(),
             'email' => $user->getEmail(),
+            'role' => $user->getRoles(),
         ];
         return $this->json($data);
     }
@@ -63,7 +66,7 @@ final class UserController extends AbstractController
     /**
      * Add a user
      */
-    #[Route('/api/users', name: 'api_user_add', methods: ['POST'])]
+    #[Route('/api/users/{id}', name: 'api_user_add', methods: ['POST'])]
     #[OA\Response(
         response: 201,
         description: 'Creates a new user',
@@ -88,5 +91,66 @@ final class UserController extends AbstractController
             'message' => 'User created successfully',
             'id' => $user->getId()
         ], Response::HTTP_CREATED);
+    }
+    // PUT
+    #[Route('/api/users/{id}', name: 'user_update', methods: ['PUT'])]
+    public function update(
+        int $userId,
+        Request $request,
+        UserRepository $userRepository,
+        EntityManagerInterface $entityManager,
+        UserPasswordHasherInterface $passwordHasher
+    ): JsonResponse {
+        $user = $userRepository->find($userId);
+
+        if (!$user) {
+            return $this->json(['error' => 'User not found'], 404);
+        }
+
+        $data = json_decode($request->getContent(), true);
+
+        if (isset($data['email'])) {
+            $user->setEmail($data['email']);
+        }
+        if (isset($data['password'])) {
+            $hashed = $passwordHasher->hashPassword($user, $data['password']);
+            $user->setPassword($hashed);
+        }
+        if (isset($data['username'])) {
+            $user->setPseudo($data['username']);
+        }
+        if (isset($data['role'])) {
+            $user->setRoles($data['role']);
+        }
+
+        $entityManager->flush();
+
+        return $this->json([
+            'message' => 'User updated successfully',
+            'user' => [
+                'userId' => $user->getId(),
+                'email' => $user->getEmail(),
+                'username' => $user->getPseudo(),
+                'role' => $user->getRoles(),
+            ],
+        ]);
+    }
+    //DELETE
+    #[Route('/api/users/{id}', name: 'user_delete', methods: ['DELETE'])]
+    public function delete(
+        int $userId,
+        UserRepository $userRepository,
+        EntityManagerInterface $entityManager
+    ): JsonResponse {
+        $user = $userRepository->find($userId);
+
+        if (!$user) {
+            return $this->json(['error' => 'User not found'], 404);
+        }
+
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        return $this->json(['message' => 'User deleted successfully']);
     }
 }
