@@ -123,7 +123,7 @@ final class AnimalCountryController extends AbstractController
             $animalCountry->setScientificName($data['codeIso']);
         }
         if (isset($data['origin'])) {
-            $animalCountry->setFamily($data['orogin']);
+            $animalCountry->setFamily($data['origin']);
         }
         if (isset($data['presenceType'])) {
             $animalCountry->setType($data['presenceType']);
