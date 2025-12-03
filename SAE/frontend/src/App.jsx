@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import './App.css'
 import About from './pages/About'
 import Connection from './pages/Connection'
 import Register from './pages/Register'
 import Contact from './pages/Contact'
+import BottomNavigation from './components/BottomNavigation'
+
 
 function Home() {
   const [apiData, setApiData] = useState(null)
@@ -37,17 +39,36 @@ function Home() {
     </div>
   )
 }
-function App() {
+
+function AppContent() {
+  const location = useLocation()
+  
+  // Pages sans menu
+  const pagesWithoutMenu = ['/register', '/connection']
+  const shouldShowMenu = !pagesWithoutMenu.includes(location.pathname)
+  
   return (
-    <Router>
+    <div className={`app ${shouldShowMenu ? 'with-navigation' : ''}`}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/connection" element={<Connection />} />
-         <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      
+      {shouldShowMenu && <BottomNavigation />}
+    </div>
+  )
+}
+
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   )
 }
+
 export default App
