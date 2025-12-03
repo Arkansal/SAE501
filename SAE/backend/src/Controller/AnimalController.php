@@ -17,7 +17,7 @@ class AnimalController extends AbstractController
     public function list(AnimalRepository $animalRepository): JsonResponse
     {
         $animals = $animalRepository->findAll();
-        
+
         $data = array_map(function($animal) {
             return [
                 'id' => $animal->getId(),
@@ -29,7 +29,7 @@ class AnimalController extends AbstractController
                 'images' => $animal->getImage(),
             ];
         }, $animals);
-        
+
         return $this->json($data);
     }
 
@@ -37,11 +37,11 @@ class AnimalController extends AbstractController
     public function detail(int $id, AnimalRepository $animalRepository): JsonResponse
     {
         $animal = $animalRepository->find($id);
-        
+
         if (!$animal) {
             return $this->json(['error' => 'Animal not found'], 404);
         }
-        
+
         $data = [
             'id' => $animal->getId(),
             'commonName' => $animal->getCommonName(),
@@ -51,7 +51,7 @@ class AnimalController extends AbstractController
             'extinctLevel' => $animal->getExtinctLevel(),
             'images' => $animal->getImage(),
         ];
-        
+
         return $this->json($data);
     }
 
@@ -63,7 +63,7 @@ class AnimalController extends AbstractController
             ->setParameter('keyword', $keyword . '%')
             ->getQuery()
             ->getResult();
-        
+
         $data = array_map(function($animal) {
             return [
                 'id' => $animal->getId(),
@@ -75,10 +75,10 @@ class AnimalController extends AbstractController
                 'images' => $animal->getImage(),
             ];
         }, $animals);
-        
+
         return $this->json($data);
     }
-    // PUT
+// PUT
     #[Route('/animals/{id}', name: 'animal_update', methods: ['PUT'])]
     public function update(
         int $id,
