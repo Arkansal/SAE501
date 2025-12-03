@@ -230,7 +230,52 @@ class AnimalController extends AbstractController
     }
 
     // PUT
+    /**
+     * Update an animal
+     */
     #[Route('/animals/{id}', name: 'animal_update', methods: ['PUT'])]
+    #[OA\Put(
+        responses: [
+            new OA\Response(
+            response: 200,
+            description: 'Animal updated successfully',
+            content: new OA\JsonContent(
+                type: 'object',
+                properties: [
+                    new OA\Property(property: 'message', type: 'string'),
+                    new OA\Property(
+                        property: 'animal',
+                        type: 'object',
+                        properties: [
+                            new OA\Property(property: 'id', type: 'integer'),
+                            new OA\Property(property: 'commonName', type: 'string'),
+                            new OA\Property(property: 'scientificName', type: 'string'),
+                            new OA\Property(property: 'family', type: 'string'),
+                            new OA\Property(property: 'type', type: 'string'),
+                            new OA\Property(property: 'extinctLevel', type: 'string'),
+                            new OA\Property(property: 'images', type: 'array', items: new Items(type: 'string')),
+                        ]
+                    ),
+                ]
+            )
+        ),
+    ],
+        description: 'Animal updated successfully',
+        tags: ['Animals'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(property: 'commonName', type: 'string', example: 'African Elephant'),
+                    new OA\Property(property: 'scientificName', type: 'string', example: 'Loxodonta africana'),
+                    new OA\Property(property: 'family', type: 'string', example: 'Elephantidae'),
+                    new OA\Property(property: 'type', type: 'string', example: 'Mammal'),
+                    new OA\Property(property: 'extinctLevel', type: 'string', example: 'VU'),
+                    new OA\Property(property: 'images', type: 'array', items: new Items(type: 'string', example: 'https://example.com/image.jpg')),
+                ]
+            )
+        ),
+    )]
     public function update(
         int $id,
         Request $request,
@@ -279,8 +324,35 @@ class AnimalController extends AbstractController
             ],
         ]);
     }
+    /**
+     * Delete an animal
+     */
     //DELETE
     #[Route('/animals/{id}', name: 'animal_delete', methods: ['DELETE'])]
+    #[OA\Delete(
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Animal deleted successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'Animal deleted successfully'),
+                    ]
+                )
+            ),
+        ],
+        description: 'Delete an animal by ID',
+        tags: ['Animals'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                properties: [
+                    new OA\Property(property: 'id', type: 'integer', example: 1),
+                ]
+            )
+        ),
+    )]
     public function delete(
         int $id,
         AnimalRepository $animalRepository,

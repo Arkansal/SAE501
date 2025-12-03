@@ -33,12 +33,12 @@ final class AnimalCountryController extends AbstractController
                 ]
             )
         )
-        )]
+    )]
     #[OA\Get(tags: ['Countries'])]
     public function getCountriesByAnimal(int $animalId, AnimalCountryRepository $animalCountryRepository): JsonResponse
     {
         $countries = $animalCountryRepository->findBy(['animal' => $animalId]);
-        $data = array_map(function($animalCountry) {
+        $data = array_map(function ($animalCountry) {
             return [
                 'countryName' => $animalCountry->getCountry()->getCountryName(),
                 'origin' => $animalCountry->getOrigin(),
@@ -46,7 +46,7 @@ final class AnimalCountryController extends AbstractController
             ];
         }, $countries);
 
-        
+
         return $this->json($data);
     }
 
@@ -79,19 +79,20 @@ final class AnimalCountryController extends AbstractController
         schema: new OA\Schema(type: 'string', example: "US")
     )]
     #[OA\Post(tags: ['Countries'])]
-    public function addCountryForAnimal(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository, CountryRepository $countryRepository): JsonResponse {
+    public function addCountryForAnimal(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository, CountryRepository $countryRepository): JsonResponse
+    {
         $data = json_decode($request->getContent(), true);
-        if(!$data) {
+        if (!$data) {
             return $this->json(['error' => 'Invalid JSON'], 400);
         }
 
-        if(!isset($data['animalId'], $data['countryCode'])) {
+        if (!isset($data['animalId'], $data['countryCode'])) {
             return $this->json(['error' => 'Missing required fields (animalId/countryCode)'], 400);
         }
         $animal = $animalRepository->find($data['animalId']);
         $animal = $animalRepository->findOneBy(['id' => $data['animalId']]);
         $country = $countryRepository->findOneBy(['codeIso' => $data['countryCode']]);
-        if(!$animal || !$country) {
+        if (!$animal || !$country) {
             return $this->json(['error' => 'Animal or Country not found'], 404);
         }
         $animalCountry = new \App\Entity\AnimalCountry();
@@ -104,23 +105,61 @@ final class AnimalCountryController extends AbstractController
         return $this->json(['message' => 'Country added to animal successfully'], 201);
     }
     // PUT
+    /**
+     * Modify list of country by animal
+     */
     #[Route('/countries/{animalId}', name: 'animal_country_update', methods: ['PUT'])]
+    #[OA\Put(
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Country to animal updated successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string'),
+                        new OA\Property(
+                            property: 'animalCountry',
+                            type: 'object',
+                            properties: [
+                                new OA\Property(property: 'animalId', type: 'integer'),
+                                new OA\Property(property: 'codeIso', type: 'string'),
+                                new OA\Property(property: 'origin', type: 'string'),
+                                new OA\Property(property: 'presenceType', type: 'string'),
+                            ]
+                        ),
+                    ]
+                )
+            )
+        ],
+        description: 'Update an existing country for an animal',
+        tags: ['Countries'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                type: 'object',
+                properties: [
+                    new OA\Property(property: 'codeIso', type: 'string', example: 'US'),
+                    new OA\Property(property: 'origin', type: 'string', example: 'Native'),
+                    new OA\Property(property: 'presenceType', type: 'string', example: 'Endemic'),
+                ]
+            )
+        )
+    )]
     public function update(
         int $animalId,
         Request $request,
         AnimalCountryRepository $animalCountryRepository,
-        EntityManagerInterface $entityManager,        
-    ): JsonResponse
-    
-    {
+        EntityManagerInterface $entityManager,
+    ): JsonResponse {
         $animalCountry = $animalCountryRepository->find($animalId);
-        
+
         if (!$animalCountry) {
             return $this->json(['error' => 'Country not found for this animal'], 404);
         }
-        
+
         $data = json_decode($request->getContent(), true);
-        
+
         if (isset($data['codeIso'])) {
             $animalCountry->setScientificName($data['codeIso']);
         }
@@ -130,9 +169,9 @@ final class AnimalCountryController extends AbstractController
         if (isset($data['presenceType'])) {
             $animalCountry->setType($data['presenceType']);
         }
-        
+
         $entityManager->flush();
-        
+
         return $this->json([
             'message' => 'Country to animal updated successfully',
             'animalCountry' => [
@@ -144,21 +183,56 @@ final class AnimalCountryController extends AbstractController
         ]);
     }
     //DELETE
+    /**
+     * Delete a country in animal list by animal Id
+     */
     #[Route('/countries/{animalId}', name: 'animal_country_delete', methods: ['DELETE'])]
+    #[OA\Delete(
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Country deleted to an animal successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string'),
+                    ]
+                )
+            )
+        ],
+        description: 'Delete country for a specific animal',
+        tags: ['Countries'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                type: 'object',
+                properties: [
+                    new OA\Property(
+                        property: 'animalId',
+                        type: 'integer',
+                        description: 'ID of the animal'
+                    ),
+                ],
+                example: [
+                    'animalId' => 1,
+                ]
+            )
+        )
+    )]
     public function delete(
         int $animalId,
         AnimalCountryRepository $animalCountryRepository,
         EntityManagerInterface $entityManager
     ): JsonResponse {
         $animalCountry = $animalCountryRepository->find($animalId);
-        
+
         if (!$animalCountry) {
             return $this->json(['error' => 'Country not found for this animal'], 404);
         }
-        
+
         $entityManager->remove($animalCountry);
         $entityManager->flush();
-        
+
         return $this->json(['message' => 'Country deleted to an animal successfully']);
     }
 }

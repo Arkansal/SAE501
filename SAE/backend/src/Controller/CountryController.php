@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Controller;
 
@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Response;
 
 #[Route('/api', name: 'api_')]
 class CountryController extends AbstractController
@@ -36,14 +37,14 @@ class CountryController extends AbstractController
     public function list(CountryRepository $countryRepository): JsonResponse
     {
         $countries = $countryRepository->findAll();
-        
-        $data = array_map(function($country) {
+
+        $data = array_map(function ($country) {
             return [
                 'id' => $country->getCodeIso(),
                 'name' => $country->getCountryName(),
             ];
         }, $countries);
-        
+
         return $this->json($data);
     }
 
@@ -79,10 +80,10 @@ class CountryController extends AbstractController
     public function addCountry(Request $request, EntityManagerInterface $em, CountryRepository $countryRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        if(!isset($data)) {
+        if (!isset($data)) {
             return $this->json(['message' => 'Invalid JSON'], 400);
         }
-        
+
         $codeIso = $data['codeIso'] ?? null;
         $countryName = $data['countryName'] ?? null;
 
@@ -105,29 +106,74 @@ class CountryController extends AbstractController
         return $this->json(['message' => 'Country added successfully'], 201);
     }
     // PUT
+    /**
+     * Update an existing country
+     */
     #[Route('/country', name: 'country_update', methods: ['PUT'])]
+    #[OA\Put(
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Country updated successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string'),
+                        new OA\Property(
+                            property: 'country',
+                            type: 'object',
+                            properties: [
+                                new OA\Property(property: 'codeIso', type: 'string'),
+                                new OA\Property(property: 'countryName', type: 'string'),
+                            ]
+                        ),
+                    ]
+                )
+            )
+        ],
+        description: 'Update an existing country',
+        tags: ['Countries'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                type: 'object',
+                properties: [
+                    new OA\Property(
+                        property: 'codeIso',
+                        type: 'string',
+                        description: 'ISO 3166-1 alpha-2 country code (2 uppercase letters)',
+                        example: 'US'
+                    ),
+                    new OA\Property(
+                        property: 'countryName',
+                        type: 'string',
+                        description: 'Name of the country',
+                        example: 'United States'
+                    ),
+                ]
+            )
+        )
+    )]
     public function update(
         int $codeIso,
         Request $request,
         CountryRepository $countryRepository,
-        EntityManagerInterface $entityManager,        
-    ): JsonResponse
-    
-    {
+        EntityManagerInterface $entityManager,
+    ): JsonResponse {
         $country = $countryRepository->find($codeIso);
-        
+
         if (!$country) {
             return $this->json(['error' => 'Country not found'], 404);
         }
-        
+
         $data = json_decode($request->getContent(), true);
-        
+
         if (isset($data['countryName'])) {
             $country->setCountryName($data['countryName']);
         }
-        
+
         $entityManager->flush();
-        
+
         return $this->json([
             'message' => 'Country updated successfully',
             'country' => [
@@ -137,21 +183,54 @@ class CountryController extends AbstractController
         ]);
     }
     //DELETE
+    /**
+     * Delete an existing country
+     */
     #[Route('/country', name: 'country_delete', methods: ['DELETE'])]
+    #[OA\Delete(
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Country deleted successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string'),
+                    ]
+                )
+            )
+        ],
+        description: 'Delete an existing country',
+        tags: ['Countries'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                type: 'object',
+                properties: [
+                    new OA\Property(
+                        property: 'codeIso',
+                        type: 'string',
+                        description: 'ISO 3166-1 alpha-2 country code (2 uppercase letters)',
+                        example: 'US'
+                    ),
+                ]
+            )
+        )
+    )]
     public function delete(
         int $codeIso,
         CountryRepository $countryRepository,
         EntityManagerInterface $entityManager
     ): JsonResponse {
         $country = $countryRepository->find($codeIso);
-        
+
         if (!$country) {
             return $this->json(['error' => 'Country not found'], 404);
         }
-        
+
         $entityManager->remove($country);
         $entityManager->flush();
-        
+
         return $this->json(['message' => 'Country deleted successfully']);
     }
 }

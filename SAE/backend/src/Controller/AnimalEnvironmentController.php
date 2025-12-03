@@ -32,12 +32,12 @@ final class AnimalEnvironmentController extends AbstractController
                 ]
             )
         )
-        )]
+    )]
     #[OA\Get(tags: ['Environments'])]
     public function getEnvironmentsByAnimal(int $animalId, AnimalEnvironmentRepository $animalEnvironmentRepository): JsonResponse
     {
         $environments = $animalEnvironmentRepository->findBy(['animal' => $animalId]);
-        $data = array_map(function($animalEnvironment) {
+        $data = array_map(function ($animalEnvironment) {
             return [
                 'environmentName' => $animalEnvironment->getEnvironment()->getEnvironmentName(),
                 'type' => $animalEnvironment->getEnvironment()->getEnvironmentType()
@@ -75,19 +75,20 @@ final class AnimalEnvironmentController extends AbstractController
         schema: new OA\Schema(type: 'string', example: "1")
     )]
     #[OA\Post(tags: ['Environments'])]
-    public function addEnvironmentForAnimal(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository, EnvironmentRepository $environmentRepository): JsonResponse {
+    public function addEnvironmentForAnimal(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository, EnvironmentRepository $environmentRepository): JsonResponse
+    {
         $data = json_decode($request->getContent(), true);
-        if(!isset($data)) {
+        if (!isset($data)) {
             return $this->json(['error' => 'Invalid JSON data'], 400);
         }
 
-        if(!isset($data['animalId']) || !isset($data['environmentId'])) {
+        if (!isset($data['animalId']) || !isset($data['environmentId'])) {
             return $this->json(['error' => 'Missing required fields'], 400);
         }
 
         $animal = $animalRepository->findOneBy(['id' => $data['animalId']]);
         $environment = $environmentRepository->findOneBy(['id' => $data['environmentId']]);
-        if(!$animal || !$environment) {
+        if (!$animal || !$environment) {
             return $this->json(['error' => 'Animal or Environment not found'], 404);
         }
         $animalEnvironment = new \App\Entity\AnimalEnvironment();
@@ -98,29 +99,70 @@ final class AnimalEnvironmentController extends AbstractController
         return $this->json(['message' => 'Environment added to animal successfully'], 201);
     }
     // PUT
+    /**
+     * Modify list of environments for an animal
+     */
     #[Route('/environments/{animalId}', name: 'animal_environment_update', methods: ['PUT'])]
+    #[OA\Put(
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Environment to animal updated successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string'),
+                        new OA\Property(
+                            property: 'animal',
+                            type: 'object',
+                            properties: [
+                                new OA\Property(property: 'animalId', type: 'integer'),
+                                new OA\Property(property: 'environmentId', type: 'integer'),
+                            ]
+                        ),
+                    ]
+                )
+            )
+        ],
+        description: 'Update environment for a specific animal',
+        tags: ['Environments'],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                type: 'object',
+                properties: [
+                    new OA\Property(
+                        property: 'environmentId',
+                        type: 'integer',
+                        description: 'ID of the new environment'
+                    ),
+                ],
+                example: [
+                    'environmentId' => 2,
+                ]
+            )
+        )
+    )]
     public function update(
         int $animalId,
         Request $request,
         AnimalEnvironmentRepository $animalEnvironmentRepository,
-        EntityManagerInterface $entityManager,        
-    ): JsonResponse
-    
-    {
+        EntityManagerInterface $entityManager,
+    ): JsonResponse {
         $animalEnvironment = $animalEnvironmentRepository->find($animalId);
-        
+
         if (!$animalEnvironment) {
             return $this->json(['error' => 'Environment not found for this animal'], 404);
         }
-        
+
         $data = json_decode($request->getContent(), true);
-        
+
         if (isset($data['environmentId'])) {
             $animalEnvironment->setEnvironment($data['environmentId']);
         }
-        
+
         $entityManager->flush();
-        
+
         return $this->json([
             'message' => 'Environment to animal updated successfully',
             'animal' => [
@@ -130,21 +172,47 @@ final class AnimalEnvironmentController extends AbstractController
         ]);
     }
     //DELETE
+    /**
+     * Delete an environments in list by animal Id
+     */
     #[Route('/environments/{animalId}', name: 'animal_environment_delete', methods: ['DELETE'])]
+    #[OA\Delete(
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Environment deleted to an animal successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string'),
+                    ]
+                )
+            )
+                    ],
+        description: 'Delete environment for a specific animal',
+        tags: ['Environments'],
+        requestBody: new OA\RequestBody(
+            required: false,
+            content: new OA\JsonContent(
+                type: 'object',
+                example: []
+            )
+            )
+    )]
     public function delete(
         int $animalId,
         animalEnvironmentRepository $animalEnvironmentRepository,
         EntityManagerInterface $entityManager
     ): JsonResponse {
         $animalEnvironment = $animalEnvironmentRepository->find($animalId);
-        
+
         if (!$animalEnvironment) {
             return $this->json(['error' => 'Environment not found for this animal'], 404);
         }
-        
+
         $entityManager->remove($animalEnvironment);
         $entityManager->flush();
-        
+
         return $this->json(['message' => 'Environment deleted to an animal successfully']);
     }
 }
