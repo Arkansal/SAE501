@@ -1,4 +1,3 @@
-// SAE/frontend/src/components/OverlayMenu.jsx
 import React from 'react'
 import { Link } from 'react-router-dom'
 // import ArticleSection from './ArticleSection'
@@ -23,9 +22,8 @@ function OverlayMenu({ isOpen, onClose }) {
         </div>
 
         <div className="nav-menu-scroll-container">
-          {/* Navigation principale - Liste verticale */}
           <div className="nav-menu-section">
-            <div className="nav-menu-list">
+            <div className="nav-menu-list-grid">
               <Link to="/" className="nav-menu-list-item" onClick={onClose}>
                 <span className="nav-menu-list-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20">
@@ -38,7 +36,7 @@ function OverlayMenu({ isOpen, onClose }) {
               <Link to="/scan" className="nav-menu-list-item" onClick={onClose}>
                 <span className="nav-menu-list-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M9.5 6.5v3h-3v-3zM11 5H5v6h6zm-1.5 9.5v3h-3v-3zM11 13H5v6h6zm6.5-6.5v3h-3v-3zM19 5h-6v6h6zm-6 8h1.5v1.5H13zm1.5 1.5H16V16h-1.5zM16 13h1.5v1.5H16zm-3 3h1.5v1.5H13zm1.5 1.5H16V19h-1.5zM16 16h1.5v1.5H16zm1.5-3H19v1.5h-1.5zm0 3H19V19h-1.5zM22 7h-2V4a2 2 0 0 0-2-2h-3v2h3v3h2zm0 10v3a2 2 0 0 1-2 2h-3v-2h3v-3zM2 7h2V4h3V2H4a2 2 0 0 0-2 2zm0 10v-3h2v3h3v2H4a2 2 0 0 1-2-2"/>
+                    <path fill="currentColor" d="M8 21H4a1 1 0 0 1-1-1v-4a1 1 0 0 0-2 0v4a3 3 0 0 0 3 3h4a1 1 0 0 0 0-2m14-6a1 1 0 0 0-1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 0 0 2h4a3 3 0 0 0 3-3v-4a1 1 0 0 0-1-1M20 1h-4a1 1 0 0 0 0 2h4a1 1 0 0 1 1 1v4a1 1 0 0 0 2 0V4a3 3 0 0 0-3-3M2 9a1 1 0 0 0 1-1V4a1 1 0 0 1 1-1h4a1 1 0 0 0 0-2H4a3 3 0 0 0-3 3v4a1 1 0 0 0 1 1m8-4H6a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1M9 9H7V7h2Zm5 2h4a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1m1-4h2v2h-2Zm-5 6H6a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1m-1 4H7v-2h2Zm5-1a1 1 0 0 0 1-1a1 1 0 0 0 0-2h-1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1m4-3a1 1 0 0 0-1 1v3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1m-4 4a1 1 0 1 0 1 1a1 1 0 0 0-1-1" />
                   </svg>
                 </span>
                 <span className="nav-menu-list-text">Scan moi</span>
@@ -47,7 +45,7 @@ function OverlayMenu({ isOpen, onClose }) {
               <Link to="/partners" className="nav-menu-list-item" onClick={onClose}>
                 <span className="nav-menu-list-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M16 4c0-1.11.89-2 2-2s2 .89 2 2s-.89 2-2 2s-2-.89-2-2M4 1v2h2l3.6 7.59l-1.35 2.44C8.04 13.38 8.2 13.76 8.46 14H19v2H7l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03L18.7 9H7l-.64-1.37L6.16 7l-.95-2H3V3h2.25l.95 2zm0 18c-.55 0-1-.45-1-1s.45-1 1-1s1 .45 1 1s-.45 1-1 1m11 0c-.55 0-1-.45-1-1s.45-1 1-1s1 .45 1 1s-.45 1-1 1"/>
+                    <path fill="currentColor" d="M21.71 8.71c1.25-1.25.68-2.71 0-3.42l-3-3c-1.26-1.25-2.71-.68-3.42 0L13.59 4H11C9.1 4 8 5 7.44 6.15L3 10.59v4l-.71.7c-1.25 1.26-.68 2.71 0 3.42l3 3c.54.54 1.12.74 1.67.74c.71 0 1.36-.35 1.75-.74l2.7-2.71H15c1.7 0 2.56-1.06 2.87-2.1c1.13-.3 1.75-1.16 2-2C21.42 14.5 22 13.03 22 12V9h-.59zM20 12c0 .45-.19 1-1 1h-1v1c0 .45-.19 1-1 1h-1v1c0 .45-.19 1-1 1h-4.41l-3.28 3.28c-.31.29-.49.12-.6.01l-2.99-2.98c-.29-.31-.12-.49-.01-.6L5 15.41v-4l2-2V11c0 1.21.8 3 3 3s3-1.79 3-3h7zm.29-4.71L18.59 9H11v2c0 .45-.19 1-1 1s-1-.55-1-1V8c0-.46.17-2 2-2h3.41l2.28-2.28c.31-.29.49-.12.6-.01l2.99 2.98c.29.31.12.49.01.6" />
                   </svg>
                 </span>
                 <span className="nav-menu-list-text">Partenaire</span>
@@ -56,7 +54,7 @@ function OverlayMenu({ isOpen, onClose }) {
               <Link to="/donation" className="nav-menu-list-item" onClick={onClose}>
                 <span className="nav-menu-list-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="m12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54z"/>
+                    <path fill="currentColor" d="M16 2c-2.76 0-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5s-2.24-5-5-5m0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3s3 1.34 3 3s-1.34 3-3 3m3 6h-2c0-1.2-.75-2.28-1.87-2.7L8.97 11H1v11h6v-1.44l7 1.94l8-2.5v-1c0-1.66-1.34-3-3-3M5 20H3v-7h2zm8.97.41L7 18.5V13h1.61l5.82 2.17c.34.13.57.46.57.83c0 0-2-.05-2.3-.15l-2.38-.79l-.63 1.9l2.38.79c.51.17 1.04.25 1.58.25H19c.39 0 .74.24.9.57z" />
                   </svg>
                 </span>
                 <span className="nav-menu-list-text">Donation</span>
@@ -65,7 +63,7 @@ function OverlayMenu({ isOpen, onClose }) {
               <Link to="/about" className="nav-menu-list-item" onClick={onClose}>
                 <span className="nav-menu-list-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z"/>
+                    <path fill="currentColor" d="M12 21.9q-.175 0-.325-.025t-.3-.075Q8 20.675 6 17.638T4 11.1V6.375q0-.625.363-1.125t.937-.725l6-2.25q.35-.125.7-.125t.7.125l6 2.25q.575.225.938.725T20 6.375V11.1q0 3.5-2 6.538T12.625 21.8q-.15.05-.3.075T12 21.9m0-2q2.6-.825 4.3-3.3t1.7-5.5V6.375l-6-2.25l-6 2.25V11.1q0 3.025 1.7 5.5t4.3 3.3m0-7.9" />
                   </svg>
                 </span>
                 <span className="nav-menu-list-text">Artémis</span>
@@ -73,8 +71,8 @@ function OverlayMenu({ isOpen, onClose }) {
               
               <Link to="/contact" className="nav-menu-list-item" onClick={onClose}>
                 <span className="nav-menu-list-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5l-8-5V6l8 5l8-5z"/>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M4 20q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.587 1.413T20 20zM20 8l-7.475 4.675q-.125.075-.262.113t-.263.037t-.262-.037t-.263-.113L4 8v10h16zm-8 3l8-5H4zM4 8v.25v-1.475v.025V6v.8v-.012V8.25zv10z" />
                   </svg>
                 </span>
                 <span className="nav-menu-list-text">Contact</span>
@@ -88,41 +86,45 @@ function OverlayMenu({ isOpen, onClose }) {
             {/* Section Jeux avec scroll horizontal */}
             {/* <GameSection onItemClick={onClose} /> */}
 
-          {/* Section utilisateur */}
-          <div className="nav-menu-section nav-user-section">
+           <div className="nav-menu-section nav-user-section">
             <div className="nav-user-header">
               <span className="nav-user-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4m0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2">
+                    <path d="M19.727 20.447c-.455-1.276-1.46-2.403-2.857-3.207S13.761 16 12 16s-3.473.436-4.87 1.24s-2.402 1.931-2.857 3.207" />
+                    <circle cx="12" cy="8" r="4" />
+                  </g>
                 </svg>
               </span>
-              <span className="nav-user-title">Nom d'utilisateur</span>
+              <span className="nav-user-title">Mon Compte</span>
             </div>
             
             <div className="nav-user-actions">
-              <Link to="/favorites" className="nav-user-action" onClick={onClose}>
-                <span className="nav-action-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="m12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54z"/>
-                  </svg>
-                </span>
-                <span className="nav-action-text">Favoris</span>
-              </Link>
+              <div className="nav-user-row">
+                <Link to="/favorites" className="nav-user-action" onClick={onClose}>
+                  <span className="nav-action-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.99.99 0 0 0 1.024 0C21.126 15.395 22 10.157 22 7.95C22 5.216 19.761 3 17 3s-5 3-5 3s-2.239-3-5-3" />
+                    </svg>
+                  </span>
+                  <span className="nav-action-text">Favoris</span>
+                </Link>
+                
+                <Link to="/connection" className="nav-user-action" onClick={onClose}>
+                  <span className="nav-action-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h6q.425 0 .713.288T12 4t-.288.713T11 5H5v14h6q.425 0 .713.288T12 20t-.288.713T11 21zm12.175-8H10q-.425 0-.712-.288T9 12t.288-.712T10 11h7.175L15.3 9.125q-.275-.275-.275-.675t.275-.7t.7-.313t.725.288L20.3 11.3q.3.3.3.7t-.3.7l-3.575 3.575q-.3.3-.712.288t-.713-.313q-.275-.3-.262-.712t.287-.688z" />
+                    </svg>
+                  </span>
+                  <span className="nav-action-text">Déconnection</span>
+                </Link>
+              </div>
               
-              <Link to="/logout" className="nav-user-action" onClick={onClose}>
+              <Link to="/terms" className="nav-user-action nav-user-single" onClick={onClose}>
                 <span className="nav-action-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4z"/>
-                  </svg>
-                </span>
-                <span className="nav-action-text">Déconnection</span>
-              </Link>
-              
-              <Link to="/terms" className="nav-user-action" onClick={onClose}>
-                <span className="nav-action-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm4 18H6V4h7v5h5z"/>
-                  </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                      <path fill="currentColor" d="M10 0c5.523 0 10 4.477 10 10s-4.477 10-10 10S0 15.523 0 10S4.477 0 10 0m0 1.395a8.605 8.605 0 1 0 0 17.21a8.605 8.605 0 0 0 0-17.21M9.855 7.21c.385 0 .697.313.697.698v7.558a.698.698 0 0 1-1.395 0V7.907c0-.385.312-.698.698-.698m.028-2.79a.93.93 0 1 1 0 1.86a.93.93 0 0 1 0-1.86" />
+                    </svg>
                 </span>
                 <span className="nav-action-text">Condition d'utilisation</span>
               </Link>

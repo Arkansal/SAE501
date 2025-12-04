@@ -1,16 +1,13 @@
-/* SAE/frontend/src/components/Navigation.css */
-
 /* ======= NAVIGATION EN BAS ======= */
 .nav-bottom-navigation {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: white;
+  background: #E0EFFF;
   z-index: 1000;
   padding: 8px 0 12px 0;
-  box-shadow: 0 -1px 0px rgba(0,0,0,0.05);
-  border-top: none;
+  box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
 }
 
 .nav-container {
@@ -41,13 +38,11 @@
 .nav-button.nav-active {
   background: #3825A5;
   color: white;
-  transition: all 0.3s ease;
 }
 
 .nav-button:hover:not(.nav-active) {
   background: rgba(56, 37, 165, 0.1);
   color: #3825A5;
-  transition: all 0.3s ease;
 }
 
 .nav-icon {
@@ -66,22 +61,6 @@
   font-size: 13px;
   font-weight: 600;
   text-align: center;
-}
-
-/* Ajustements spécifiques pour chaque bouton */
-.nav-button:nth-child(1) .nav-icon svg {
-  width: 16px;
-  height: 16px;
-}
-
-.nav-button:nth-child(2) .nav-icon svg {
-  width: 18px;
-  height: 18px;
-}
-
-.nav-button:nth-child(3) .nav-icon svg {
-  width: 18px;
-  height: 18px;
 }
 
 /* ======= MENU OVERLAY ======= */
@@ -134,12 +113,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
+  padding: 20px 24px;
   border-bottom: 1px solid #f0f0f0;
 }
 
 .nav-menu-header h2 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #3825A5;
   margin: 0;
   font-weight: 700;
@@ -149,8 +128,8 @@
   background: #3825A5;
   border: none;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -161,7 +140,6 @@
 
 .nav-close-button:hover {
   background: #2D2C7E;
-  color: white;
 }
 
 /* ======= SCROLL CONTAINER ======= */
@@ -182,64 +160,56 @@
 }
 
 /* ======= GRILLE PRINCIPALE ======= */
-.nav-menu-grid {
+.nav-menu-list-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0;
 }
 
-.nav-menu-item {
+.nav-menu-list-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 24px 16px;
-  background: #f8f9fa;
-  border-radius: 20px;
+  gap: 12px;
+  padding: 16px 8px;
   text-decoration: none;
   color: #333;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
-  min-height: 100px;
+  margin-left:20px;
 }
 
-.nav-menu-item:hover {
-  background: #e9ecef;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(56, 37, 165, 0.15);
-  border-color: #3825A5;
+.nav-menu-list-item:hover {
+  background: #f8f9fa;
+  padding-left: 12px;
+  border-radius: 8px;
 }
 
-.nav-menu-icon {
-  margin-bottom: 12px;
-  color: #3825A5;
+.nav-menu-list-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #3825A5;
+  flex-shrink: 0;
 }
 
-.nav-menu-text {
-  font-size: 15px;
+.nav-menu-list-text {
+  font-size: 16px;
   font-weight: 600;
-  text-align: center;
-  color: #333;
-  line-height: 1.2;
+  color: #2D2C7E;
 }
 
 /* ======= SECTION UTILISATEUR ======= */
 .nav-user-section {
-  background: #f8f9fa;
-  margin-top: 0;
-  padding: 16px 24px 20px 24px;
+  padding: 20px 24px;
 }
 
 .nav-user-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #e9ecef;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 0;
+  border-bottom: none;
 }
 
 .nav-user-icon {
@@ -252,7 +222,7 @@
 .nav-user-title {
   font-weight: 600;
   color: #3825A5;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .nav-user-actions {
@@ -261,29 +231,35 @@
   gap: 0;
 }
 
+/* Ligne avec 2 colonnes */
+.nav-user-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
 .nav-user-action {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 0;
+  gap: 12px;
+  padding: 16px 8px;
   text-decoration: none;
   color: #333;
-  border-bottom: 1px solid #e9ecef;
   transition: all 0.3s ease;
 }
 
-.nav-user-action:last-child {
-  border-bottom: none;
+/* Action simple (condition d'utilisation) */
+.nav-user-action.nav-user-single {
+  padding: 16px 8px;
 }
 
 .nav-user-action:hover {
-  background: #e9ecef;
-  padding-left: 6px;
-  border-radius: 6px;
+  padding-left: 12px;
+  border-radius: 8px;
 }
 
 .nav-action-icon {
-  color: #666;
+  color: #3825A5;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -291,50 +267,18 @@
 }
 
 .nav-action-text {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2D2C7E;
 }
 
-/* ======= LISTE VERTICALE PRINCIPALE ======= */
-.nav-menu-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+/* ======= ESPACEMENT POUR NAVIGATION ======= */
+.app.nav-with-navigation {
+  padding-bottom: 80px;
 }
 
-.nav-menu-list-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 0;
-  text-decoration: none;
-  color: #333;
-  border-bottom: 1px solid #f0f0f0;
-  transition: all 0.3s ease;
-}
-
-.nav-menu-list-item:last-child {
-  border-bottom: none;
-}
-
-.nav-menu-list-item:hover {
-  background: #f8f9fa;
-  padding-left: 8px;
-  border-radius: 8px;
-}
-
-.nav-menu-list-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #333;
-  flex-shrink: 0;
-}
-
-.nav-menu-list-text {
-  font-size: 16px;
-  font-weight: 500;
-  color: #333;
+.app {
+  min-height: 100vh;
 }
 
 /* ======= RESPONSIVE ======= */
@@ -345,27 +289,28 @@
   
   .nav-container {
     padding: 0 10px;
+    gap: 12px;
   }
   
   .nav-button {
+    padding: 6px 12px;
     min-width: 50px;
   }
   
   .nav-label {
-    font-size: 11px;
+    font-size: 12px;
   }
   
-  .nav-menu-grid {
-    gap: 16px;
+  .nav-menu-list-grid {
+    gap: 0;
   }
   
-  .nav-menu-item {
-    padding: 20px 12px;
-    min-height: 90px;
+  .nav-menu-list-item {
+    padding: 14px 6px;
   }
   
-  .nav-menu-text {
-    font-size: 14px;
+  .nav-menu-list-text {
+    font-size: 15px;
   }
   
   .nav-user-section {
@@ -374,6 +319,10 @@
 }
 
 @media (max-width: 360px) {
+  .nav-container {
+    gap: 8px;
+  }
+  
   .nav-button {
     padding: 6px 10px;
   }
@@ -381,14 +330,12 @@
   .nav-label {
     font-size: 11px;
   }
-}
-
-/* ======= ESPACEMENT POUR NAVIGATION ======= */
-.app.nav-with-navigation {
-  padding-bottom: 80px;
-}
-
-.app {
-  padding-bottom: 0;
-  min-height: 100vh;
+  
+  .nav-menu-list-item {
+    padding: 12px 4px;
+  }
+  
+  .nav-menu-list-text {
+    font-size: 14px;
+  }
 }
