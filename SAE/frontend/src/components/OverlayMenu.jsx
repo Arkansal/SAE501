@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import ArticleSection from './ArticleSection'
-// import GameSection from './GameSection'
+import ArticleSection from './ArticleSection'
+import GameSection from './GameSection'
 import './Navigation.css'
 
 function OverlayMenu({ isOpen, onClose }) {
@@ -80,17 +80,14 @@ function OverlayMenu({ isOpen, onClose }) {
             </div>
           </div>
 
-          {/* Section Articles avec scroll horizontal */}
-            {/* <ArticleSection onItemClick={onClose} /> */}
-
-            {/* Section Jeux avec scroll horizontal */}
-            {/* <GameSection onItemClick={onClose} /> */}
+           <ArticleSection onItemClick={onClose} />
+           <GameSection onItemClick={onClose} /> 
 
            <div className="nav-menu-section nav-user-section">
             <div className="nav-user-header">
               <span className="nav-user-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2">
+                  <g fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2">
                     <path d="M19.727 20.447c-.455-1.276-1.46-2.403-2.857-3.207S13.761 16 12 16s-3.473.436-4.87 1.24s-2.402 1.931-2.857 3.207" />
                     <circle cx="12" cy="8" r="4" />
                   </g>
@@ -106,7 +103,7 @@ function OverlayMenu({ isOpen, onClose }) {
                 <Link to="/favorites" className="nav-user-action" onClick={onClose}>
                   <span className="nav-action-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.99.99 0 0 0 1.024 0C21.126 15.395 22 10.157 22 7.95C22 5.216 19.761 3 17 3s-5 3-5 3s-2.239-3-5-3" />
+                      <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.99.99 0 0 0 1.024 0C21.126 15.395 22 10.157 22 7.95C22 5.216 19.761 3 17 3s-5 3-5 3s-2.239-3-5-3" />
                     </svg>
                   </span>
                   <span className="nav-action-text">Favoris</span>
