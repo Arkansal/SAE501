@@ -6,6 +6,7 @@ import Connection from './pages/Connection'
 import Register from './pages/Register'
 import Contact from './pages/Contact'
 import BottomNavigation from './components/BottomNavigation'
+import Account from './pages/Account'
 
 
 function Home() {
@@ -55,6 +56,7 @@ function AppContent() {
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
       
       {shouldShowMenu && <BottomNavigation />}

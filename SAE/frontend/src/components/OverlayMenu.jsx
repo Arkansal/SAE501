@@ -93,7 +93,7 @@ function OverlayMenu({ isOpen, onClose }) {
                   </g>
                 </svg>
               </span>
-               <Link to="/compte" onClick={onClose}>
+               <Link to="/account" onClick={onClose}>
                   <span className="nav-user-title">Mon Compte</span>
                </Link>
             </div>
