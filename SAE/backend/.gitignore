@@ -19,5 +19,4 @@
 /assets/vendor/
 ###< symfony/asset-mapper ###
 # Exemples dans .gitignore
-DEVCONTAINER.md
-.vscode/
+
