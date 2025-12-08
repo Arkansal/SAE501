@@ -5,15 +5,16 @@ namespace App\Controller;
 use App\Entity\User;
 use OpenApi\Attributes as OA;
 use App\Repository\UserRepository;
+use OpenApi\Attributes\Items as Items;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use OpenApi\Attributes\Items as Items;
 
 #[Route('/api', name: 'api_')]
 final class UserController extends AbstractController
@@ -27,6 +28,7 @@ final class UserController extends AbstractController
         description: 'Returns the list of all users',
     )]
     #[OA\Get(tags: ['Users'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function list(UserRepository $userRepository): JsonResponse
     {
         $users = $userRepository->findAll();
@@ -50,6 +52,7 @@ final class UserController extends AbstractController
         description: 'Returns the details of a user by ID',
     )]
     #[OA\Get(tags: ['Users'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function detail(int $id, UserRepository $userRepository): JsonResponse
     {
         $user = $userRepository->find($id);
@@ -74,6 +77,7 @@ final class UserController extends AbstractController
         description: 'Creates a new user',
     )]
     #[OA\Post(tags: ['Users'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function add(Request $request, EntityManagerInterface $em, ValidatorInterface $validator): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -136,6 +140,7 @@ final class UserController extends AbstractController
             )
         )
     ]
+    #[IsGranted('ROLE_ADMIN')]
     public function update(
         int $userId,
         Request $request,
@@ -211,6 +216,7 @@ final class UserController extends AbstractController
             )
         )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(
         int $userId,
         UserRepository $userRepository,

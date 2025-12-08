@@ -8,6 +8,7 @@ use App\Repository\EnvironmentRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class EnvironmentController extends AbstractController
@@ -82,6 +83,7 @@ final class EnvironmentController extends AbstractController
             )
         )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function addEnvironment(EnvironmentRepository $environmentRepository, EntityManagerInterface $em, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -145,6 +147,7 @@ final class EnvironmentController extends AbstractController
             )
         )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function update(
         int $environmentId,
         Request $request,
@@ -201,6 +204,7 @@ final class EnvironmentController extends AbstractController
         tags: ['Environments']
         // Le requestBody a été retiré car l'ID est passé dans l'URL.
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(
         int $environmentId,
         EnvironmentRepository $environmentRepository,

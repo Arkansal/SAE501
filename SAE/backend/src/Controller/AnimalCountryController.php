@@ -10,6 +10,7 @@ use App\Repository\AnimalCountryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/api', name: 'api_')]
@@ -79,6 +80,7 @@ final class AnimalCountryController extends AbstractController
         schema: new OA\Schema(type: 'string', example: "US")
     )]
     #[OA\Post(tags: ['Countries'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function addCountryForAnimal(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository, CountryRepository $countryRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -146,6 +148,7 @@ final class AnimalCountryController extends AbstractController
             )
         )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function update(
         int $animalId,
         Request $request,
@@ -219,6 +222,7 @@ final class AnimalCountryController extends AbstractController
             )
         )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(
         int $animalId,
         AnimalCountryRepository $animalCountryRepository,
