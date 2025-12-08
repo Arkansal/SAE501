@@ -32,7 +32,7 @@
 
 .account-input-group {
   margin-bottom: 16px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .account-input-label {
@@ -42,6 +42,7 @@
   font-weight: 700;
   margin-bottom: 8px;
   margin-left: 16px;
+  text-align:center;
 }
 
 .account-form-input {
@@ -323,9 +324,6 @@
 @media (max-width: 880px) {
   .account-container {
     width: 50vw;
-  }
-  .account-content {
-    padding: 16px;
   }
 
   .account-header-section h1 {
