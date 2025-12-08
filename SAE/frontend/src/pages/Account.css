@@ -85,6 +85,7 @@
   font-weight: 700;
   cursor: not-allowed;
   user-select: none;
+  text-align: left;
 }
 
 /* Language selector */

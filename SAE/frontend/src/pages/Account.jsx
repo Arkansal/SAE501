@@ -167,7 +167,7 @@ function Account() {
               <>
                 <input
                   type="password"
-                  placeholder="Nouveau mot de passe (optionnel)"
+                  placeholder="Nouveau mot de passe"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   className="account-form-input"
