@@ -75,9 +75,7 @@
 
 /* Champs en lecture seule */
 .account-display-field {
-  width: 87%;
   padding: 12px 16px;
-  border: 1px solid #E0EFFF;
   border-radius: 20px;
   font-size: 0.95rem;
   font-family: Quicksand, sans-serif;
@@ -122,7 +120,6 @@
 .account-select-trigger {
   width: 100%;
   padding: 7px 18px;
-  border: 1px solid #E0EFFF;
   border-radius: 20px;
   font-size: 0.95rem;
   font-family: Quicksand, sans-serif;
@@ -264,7 +261,7 @@
 
 .account-cancel-button,
 .account-save-button {
-  width: 35%;
+  width: 40%;
   padding: 14px;
   border: none;
   border-radius: 25px;
@@ -332,7 +329,7 @@
   }
   
   .account-form-input {
-    padding: 10px 14px;
+    padding: 12px 16px;
     font-size: 0.9rem;
   }
   
