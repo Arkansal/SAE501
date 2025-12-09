@@ -8,6 +8,8 @@ import Contact from './pages/Contact'
 import BottomNavigation from './components/BottomNavigation'
 import Account from './pages/Account'
 import Terms from './pages/Terms'
+import ArticleDetail from './articles/ArticleDetail'
+import ArticleSection from './components/ArticleSection'
 
 
 function Home() {
@@ -59,6 +61,8 @@ function AppContent() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/account" element={<Account />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/articles" element={<ArticleSection />} />
+        <Route path="/article/:id" element={<ArticleDetail />} />
       </Routes>
       
       {shouldShowMenu && <BottomNavigation />}
