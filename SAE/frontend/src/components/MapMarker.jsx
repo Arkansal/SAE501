@@ -1,4 +1,5 @@
-import { CircleMarker, Popup } from 'react-leaflet'
+import { Marker, Popup } from 'react-leaflet'
+import L from 'leaflet'
 
 function AnimalMarker({ animal, onClick }) {
   // Vérifier que les coordonnées existent
@@ -27,15 +28,23 @@ function AnimalMarker({ animal, onClick }) {
 
   const fillColor = getColor(animal.extinct_level)
 
+  // Créer une icône personnalisée avec le SVG et la couleur adaptée
+  const customIcon = L.divIcon({
+    html: `
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 640 640" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+        <path fill="${fillColor}" d="M352 348.4c64.1-14.5 112-71.9 112-140.4c0-79.5-64.5-144-144-144s-144 64.5-144 144c0 68.5 47.9 125.9 112 140.4V544c0 17.7 14.3 32 32 32s32-14.3 32-32zM328 160c-30.9 0-56 25.1-56 56c0 13.3-10.7 24-24 24s-24-10.7-24-24c0-57.4 46.6-104 104-104c13.3 0 24 10.7 24 24s-10.7 24-24 24" />
+      </svg>
+    `,
+    className: 'custom-animal-marker',
+    iconSize: [40, 40],
+    iconAnchor: [20, 40], // Position l'icône au bon endroit
+    popupAnchor: [0, -40] // Popup au-dessus du marker
+  })
+
   return (
-    <CircleMarker 
-      center={position} 
-      radius={8}
-      fillColor={fillColor}
-      color="#fff"
-      weight={2}
-      opacity={1}
-      fillOpacity={0.8}
+    <Marker 
+      position={position} 
+      icon={customIcon}
       eventHandlers={{
         click: () => onClick(animal)
       }}
@@ -43,14 +52,15 @@ function AnimalMarker({ animal, onClick }) {
       <Popup>
         <div onClick={() => onClick(animal)} style={{ cursor: 'pointer' }}>
           <strong>{animal.common_name}</strong>
-          <p>{animal.scientific_name}</p>
+          <p style={{ margin: '4px 0', fontSize: '12px', color: '#666' }}>
+            {animal.scientific_name}
+          </p>
+          <p style={{ margin: '4px 0', fontSize: '11px', color: '#999' }}>
+            Status: {animal.extinct_level}
+          </p>
         </div>
       </Popup>
-    </CircleMarker>
-
-  /*<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640">
-	<path fill="currentColor" d="M352 348.4c64.1-14.5 112-71.9 112-140.4c0-79.5-64.5-144-144-144s-144 64.5-144 144c0 68.5 47.9 125.9 112 140.4V544c0 17.7 14.3 32 32 32s32-14.3 32-32zM328 160c-30.9 0-56 25.1-56 56c0 13.3-10.7 24-24 24s-24-10.7-24-24c0-57.4 46.6-104 104-104c13.3 0 24 10.7 24 24s-10.7 24-24 24" />
-</svg>*/ 
+    </Marker>
   )
 }
 

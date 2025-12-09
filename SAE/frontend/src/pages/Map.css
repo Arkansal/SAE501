@@ -1,12 +1,12 @@
 .leaflet-container {
   text-align: left !important;
+  z-index:0;
 }
 
 #root:has(.map-page) {
   margin: 0;
   padding: 0;
 }
-
 
 .map-page {
   display: flex;
