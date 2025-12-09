@@ -6,39 +6,61 @@ import Connection from './pages/Connection'
 import Register from './pages/Register'
 import Contact from './pages/Contact'
 import BottomNavigation from './components/BottomNavigation'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import Account from './pages/Account'
+import Map from './pages/Map'
 import Logout from './pages/Logout'
 
 
-function Home() {
-  return (
-    <div style={{ height: '100vh', width: '100vw'}} className="map-page">
-      <MapContainer 
-        center={[48.8566, 2.3522]} 
-        zoom={6}
-        style={{ height: '100%', width: '100%' }}
-      >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      </MapContainer>
-    </div>
-  )
-}
+// function Home() {
+//   const [apiData, setApiData] = useState(null)
+//   const [loading, setLoading] = useState(true)
+//   const [error, setError] = useState(null)
+
+//   useEffect(() => {
+//     fetch('http://127.0.0.1:8000/api/test')
+//       .then(response => response.json())
+//       .then(data => {
+//         setApiData(data)
+//         setLoading(false)
+//       })
+//       .catch(err => {
+//         setError(err.message)
+//         setLoading(false)
+//       })
+//   }, [])
+
+//   if (loading) return <div>Chargement...</div>
+//   if (error) return <div>Erreur: {error}</div>
+
+// return (
+//   <div className="App">
+//     <h1>React + Symfony API</h1>
+//     <div>
+//       <h2>Réponse de l'API :</h2>
+//       <pre>{JSON.stringify(apiData, null, 2)}</pre>
+//     </div>
+//   </div>
+// )
+
 
 function AppContent() {
   const location = useLocation()
   // Pages sans menu
   const pagesWithoutMenu = ['/register', '/connection']
   const shouldShowMenu = !pagesWithoutMenu.includes(location.pathname)
+  
+  const isMapPage = location.pathname === '/map'
 
   return (
-    <div className={`app ${shouldShowMenu ? 'with-navigation' : ''}`}>
+    <div className={`app ${shouldShowMenu ? 'with-navigation' : ''}`} id="pages" data-page={isMapPage ? 'map' : 'default'}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Map />} />
         <Route path="/connection" element={<Connection />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path='/logout' element={<Logout />}/>
+        <Route path="/account" element={<Account />} />
       </Routes>
       {shouldShowMenu && <BottomNavigation />}
     </div>

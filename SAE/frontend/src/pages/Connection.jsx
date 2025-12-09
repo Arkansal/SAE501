@@ -98,7 +98,7 @@ function Connection() {
         </form>
         <div className="connection-logo-section">
           <div className="connection-logo">
-            <img src={artemisLogo} alt="Artémis" />
+            <img src={artemisLogo} alt="Artemis" />
           </div>
         </div>
       </div>

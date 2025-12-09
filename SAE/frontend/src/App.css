@@ -4,7 +4,6 @@
   padding: 2rem;
   text-align: center;
 }
-
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -34,12 +33,3 @@
   color: #888;
 }
 
-
-.leaflet-container {
-  text-align: left !important;
-}
-
-#root:has(.map-page) {
-  margin: 0;
-  padding: 0;
-}

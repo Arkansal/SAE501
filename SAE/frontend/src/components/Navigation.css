@@ -4,7 +4,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #E0EFFF;
+  background: white;
   z-index: 1000;
   padding: 8px 0 12px 0;
   box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
@@ -148,6 +148,7 @@
   overflow-y: auto;
   padding-bottom: 100px;
   -webkit-overflow-scrolling: touch;
+  max-height: calc(100vh - 140px);
 }
 
 .nav-menu-section {

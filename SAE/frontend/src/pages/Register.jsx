@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './Register.css'
 import artemisLogo from '../assets/images/LogoArtemis.svg'
-import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // Composants SVG pour les drapeaux
