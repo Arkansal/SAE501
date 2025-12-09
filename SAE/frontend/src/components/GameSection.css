@@ -1,0 +1,197 @@
+.game-section {
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  font-family: 'Quicksand', sans-serif;
+  text-align: right;
+}
+
+.game-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.game-section-icon {
+  color: #3825A5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.game-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3825A5;
+  margin: 0;
+  flex: 1;
+  margin-left: 8px;
+  text-align: left;
+}
+
+.game-section-see-more {
+  font-size: 14px;
+  font-weight: 600;
+  color: #3825A5;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.game-section-see-more:hover {
+  color: #2D2C7E;
+}
+
+/* ======= SCROLL HORIZONTAL ======= */
+.game-scroll-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.game-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.game-scroll-content {
+  display: flex;
+  gap: 40px;
+  padding: 4px 0;
+  min-width: max-content;
+}
+
+/* ======= GAME CARDS ======= */
+.game-card {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  min-width: 120px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.game-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(56, 37, 165, 0.2);
+}
+
+.game-image-container {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.game-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+/* ======= OVERLAY POUR "À VENIR" ======= */
+.game-coming-soon .game-image {
+  opacity: 0.6;
+  filter: grayscale(40%);
+}
+
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.game-overlay-text {
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  padding: 4px 8px;
+  background: rgba(56, 37, 165, 0.8);
+  border-radius: 8px;
+}
+
+/* ======= GAME INFO ======= */
+.game-info {
+  padding: 8px 4px 0;
+  text-align: left;
+}
+
+.game-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2D2C7E;
+  margin: 0px;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.game-details {
+  font-size: 10px;
+  color: #666;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 480px) {
+  .game-section {
+    padding: 16px 20px;
+  }
+  
+  .game-section-title {
+    font-size: 15px;
+  }
+  
+  .game-section-see-more {
+    font-size: 13px;
+  }
+  
+  .game-card {
+    width: 110px;
+    min-width: 110px;
+  }
+  
+  .game-scroll-content {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .game-section {
+    padding: 14px 16px;
+  }
+  
+  .game-card {
+    width: 100px;
+    min-width: 100px;
+  }
+  
+  .game-image-container {
+    height: 75px;
+  }
+  
+  .game-name {
+    font-size: 11px;
+  }
+  
+  .game-details {
+    font-size: 9px;
+  }
+}

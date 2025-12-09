@@ -37,7 +37,7 @@ final class EnvironmentController extends AbstractController
     {
         $environments = $environmentRepository->findAll();
 
-        $data = array_map(function($environment) {
+        $data = array_map(function ($environment) {
             return [
                 'id' => $environment->getEnvironmentId(),
                 'environmentName' => $environment->getEnvironmentName(),
@@ -67,11 +67,11 @@ final class EnvironmentController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
-        if(!isset($data['environmentName']) || !isset($data['environmentType'])) {
+        if (!isset($data['environmentName']) || !isset($data['environmentType'])) {
             return $this->json(['message' => 'Invalid data'], JsonResponse::HTTP_BAD_REQUEST);
         }
 
-        if($environmentRepository->findOneBy(['environmentName' => $data['environmentName']])) {
+        if ($environmentRepository->findOneBy(['environmentName' => $data['environmentName']])) {
             return $this->json(['message' => 'Environment already exists'], JsonResponse::HTTP_CONFLICT);
         }
         $environment = new \App\Entity\Environment();
@@ -109,7 +109,7 @@ final class EnvironmentController extends AbstractController
                     ]
                 )
             )
-                    ],
+        ],
         description: 'Update an existing environment',
         tags: ['Environments'],
         requestBody: new OA\RequestBody(
@@ -128,27 +128,25 @@ final class EnvironmentController extends AbstractController
         int $environmentId,
         Request $request,
         EnvironmentRepository $environmentRepository,
-        EntityManagerInterface $entityManager,        
-    ): JsonResponse
-    
-    {
+        EntityManagerInterface $entityManager,
+    ): JsonResponse {
         $environment = $environmentRepository->find($environmentId);
-        
+
         if (!$environment) {
             return $this->json(['error' => 'Environment not found'], 404);
         }
-        
+
         $data = json_decode($request->getContent(), true);
-        
+
         if (isset($data['environmentName'])) {
             $environment->setEnvironmentName($data['environmentName']);
         }
         if (isset($data['environmentType'])) {
             $environment->setEnvironmentType($data['environmentType']);
         }
-        
+
         $entityManager->flush();
-        
+
         return $this->json([
             'message' => 'Environment updated successfully',
             'environment' => [
@@ -194,14 +192,14 @@ final class EnvironmentController extends AbstractController
         EntityManagerInterface $entityManager
     ): JsonResponse {
         $environment = $environmentRepository->find($environmentId);
-        
+
         if (!$environment) {
             return $this->json(['error' => 'Environment not found'], 404);
         }
-        
+
         $entityManager->remove($environment);
         $entityManager->flush();
-        
+
         return $this->json(['message' => 'Environment deleted successfully']);
     }
 }
