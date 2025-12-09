@@ -8,6 +8,7 @@ import Contact from './pages/Contact'
 import BottomNavigation from './components/BottomNavigation'
 import Account from './pages/Account'
 import Map from './pages/Map'
+import Logout from './pages/Logout'
 
 
 // function Home() {
@@ -44,7 +45,6 @@ import Map from './pages/Map'
 
 function AppContent() {
   const location = useLocation()
-  
   // Pages sans menu
   const pagesWithoutMenu = ['/register', '/connection']
   const shouldShowMenu = !pagesWithoutMenu.includes(location.pathname)
@@ -59,14 +59,13 @@ function AppContent() {
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path='/logout' element={<Logout />}/>
         <Route path="/account" element={<Account />} />
       </Routes>
-      
       {shouldShowMenu && <BottomNavigation />}
     </div>
   )
 }
-
 
 function App() {
   return (

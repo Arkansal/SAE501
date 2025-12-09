@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Register.css'
 import artemisLogo from '../assets/images/LogoArtemis.svg'
+import { useNavigate } from 'react-router-dom'
 
 // Composants SVG pour les drapeaux
 const FrenchFlag = () => (
@@ -88,17 +89,77 @@ function Register() {
   const [email, setEmail] = useState('')
   const [language, setLanguage] = useState('fr')
   const [acceptTerms, setAcceptTerms] = useState(false)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Inscription:', { 
-      pseudo, 
-      password, 
-      confirmPassword, 
-      email, 
-      language, 
-      acceptTerms 
-    })
+    setError('')
+    setSuccess('')
+
+    // Validation côté client
+    if (password !== confirmPassword) {
+      setError('Les mots de passe ne correspondent pas')
+      return
+    }
+
+    if (password.length < 6) {
+      setError('Le mot de passe doit contenir au moins 6 caractères')
+      return
+    }
+
+    if (!acceptTerms) {
+      setError('Vous devez accepter les conditions d\'utilisation')
+      return
+    }
+
+    setIsLoading(true)
+
+    try {
+      const response = await fetch('http://localhost:8000/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: pseudo,
+          email: email,
+          password: password,
+          roles: ['ROLE_USER']
+        })
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSuccess(`Compte créé avec succès ! ID: ${data.id}`)
+        // Réinitialiser le formulaire
+        setPseudo('')
+        setPassword('')
+        setConfirmPassword('')
+        setEmail('')
+        setAcceptTerms(false)
+        
+        // Rediriger vers la page de connexion après 2 secondes
+        setTimeout(() => {
+          navigate('/');
+        }, 2000)
+      } else {
+        // Gérer les erreurs de validation
+        if (data.errors) {
+          const errorMessages = Object.values(data.errors).join(', ')
+          setError(errorMessages)
+        } else {
+          setError(data.error || 'Une erreur est survenue lors de la création du compte')
+        }
+      }
+    } catch (err) {
+      setError('Erreur de connexion au serveur. Veuillez réessayer.')
+      console.error('Erreur:', err)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -107,6 +168,32 @@ function Register() {
         <div className="register-header-section">
           <h1>Créer un compte</h1>
         </div>
+
+        {error && (
+          <div style={{
+            backgroundColor: '#fee',
+            color: '#c33',
+            padding: '12px',
+            borderRadius: '8px',
+            marginBottom: '16px',
+            border: '1px solid #fcc'
+          }}>
+            {error}
+          </div>
+        )}
+
+        {success && (
+          <div style={{
+            backgroundColor: '#efe',
+            color: '#3a3',
+            padding: '12px',
+            borderRadius: '8px',
+            marginBottom: '16px',
+            border: '1px solid #cfc'
+          }}>
+            {success}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="register-form">
           <div className="register-input-group">
@@ -117,6 +204,7 @@ function Register() {
               onChange={(e) => setPseudo(e.target.value)}
               className="register-form-input"
               required
+              disabled={isLoading}
             />
           </div>
 
@@ -129,6 +217,7 @@ function Register() {
               className="register-form-input"
               required
               minLength="6"
+              disabled={isLoading}
             />
           </div>
 
@@ -140,6 +229,7 @@ function Register() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               className="register-form-input"
               required
+              disabled={isLoading}
             />
           </div>
 
@@ -151,6 +241,7 @@ function Register() {
               onChange={(e) => setEmail(e.target.value)}
               className="register-form-input"
               required
+              disabled={isLoading}
             />
           </div>
 
@@ -168,14 +259,19 @@ function Register() {
               checked={acceptTerms}
               onChange={(e) => setAcceptTerms(e.target.checked)}
               required
+              disabled={isLoading}
             />
             <label htmlFor="terms">
               J'accepte les <span className="register-terms-link">Conditions d'utilisation</span>
             </label>
           </div>
 
-          <button type="submit" className="register-submit-button">
-            Créer
+          <button 
+            type="submit" 
+            className="register-submit-button"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Création en cours...' : 'Créer'}
           </button>
         </form>
 
