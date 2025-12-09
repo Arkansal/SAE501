@@ -20,10 +20,10 @@ function Connection() {
     setLoading(true);
 
     try {
-      const response = await fetch('${API_URL}/api/login_check', {
+      const response = await fetch('http://localhost:8000/api/login_check', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: email, password })
+        body: JSON.stringify({ username: email, password: password })
       });
 
       if (!response.ok) {
@@ -31,6 +31,7 @@ function Connection() {
       }
 
       const { token } = await response.json();
+      localStorage.setItem('mail', email)
       localStorage.setItem('jwt_token', token);
 
       navigate('/');

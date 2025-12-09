@@ -15,7 +15,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Assert\NotNull(message: 'ID cannot be null')]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]

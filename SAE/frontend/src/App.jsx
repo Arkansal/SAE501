@@ -7,6 +7,7 @@ import Register from './pages/Register'
 import Contact from './pages/Contact'
 import BottomNavigation from './components/BottomNavigation'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import Logout from './pages/Logout'
 
 
 function Home() {
@@ -37,6 +38,7 @@ function AppContent() {
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path='/logout' element={<Logout />}/>
       </Routes>
       {shouldShowMenu && <BottomNavigation />}
     </div>

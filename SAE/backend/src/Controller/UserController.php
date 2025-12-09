@@ -71,31 +71,62 @@ final class UserController extends AbstractController
     /**
      * Add a user
      */
-    #[Route('/users/{id}', name: 'api_user_add', methods: ['POST'])]
+    #[Route('/users', name: 'api_user_add', methods: ['POST'])] // Enlever {id} pour la création
     #[OA\Response(
         response: 201,
         description: 'Creates a new user',
     )]
+    #[OA\Response(
+        response: 400,
+        description: 'Validation errors',
+    )]
     #[OA\Post(tags: ['Users'])]
-    #[IsGranted('ROLE_ADMIN')]
-    public function add(Request $request, EntityManagerInterface $em, ValidatorInterface $validator): JsonResponse
-    {
+    public function add(
+        Request $request,
+        EntityManagerInterface $em,
+        ValidatorInterface $validator,
+        UserPasswordHasherInterface $passwordHasher
+    ): JsonResponse {
         $data = json_decode($request->getContent(), true);
+
+        if ($data === null) {
+            return $this->json(['error' => 'Invalid JSON'], Response::HTTP_BAD_REQUEST);
+        }
+
         $user = new User();
         $user->setPseudo($data['username'] ?? null);
         $user->setEmail($data['email'] ?? null);
+
+        if (isset($data['password'])) {
+            $hashedPassword = $passwordHasher->hashPassword($user, $data['password']);
+            $user->setPassword($hashedPassword);
+        }
+
+        // Définir les rôles par défaut si nécessaire
+        $user->setRoles($data['roles'] ?? ['ROLE_USER']);
+
+        // Validation
         $errors = $validator->validate($user);
         if (count($errors) > 0) {
             $errorMessages = [];
             foreach ($errors as $error) {
                 $errorMessages[$error->getPropertyPath()] = $error->getMessage();
             }
+
+            // CORRECTION : Retourner les erreurs au lieu de continuer
+            return $this->json([
+                'errors' => $errorMessages
+            ], Response::HTTP_BAD_REQUEST);
         }
+
         $em->persist($user);
         $em->flush();
+
         return $this->json([
             'message' => 'User created successfully',
-            'id' => $user->getId()
+            'id' => $user->getId(),
+            'email' => $user->getEmail(),
+            'pseudo' => $user->getPseudo()
         ], Response::HTTP_CREATED);
     }
     // PUT
@@ -140,7 +171,7 @@ final class UserController extends AbstractController
             )
         )
     ]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_ADMIN'), IsGranted('ROLE_USER')]
     public function update(
         int $userId,
         Request $request,
