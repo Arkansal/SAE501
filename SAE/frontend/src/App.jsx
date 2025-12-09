@@ -11,7 +11,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 function Home() {
   return (
-    <div style={{ height: '100vh', width: '100vw'}}>
+    <div style={{ height: '100vh', width: '100vw'}} className="map-page">
       <MapContainer 
         center={[48.8566, 2.3522]} 
         zoom={6}
