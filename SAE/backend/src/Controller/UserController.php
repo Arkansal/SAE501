@@ -5,15 +5,16 @@ namespace App\Controller;
 use App\Entity\User;
 use OpenApi\Attributes as OA;
 use App\Repository\UserRepository;
+use OpenApi\Attributes\Items as Items;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use OpenApi\Attributes\Items as Items;
 
 #[Route('/api', name: 'api_')]
 final class UserController extends AbstractController
@@ -27,6 +28,7 @@ final class UserController extends AbstractController
         description: 'Returns the list of all users',
     )]
     #[OA\Get(tags: ['Users'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function list(UserRepository $userRepository): JsonResponse
     {
         $users = $userRepository->findAll();
@@ -50,6 +52,7 @@ final class UserController extends AbstractController
         description: 'Returns the details of a user by ID',
     )]
     #[OA\Get(tags: ['Users'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function detail(int $id, UserRepository $userRepository): JsonResponse
     {
         $user = $userRepository->find($id);
@@ -68,30 +71,62 @@ final class UserController extends AbstractController
     /**
      * Add a user
      */
-    #[Route('/users/{id}', name: 'api_user_add', methods: ['POST'])]
+    #[Route('/users', name: 'api_user_add', methods: ['POST'])] // Enlever {id} pour la création
     #[OA\Response(
         response: 201,
         description: 'Creates a new user',
     )]
+    #[OA\Response(
+        response: 400,
+        description: 'Validation errors',
+    )]
     #[OA\Post(tags: ['Users'])]
-    public function add(Request $request, EntityManagerInterface $em, ValidatorInterface $validator): JsonResponse
-    {
+    public function add(
+        Request $request,
+        EntityManagerInterface $em,
+        ValidatorInterface $validator,
+        UserPasswordHasherInterface $passwordHasher
+    ): JsonResponse {
         $data = json_decode($request->getContent(), true);
+
+        if ($data === null) {
+            return $this->json(['error' => 'Invalid JSON'], Response::HTTP_BAD_REQUEST);
+        }
+
         $user = new User();
         $user->setPseudo($data['username'] ?? null);
         $user->setEmail($data['email'] ?? null);
+
+        if (isset($data['password'])) {
+            $hashedPassword = $passwordHasher->hashPassword($user, $data['password']);
+            $user->setPassword($hashedPassword);
+        }
+
+        // Définir les rôles par défaut si nécessaire
+        $user->setRoles($data['roles'] ?? ['ROLE_USER']);
+
+        // Validation
         $errors = $validator->validate($user);
         if (count($errors) > 0) {
             $errorMessages = [];
             foreach ($errors as $error) {
                 $errorMessages[$error->getPropertyPath()] = $error->getMessage();
             }
+
+            // CORRECTION : Retourner les erreurs au lieu de continuer
+            return $this->json([
+                'errors' => $errorMessages
+            ], Response::HTTP_BAD_REQUEST);
         }
+
         $em->persist($user);
         $em->flush();
+
         return $this->json([
             'message' => 'User created successfully',
-            'id' => $user->getId()
+            'id' => $user->getId(),
+            'email' => $user->getEmail(),
+            'pseudo' => $user->getPseudo()
         ], Response::HTTP_CREATED);
     }
     // PUT
@@ -136,6 +171,7 @@ final class UserController extends AbstractController
             )
         )
     ]
+    #[IsGranted('ROLE_ADMIN'), IsGranted('ROLE_USER')]
     public function update(
         int $userId,
         Request $request,
@@ -211,6 +247,7 @@ final class UserController extends AbstractController
             )
         )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(
         int $userId,
         UserRepository $userRepository,

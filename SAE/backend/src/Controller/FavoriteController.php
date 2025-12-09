@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use OpenApi\Attributes as OA;
 use App\Repository\FavoriteRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use OpenApi\Attributes as OA;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/api', name: 'api_')]
 final class FavoriteController extends AbstractController
@@ -20,6 +21,7 @@ final class FavoriteController extends AbstractController
         description: 'Returns the list of all favorites',
     )]
     #[OA\Get(tags: ['Favorites'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function list(FavoriteRepository $favoriteRepository): JsonResponse
     {
         $favorites = $favoriteRepository->findAll();
@@ -38,6 +40,7 @@ final class FavoriteController extends AbstractController
         description: 'Favorite added successfully',
     )]
     #[OA\Post(tags: ['Favorites'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function add(Request $request, FavoriteRepository $favoriteRepository, ValidatorInterface $validator): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -59,6 +62,7 @@ final class FavoriteController extends AbstractController
         description: 'Favorite updated successfully',
     )]
     #[OA\Put(tags: ['Favorites'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function update(Request $request, FavoriteRepository $favoriteRepository, ValidatorInterface $validator): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -89,6 +93,7 @@ final class FavoriteController extends AbstractController
         description: 'Favorite deleted successfully',
     )]
     #[OA\Delete(tags: ['Favorites'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, FavoriteRepository $favoriteRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);

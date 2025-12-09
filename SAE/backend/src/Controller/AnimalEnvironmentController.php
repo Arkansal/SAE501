@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\AnimalEnvironmentRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/api', name: 'api_')]
@@ -75,6 +76,7 @@ final class AnimalEnvironmentController extends AbstractController
         schema: new OA\Schema(type: 'string', example: "1")
     )]
     #[OA\Post(tags: ['Environments'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function addEnvironmentForAnimal(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository, EnvironmentRepository $environmentRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -143,6 +145,7 @@ final class AnimalEnvironmentController extends AbstractController
             )
         )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function update(
         int $animalId,
         Request $request,
@@ -188,7 +191,7 @@ final class AnimalEnvironmentController extends AbstractController
                     ]
                 )
             )
-                    ],
+        ],
         description: 'Delete environment for a specific animal',
         tags: ['Environments'],
         requestBody: new OA\RequestBody(
@@ -197,8 +200,9 @@ final class AnimalEnvironmentController extends AbstractController
                 type: 'object',
                 example: []
             )
-            )
+        )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(
         int $animalId,
         animalEnvironmentRepository $animalEnvironmentRepository,
