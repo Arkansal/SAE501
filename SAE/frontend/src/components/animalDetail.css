@@ -17,14 +17,43 @@
   width: 100%;
   max-height: 90vh;
   border-radius: 20px 20px 0 0;
-  padding: 24px;
+  padding: 0;
   overflow-y: auto;
   animation: slideUp 0.3s ease;
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* En-tête avec boutons */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.favorite-btn-header {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #ddd;
+  transition: all 0.3s ease;
+}
+
+.favorite-btn-header.active {
+  color: #FF6B6B;
+  transform: scale(1.2);
+}
+
+.favorite-btn-header:hover {
+  transform: scale(1.1);
 }
 
 .modal-close {
-  float: right;
   background: none;
   border: none;
   font-size: 28px;
@@ -44,107 +73,216 @@
   transform: rotate(90deg);
 }
 
-.animal-detail {
-  clear: both;
-  padding-top: 16px;
+/* Contenu scrollable */
+.modal-content > div:not(.modal-header) {
+  padding: 24px;
 }
 
-.animal-detail h2 {
+/* Section en-tête animal */
+.animal-header-section {
+  display: flex;
+  gap: 20px;
+  padding: 24px !important;
+  border-bottom: 1px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.animal-image-container {
+  flex-shrink: 0;
+}
+
+.animal-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.animal-title-section {
+  flex: 1;
+}
+
+.animal-title-section h2 {
   font-size: 24px;
   font-weight: 700;
   color: #2D2C7E;
-  margin: 0 0 8px 0;
-  line-height: 1.3;
+  margin: 0 0 4px 0;
 }
 
 .scientific-name {
   color: #666;
   font-style: italic;
-  font-size: 14px;
-  margin: 0 0 24px 0;
+  font-size: 13px;
+  margin: 0 0 12px 0;
 }
 
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 16px;
-  margin-bottom: 24px;
-  padding: 16px;
-  background: #f9f9f9;
-  border-radius: 12px;
-}
-
-.info-item {
+/* Badges d'extinction */
+.extinction-badges {
   display: flex;
-  flex-direction: column;
-}
-
-.info-item label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #3825A5;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
-}
-
-.info-item p {
-  font-size: 14px;
-  color: #2D2C7E;
-  margin: 0;
-  font-weight: 500;
-}
-
-.status {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.status.LC {
-  background: #D4EDDA;
-  color: #155724;
-}
-
-.status.NT {
-  background: #E2F4D3;
-  color: #6C8D27;
-}
-
-.status.VU {
-  background: #FFF3CD;
-  color: #856404;
-}
-
-.status.EN {
-  background: #F8D7DA;
-  color: #721C24;
-}
-
-.status.CR {
-  background: #F5C6CB;
-  color: #721C24;
-  font-weight: 700;
-}
-
-.status.EX {
-  background: #D3D3D3;
-  color: #333;
-}
-
-.animal-actions {
-  display: flex;
-  gap: 12px;
+  gap: 8px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
 }
 
-.favorite-btn {
-  flex: 1;
-  min-width: 150px;
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: white;
+  display: inline-block;
+}
+
+.badge-vu {
+  background: #FDB216;
+}
+
+.badge-ed {
+  background: #FA6B13;
+}
+
+.badge-dc {
+  background: #DC143C;
+}
+
+.badge-es {
+  background: #8B0000;
+}
+
+.badge-et {
+  background: #000000;
+}
+
+/* Infos rapides */
+.quick-info {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.quick-info p {
+  margin: 4px 0;
+}
+
+.quick-info strong {
+  color: #3825A5;
+}
+
+.animal-description {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+/* Section Habitat */
+.habitat-section {
+  padding: 24px !important;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.habitat-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2D2C7E;
+  margin: 0 0 16px 0;
+  border-bottom: 2px solid #3825A5;
+  padding-bottom: 8px;
+}
+
+.habitat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.habitat-item {
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid #3825A5;
+}
+
+.habitat-item h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2D2C7E;
+  margin: 0 0 8px 0;
+}
+
+.habitat-item p {
+  font-size: 12px;
+  color: #666;
+  margin: 4px 0;
+}
+
+/* Section Evolution population */
+.population-section {
+  padding: 24px !important;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.population-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2D2C7E;
+  margin: 0 0 16px 0;
+  border-bottom: 2px solid #3825A5;
+  padding-bottom: 8px;
+}
+
+.population-table-wrapper {
+  overflow-x: auto;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.population-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 400px;
+}
+
+.population-table thead {
+  background: #E0EFFF;
+}
+
+.population-table th {
+  padding: 12px 16px;
+  text-align: center;
+  font-weight: 600;
+  color: #3825A5;
+  font-size: 13px;
+  border-bottom: 2px solid #3825A5;
+}
+
+.population-table td {
+  padding: 12px 16px;
+  text-align: center;
+  color: #2D2C7E;
+  font-weight: 600;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.population-table tbody tr:hover {
+  background: #f0f0f0;
+}
+
+/* Bouton action */
+.animal-actions {
+  padding: 24px !important;
+  flex-shrink: 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.action-btn {
+  width: 100%;
   padding: 14px 20px;
   background: white;
   color: #3825A5;
@@ -157,23 +295,23 @@
   font-family: inherit;
 }
 
-.favorite-btn:hover {
+.action-btn:hover {
   background: #f0f0f0;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(56, 37, 165, 0.2);
 }
 
-.favorite-btn.active {
+.action-btn.active {
   background: #FF6B6B;
   border-color: #FF6B6B;
   color: white;
 }
 
-.favorite-btn.active:hover {
+.action-btn.active:hover {
   background: #FF5252;
-  border-color: #FF5252;
 }
 
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -192,27 +330,38 @@
   }
 }
 
+.loading {
+  text-align: center;
+  padding: 40px 20px;
+  color: #3825A5;
+  font-weight: 600;
+}
+
+/* Responsive */
 @media (max-width: 480px) {
-  .modal-content {
-    padding: 16px;
-    max-height: 95vh;
-  }
-
-  .animal-detail h2 {
-    font-size: 20px;
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 12px;
-  }
-
-  .animal-actions {
+  .animal-header-section {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 16px !important;
   }
 
-  .favorite-btn {
-    width: 100%;
+  .animal-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .extinction-badges {
+    justify-content: center;
+  }
+
+  .habitat-section,
+  .population-section,
+  .animal-actions {
+    padding: 16px !important;
+  }
+
+  .population-table-wrapper {
+    padding: 8px;
   }
 }

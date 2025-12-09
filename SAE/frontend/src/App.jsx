@@ -49,10 +49,8 @@ function AppContent() {
   const pagesWithoutMenu = ['/register', '/connection']
   const shouldShowMenu = !pagesWithoutMenu.includes(location.pathname)
   
-  const isMapPage = location.pathname === '/map'
-
   return (
-    <div className={`app ${shouldShowMenu ? 'with-navigation' : ''}`} id="pages" data-page={isMapPage ? 'map' : 'default'}>
+    <div className={`app ${shouldShowMenu ? 'with-navigation' : ''}`} id="pages">
       <Routes>
         <Route path="/" element={<Map />} />
         <Route path="/connection" element={<Connection />} />
