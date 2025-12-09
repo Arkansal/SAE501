@@ -7,39 +7,40 @@ import Register from './pages/Register'
 import Contact from './pages/Contact'
 import BottomNavigation from './components/BottomNavigation'
 import Account from './pages/Account'
+import Map from './pages/Map'
 
 
-function Home() {
-  const [apiData, setApiData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+// function Home() {
+//   const [apiData, setApiData] = useState(null)
+//   const [loading, setLoading] = useState(true)
+//   const [error, setError] = useState(null)
 
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/test')
-      .then(response => response.json())
-      .then(data => {
-        setApiData(data)
-        setLoading(false)
-      })
-      .catch(err => {
-        setError(err.message)
-        setLoading(false)
-      })
-  }, [])
+//   useEffect(() => {
+//     fetch('http://127.0.0.1:8000/api/test')
+//       .then(response => response.json())
+//       .then(data => {
+//         setApiData(data)
+//         setLoading(false)
+//       })
+//       .catch(err => {
+//         setError(err.message)
+//         setLoading(false)
+//       })
+//   }, [])
 
-  if (loading) return <div>Chargement...</div>
-  if (error) return <div>Erreur: {error}</div>
+//   if (loading) return <div>Chargement...</div>
+//   if (error) return <div>Erreur: {error}</div>
 
-  return (
-    <div className="App">
-      <h1>React + Symfony API</h1>
-      <div>
-        <h2>Réponse de l'API :</h2>
-        <pre>{JSON.stringify(apiData, null, 2)}</pre>
-      </div>
-    </div>
-  )
-}
+// return (
+//   <div className="App">
+//     <h1>React + Symfony API</h1>
+//     <div>
+//       <h2>Réponse de l'API :</h2>
+//       <pre>{JSON.stringify(apiData, null, 2)}</pre>
+//     </div>
+//   </div>
+// )
+
 
 function AppContent() {
   const location = useLocation()
@@ -48,10 +49,12 @@ function AppContent() {
   const pagesWithoutMenu = ['/register', '/connection']
   const shouldShowMenu = !pagesWithoutMenu.includes(location.pathname)
   
+  const isMapPage = location.pathname === '/map'
+
   return (
-    <div className={`app ${shouldShowMenu ? 'with-navigation' : ''}`}>
+    <div className={`app ${shouldShowMenu ? 'with-navigation' : ''}`} id="pages" data-page={isMapPage ? 'map' : 'default'}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Map />} />
         <Route path="/connection" element={<Connection />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />

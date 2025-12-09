@@ -1,0 +1,33 @@
+.leaflet-container {
+  text-align: left !important;
+}
+
+#root:has(.map-page) {
+  margin: 0;
+  padding: 0;
+}
+
+
+.map-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(105vh - 80px);
+  width: calc(105vw - 80px);
+  background: white;
+  overflow: hidden;
+}
+
+.map-page > div:first-child {
+  flex-shrink: 0;
+}
+
+.map-page > div:nth-child(2) {
+  flex: 1;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .map-page {
+    height: calc(105vh - 70px);
+  }
+}
