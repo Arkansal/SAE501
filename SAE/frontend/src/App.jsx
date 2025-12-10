@@ -9,6 +9,9 @@ import BottomNavigation from './components/BottomNavigation'
 import Account from './pages/Account'
 import Map from './pages/Map'
 import Logout from './pages/Logout'
+import Terms from './pages/Terms'
+import ArticleDetail from './articles/ArticleDetail'
+import ArticleSection from './components/ArticleSection'
 
 
 // function Home() {
@@ -61,6 +64,9 @@ function AppContent() {
         <Route path="/contact" element={<Contact />} />
         <Route path='/logout' element={<Logout />}/>
         <Route path="/account" element={<Account />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/articles" element={<ArticleSection />} />
+        <Route path="/article/:id" element={<ArticleDetail />} />
       </Routes>
       {shouldShowMenu && <BottomNavigation />}
     </div>

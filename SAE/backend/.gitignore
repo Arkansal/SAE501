@@ -19,9 +19,16 @@
 /assets/vendor/
 ###< symfony/asset-mapper ###
 # Exemples dans .gitignore
+<<<<<<< HEAD
+
+=======
 DEVCONTAINER.md
 .vscode/
 
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
+<<<<<<< HEAD
+=======
+>>>>>>> origin/isaure
+>>>>>>> origin/Aaron

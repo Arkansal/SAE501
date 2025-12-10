@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -57,6 +59,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         maxMessage: 'Pseudo cannot be longer than {{ limit }} characters'
     )]
     private ?string $pseudo = null;
+
+    /**
+     * @var Collection<int, FavoriteArticle>
+     */
+    #[ORM\OneToMany(targetEntity: FavoriteArticle::class, mappedBy: 'user_id')]
+    private Collection $favoriteArticles;
+
+    public function __construct()
+    {
+        $this->favoriteArticles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -147,6 +160,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPseudo(?string $pseudo): static
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FavoriteArticle>
+     */
+    public function getFavoriteArticles(): Collection
+    {
+        return $this->favoriteArticles;
+    }
+
+    public function addFavoriteArticle(FavoriteArticle $favoriteArticle): static
+    {
+        if (!$this->favoriteArticles->contains($favoriteArticle)) {
+            $this->favoriteArticles->add($favoriteArticle);
+            $favoriteArticle->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteArticle(FavoriteArticle $favoriteArticle): static
+    {
+        if ($this->favoriteArticles->removeElement($favoriteArticle)) {
+            // set the owning side to null (unless already changed)
+            if ($favoriteArticle->getUserId() === $this) {
+                $favoriteArticle->setUserId(null);
+            }
+        }
 
         return $this;
     }

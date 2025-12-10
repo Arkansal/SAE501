@@ -15,7 +15,7 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - app-network
-      
+
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: symfony_phpmyadmin
