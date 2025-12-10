@@ -19,13 +19,15 @@
 /assets/vendor/
 ###< symfony/asset-mapper ###
 # Exemples dans .gitignore
-<<<<<<< HEAD
 
-=======
 DEVCONTAINER.md
 .vscode/
 
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
+<<<<<<< HEAD
 >>>>>>>>> Temporary merge branch 2
+=======
+>>>>>>> origin/Aaron
+>>>>>>> origin/Jolann

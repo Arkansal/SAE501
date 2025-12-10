@@ -223,10 +223,7 @@ class AnimalController extends AbstractController
         $animal->setType($data['type'] ?? null);
         $animal->setExtinctLevel($data['extinctLevel'] ?? null);
         $animal->setImage($data['images'] ?? []);
-
-
         $errors = $validator->validate($animal);
-
         if (count($errors) > 0) {
             $errorMessages = [];
             foreach ($errors as $error) {
@@ -234,11 +231,8 @@ class AnimalController extends AbstractController
             }
             return $this->json(['errors' => $errorMessages], Response::HTTP_BAD_REQUEST);
         }
-
-
         $em->persist($animal);
         $em->flush();
-
         return $this->json([
             'message' => 'Animal créé avec succès',
             'id' => $animal->getId()

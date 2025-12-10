@@ -7,6 +7,11 @@ import Register from './pages/Register'
 import Contact from './pages/Contact'
 import BottomNavigation from './components/BottomNavigation'
 import Account from './pages/Account'
+<<<<<<< HEAD
+=======
+import Map from './pages/Map'
+import Logout from './pages/Logout'
+>>>>>>> origin/Jolann
 import Terms from './pages/Terms'
 import ArticleDetail from './articles/ArticleDetail'
 import ArticleSection from './components/ArticleSection'
