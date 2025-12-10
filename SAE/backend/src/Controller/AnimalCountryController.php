@@ -10,42 +10,95 @@ use App\Repository\AnimalCountryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/api', name: 'api_')]
 final class AnimalCountryController extends AbstractController
 {
     /**
-     * Get all countries by an animal Id
+     * Get all animals with their countries
      */
-    #[Route('/countries/{animalId}', name: 'country_detail', methods: ['GET'])]
+    #[Route('/animalCountries', name: 'animals_with_countries', methods: ['GET'])]
+    #[OA\Parameter(
+        name: 'limit',
+        in: 'query',
+        description: 'Maximum number of animals to return',
+        required: false,
+        schema: new OA\Schema(type: 'integer')
+    )]
     #[OA\Response(
         response: 200,
-        description: 'Returns a list of countries for the specified animal',
+        description: 'Returns a list of animals with their countries',
         content: new OA\JsonContent(
             type: 'array',
             items: new OA\Items(
                 type: 'object',
                 properties: [
-                    new OA\Property(property: 'countryName', type: 'string'),
-                    new OA\Property(property: 'origin', type: 'string'),
-                    new OA\Property(property: 'presenceType', type: 'string'),
+                    new OA\Property(property: 'id', type: 'integer'),
+                    new OA\Property(property: 'commonName', type: 'string'),
+                    new OA\Property(property: 'scientificName', type: 'string'),
+                    new OA\Property(property: 'family', type: 'string'),
+                    new OA\Property(property: 'type', type: 'string'),
+                    new OA\Property(property: 'extinctLevel', type: 'string'),
+                    new OA\Property(property: 'image', type: 'string'),
+                    new OA\Property(
+                        property: 'countries',
+                        type: 'array',
+                        items: new OA\Items(
+                            type: 'object',
+                            properties: [
+                                new OA\Property(property: 'countryName', type: 'string'),
+                                new OA\Property(property: 'codeIso', type: 'string'),
+                                new OA\Property(property: 'origin', type: 'string'),
+                                new OA\Property(property: 'presenceType', type: 'string'),
+                            ]
+                        )
+                    )
                 ]
             )
         )
     )]
-    #[OA\Get(tags: ['Countries'])]
-    public function getCountriesByAnimal(int $animalId, AnimalCountryRepository $animalCountryRepository): JsonResponse
-    {
-        $countries = $animalCountryRepository->findBy(['animal' => $animalId]);
-        $data = array_map(function ($animalCountry) {
-            return [
-                'countryName' => $animalCountry->getCountry()->getCountryName(),
-                'origin' => $animalCountry->getOrigin(),
-                'presenceType' => $animalCountry->getPresenceType(),
-            ];
-        }, $countries);
+    #[OA\Get(tags: ['Animals'])]
+    public function listAnimalsWithCountries(
+        Request $request,
+        AnimalRepository $animalRepository,
+        AnimalCountryRepository $animalCountryRepository
+    ): JsonResponse {
+        // Récupère le paramètre limit de la requête (null si non fourni)
+        $limit = $request->query->get('limit');
 
+        // Si limit est fourni, on limite le nombre de résultats
+        if ($limit !== null && is_numeric($limit)) {
+            $animals = $animalRepository->findBy([], null, (int)$limit);
+        } else {
+            $animals = $animalRepository->findAll();
+        }
+
+        $data = array_map(function ($animal) use ($animalCountryRepository) {
+            // Récupérer les pays pour cet animal
+            $animalCountries = $animalCountryRepository->findBy(['animal' => $animal->getId()]);
+
+            $countries = array_map(function ($animalCountry) {
+                return [
+                    'countryName' => $animalCountry->getCountry()->getCountryName(),
+                    'codeIso' => $animalCountry->getCountry()->getCodeIso(),
+                    'origin' => $animalCountry->getOrigin(),
+                    'presenceType' => $animalCountry->getPresenceType(),
+                ];
+            }, $animalCountries);
+
+            return [
+                'id' => $animal->getId(),
+                'commonName' => $animal->getCommonName(),
+                'scientificName' => $animal->getScientificName(),
+                'family' => $animal->getFamily(),
+                'type' => $animal->getType(),
+                'extinctLevel' => $animal->getExtinctLevel(),
+                'image' => $animal->getImage(),
+                'countries' => $countries
+            ];
+        }, $animals);
 
         return $this->json($data);
     }
@@ -79,6 +132,7 @@ final class AnimalCountryController extends AbstractController
         schema: new OA\Schema(type: 'string', example: "US")
     )]
     #[OA\Post(tags: ['Countries'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function addCountryForAnimal(Request $request, EntityManagerInterface $em, AnimalRepository $animalRepository, CountryRepository $countryRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -146,6 +200,7 @@ final class AnimalCountryController extends AbstractController
             )
         )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function update(
         int $animalId,
         Request $request,
@@ -219,6 +274,7 @@ final class AnimalCountryController extends AbstractController
             )
         )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(
         int $animalId,
         AnimalCountryRepository $animalCountryRepository,

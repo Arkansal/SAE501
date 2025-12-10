@@ -13,10 +13,12 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/api', name: 'api_')]
 class AnimalController extends AbstractController
 {
+
     /**
      * List all animals
      */
@@ -40,10 +42,25 @@ class AnimalController extends AbstractController
             )
         )
     )]
+    #[OA\Parameter(
+        name: 'limit',
+        in: 'query',
+        description: 'Number of animals to return (default: all)',
+        required: false,
+        schema: new OA\Schema(type: 'integer', example: 50)
+    )]
     #[OA\Get(tags: ['Animals'])]
-    public function list(AnimalRepository $animalRepository): JsonResponse
+    public function list(Request $request, AnimalRepository $animalRepository): JsonResponse
     {
-        $animals = $animalRepository->findAll();
+        // Récupère le paramètre limit de la requête (null si non fourni)
+        $limit = $request->query->get('limit');
+
+        // Si limit est fourni, on limite le nombre de résultats
+        if ($limit !== null && is_numeric($limit)) {
+            $animals = $animalRepository->findBy([], null, (int)$limit);
+        } else {
+            $animals = $animalRepository->findAll();
+        }
 
         $data = array_map(function ($animal) {
             return [
@@ -188,6 +205,7 @@ class AnimalController extends AbstractController
         )
     )]
     #[OA\Post(tags: ['Animals'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request, ValidatorInterface $validator, EntityManagerInterface $em, AnimalRepository $animalRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -274,6 +292,7 @@ class AnimalController extends AbstractController
             )
         ),
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function update(
         int $id,
         Request $request,
@@ -351,6 +370,7 @@ class AnimalController extends AbstractController
             )
         ),
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(
         int $id,
         AnimalRepository $animalRepository,

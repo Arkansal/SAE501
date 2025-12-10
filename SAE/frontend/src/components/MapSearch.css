@@ -1,0 +1,135 @@
+.map-search {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 300;
+  font-family: 'Quicksand', sans-serif;
+  padding: 16px 24px;
+  max-width: 500px;
+}
+
+.search-form {
+  width: 100%;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: white;
+  gap: 12px;
+  border-radius: 20px;
+  padding: 0 12px;
+  transition: all 0.3s ease;
+}
+
+.search-wrapper:focus-within {
+  border-color: #3825A5;
+  box-shadow: 0 0 0 3px rgba(56, 37, 165, 0.1);
+  background: white;
+}
+
+/* Bouton localisation */
+.location-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3825A5;
+  padding: 8px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  font-size: 0;
+}
+
+.location-btn svg {
+  width: 30px;
+  height: 30px;
+}
+
+.location-btn:hover {
+  color: #2D2C7E;
+  transform: scale(1.1);
+}
+
+.location-btn:active {
+  transform: scale(0.95);
+}
+
+/* Champ de recherche */
+.search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  font-family: inherit;
+  color: #2D2C7E;
+  outline: none;
+  padding: 12px 0;
+  font-weight: 500;
+  min-width: 0;
+}
+
+.search-input::placeholder {
+  color: #999;
+  font-weight: 400;
+}
+
+.search-input.focused {
+  color: #3825A5;
+}
+
+/* Bouton recherche */
+.search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3825A5;
+  padding: 8px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  font-size: 0;
+}
+
+.search-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.search-btn:hover {
+  color: #2D2C7E;
+  transform: scale(1.1);
+}
+
+.search-btn:active {
+  transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .map-search {
+    padding: 12px 16px;
+    width: 85%;
+    top: 20px;
+  }
+
+  .search-wrapper {
+    padding: 0 10px;
+    gap: 10px;
+  }
+
+  .search-input {
+    font-size: 14px;
+    padding: 10px 0;
+  }
+
+  .location-btn,
+  .search-btn {
+    padding: 6px;
+  }
+}

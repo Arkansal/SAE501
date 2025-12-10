@@ -8,8 +8,12 @@ use App\Repository\EnvironmentRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+<<<<<<< HEAD
 use Symfony\Component\BrowserKit\Response;
+=======
+>>>>>>> origin/Jolann
 
 final class EnvironmentController extends AbstractController
 {
@@ -17,22 +21,26 @@ final class EnvironmentController extends AbstractController
      * Get all environments
      */
     #[Route('/api/environments', name: 'api_environments', methods: ['GET'])]
-    #[OA\Response(
-        response: 200,
-        description: 'Returns a list of all environments',
-        content: new OA\JsonContent(
-            type: 'array',
-            items: new OA\Items(
-                type: 'object',
-                properties: [
-                    new OA\Property(property: 'id', type: 'integer'),
-                    new OA\Property(property: 'environmentName', type: 'string'),
-                    new OA\Property(property: 'environmentType', type: 'string'),
-                ]
+    #[OA\Get(
+        tags: ['Environments'],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'Returns a list of all environments',
+                content: new OA\JsonContent(
+                    type: 'array',
+                    items: new OA\Items(
+                        type: 'object',
+                        properties: [
+                            new OA\Property(property: 'id', type: 'integer'),
+                            new OA\Property(property: 'environmentName', type: 'string'),
+                            new OA\Property(property: 'environmentType', type: 'string'),
+                        ]
+                    )
+                )
             )
-        )
+        ]
     )]
-    #[OA\Get(tags: ['Environments'])]
     public function getAllEnvironments(EnvironmentRepository $environmentRepository): JsonResponse
     {
         $environments = $environmentRepository->findAll();
@@ -52,17 +60,34 @@ final class EnvironmentController extends AbstractController
      * Add a new environment
      */
     #[Route('/api/environments', name: 'api_environment_add', methods: ['POST'])]
-    #[OA\Response(
-        response: 201,
-        description: 'Environment added successfully',
-        content: new OA\JsonContent(
-            type: 'object',
-            properties: [
-                new OA\Property(property: 'message', type: 'Environment added successfully'),
-            ]
+    #[OA\Post( // <-- Le #[OA\Response] redondant a été fusionné ici.
+        tags: ['Environments'],
+        responses: [
+            new OA\Response(
+                response: 201,
+                description: 'Environment added successfully',
+                content: new OA\JsonContent(
+                    type: 'object',
+                    properties: [
+                        new OA\Property(property: 'message', type: 'string', example: 'Environment added successfully'),
+                    ]
+                )
+            ),
+            new OA\Response(response: 400, description: 'Invalid data'),
+            new OA\Response(response: 409, description: 'Environment already exists'),
+        ],
+        requestBody: new OA\RequestBody(
+            required: true,
+            content: new OA\JsonContent(
+                type: 'object',
+                properties: [
+                    new OA\Property(property: 'environmentName', type: 'string'),
+                    new OA\Property(property: 'environmentType', type: 'string'),
+                ]
+            )
         )
     )]
-    #[OA\Post(tags: ['Environments'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function addEnvironment(EnvironmentRepository $environmentRepository, EntityManagerInterface $em, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -83,11 +108,12 @@ final class EnvironmentController extends AbstractController
 
         return $this->json(['message' => 'Environment added successfully'], JsonResponse::HTTP_CREATED);
     }
-    // PUT
+
+        // PUT
     /**
      * Update an environment
      */
-    #[Route('/api/environments', name: 'environment_update', methods: ['PUT'])]
+    #[Route('/api/environments/{environmentId}', name: 'environment_update', methods: ['PUT'])]
     #[OA\Put(
         responses: [
             new OA\Response(
@@ -108,7 +134,8 @@ final class EnvironmentController extends AbstractController
                         ),
                     ]
                 )
-            )
+            ),
+            new OA\Response(response: 404, description: 'Environment not found'),
         ],
         description: 'Update an existing environment',
         tags: ['Environments'],
@@ -117,13 +144,14 @@ final class EnvironmentController extends AbstractController
             content: new OA\JsonContent(
                 type: 'object',
                 properties: [
-                    new OA\Property(property: 'environmentId', type: 'integer'),
+                    // Le body ne devrait pas avoir l'ID si on le passe en URL
                     new OA\Property(property: 'environmentName', type: 'string'),
                     new OA\Property(property: 'environmentType', type: 'string'),
                 ]
             )
         )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function update(
         int $environmentId,
         Request $request,
@@ -156,11 +184,12 @@ final class EnvironmentController extends AbstractController
             ],
         ]);
     }
-    //DELETE
+
+        //DELETE
     /**
      * Delete an environment
      */
-    #[Route('/api/environments', name: 'environment_delete', methods: ['DELETE'])]
+    #[Route('/api/environments/{environmentId}', name: 'environment_delete', methods: ['DELETE'])]
     #[OA\Delete(
         responses: [
             new OA\Response(
@@ -172,20 +201,14 @@ final class EnvironmentController extends AbstractController
                         new OA\Property(property: 'message', type: 'string'),
                     ]
                 )
-            )
+            ),
+            new OA\Response(response: 404, description: 'Environment not found'),
         ],
         description: 'Delete an existing environment',
-        tags: ['Environments'],
-        requestBody: new OA\RequestBody(
-            required: true,
-            content: new OA\JsonContent(
-                type: 'object',
-                properties: [
-                    new OA\Property(property: 'environmentId', type: 'integer'),
-                ]
-            )
-        )
+        tags: ['Environments']
+        // Le requestBody a été retiré car l'ID est passé dans l'URL.
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(
         int $environmentId,
         EnvironmentRepository $environmentRepository,

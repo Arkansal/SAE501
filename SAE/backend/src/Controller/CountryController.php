@@ -6,11 +6,12 @@ use App\Entity\Country;
 use OpenApi\Attributes as OA;
 use App\Repository\CountryRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\BrowserKit\Response;
 
 #[Route('/api', name: 'api_')]
 class CountryController extends AbstractController
@@ -77,6 +78,7 @@ class CountryController extends AbstractController
         schema: new OA\Schema(type: 'string', example: "United States")
     )]
     #[OA\Post(tags: ['Countries'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function addCountry(Request $request, EntityManagerInterface $em, CountryRepository $countryRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -154,6 +156,7 @@ class CountryController extends AbstractController
             )
         )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function update(
         int $codeIso,
         Request $request,
@@ -217,6 +220,7 @@ class CountryController extends AbstractController
             )
         )
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(
         int $codeIso,
         CountryRepository $countryRepository,

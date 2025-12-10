@@ -33,43 +33,43 @@ function Home() {
   if (loading) return <div>Chargement...</div>
   if (error) return <div>Erreur: {error}</div>
 
-  return (
-    <div className="App">
-      <h1>React + Symfony API</h1>
-      <div>
-        <h2>Réponse de l'API :</h2>
-        <pre>{JSON.stringify(apiData, null, 2)}</pre>
-      </div>
+return (
+  <div className="App">
+    <h1>React + Symfony API</h1>
+    <div>
+      <h2>Réponse de l'API :</h2>
+      <pre>{JSON.stringify(apiData, null, 2)}</pre>
     </div>
-  )
+  </div>
+)
 }
 
 function AppContent() {
   const location = useLocation()
-  
   // Pages sans menu
   const pagesWithoutMenu = ['/register', '/connection']
   const shouldShowMenu = !pagesWithoutMenu.includes(location.pathname)
   
+  const isMapPage = location.pathname === '/map'
+
   return (
-    <div className={`app ${shouldShowMenu ? 'with-navigation' : ''}`}>
+    <div className={`app ${shouldShowMenu ? 'with-navigation' : ''}`} id="pages" data-page={isMapPage ? 'map' : 'default'}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Map />} />
         <Route path="/connection" element={<Connection />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path='/logout' element={<Logout />}/>
         <Route path="/account" element={<Account />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/articles" element={<ArticleSection />} />
         <Route path="/article/:id" element={<ArticleDetail />} />
       </Routes>
-      
       {shouldShowMenu && <BottomNavigation />}
     </div>
   )
 }
-
 
 function App() {
   return (

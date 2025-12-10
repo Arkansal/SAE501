@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9f1f0de9cdc81c78ff61be8beba956f",
+    "content-hash": "ea3339edf53adafc19975861a0c5c117",
     "packages": [
         {
             "name": "api-platform/core",
@@ -11098,5 +11098,9 @@
         "ext-iconv": "*"
     },
     "platform-dev": {},
+<<<<<<< HEAD
     "plugin-api-version": "2.9.0"
+=======
+    "plugin-api-version": "2.6.0"
+>>>>>>> origin/Jolann
 }
