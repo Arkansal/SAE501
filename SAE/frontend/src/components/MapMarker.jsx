@@ -1,14 +1,12 @@
 import { Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 
-function AnimalMarker({ animal, onClick }) {
+function AnimalMarker({ animal, position, onClick }) {
   // Vérifier que les coordonnées existent
-  if (!animal.latitude || !animal.longitude) {
-    console.warn('Coordonnées manquantes pour:', animal.common_name)
+  if (!position || !position[0] || !position[1]) {
+    console.warn('Coordonnées manquantes pour:', animal.commonName)
     return null
   }
-
-  const position = [animal.latitude, animal.longitude]
 
   // Couleurs selon le statut d'extinction
   const getColor = (extinctionLevel) => {
@@ -26,7 +24,7 @@ function AnimalMarker({ animal, onClick }) {
     return colors[extinctionLevel] || '#3825A5'
   }
 
-  const fillColor = getColor(animal.extinct_level)
+  const fillColor = getColor(animal.extinctLevel)
 
   // Créer une icône personnalisée avec le SVG et la couleur adaptée
   const customIcon = L.divIcon({
@@ -37,8 +35,8 @@ function AnimalMarker({ animal, onClick }) {
     `,
     className: 'custom-animal-marker',
     iconSize: [40, 40],
-    iconAnchor: [20, 40], // Position l'icône au bon endroit
-    popupAnchor: [0, -40] // Popup au-dessus du marker
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40]
   })
 
   return (
@@ -51,12 +49,12 @@ function AnimalMarker({ animal, onClick }) {
     >
       <Popup>
         <div onClick={() => onClick(animal)} style={{ cursor: 'pointer' }}>
-          <strong>{animal.common_name}</strong>
+          <strong>{animal.commonName}</strong>
           <p style={{ margin: '4px 0', fontSize: '12px', color: '#666' }}>
-            {animal.scientific_name}
+            {animal.scientificName}
           </p>
           <p style={{ margin: '4px 0', fontSize: '11px', color: '#999' }}>
-            Status: {animal.extinct_level}
+            Status: {animal.extinctLevel}
           </p>
         </div>
       </Popup>
@@ -65,4 +63,3 @@ function AnimalMarker({ animal, onClick }) {
 }
 
 export default AnimalMarker
-

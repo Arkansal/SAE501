@@ -7,7 +7,7 @@ import './Map.css'
 
 function Map() {
   const [animals, setAnimals] = useState([])
-  const [selectedAnimal, setSelectedAnimal] = useState(510082)
+  const [selectedAnimal, setSelectedAnimal] = useState(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [loading, setLoading] = useState(false)
   const [mapCenter, setMapCenter] = useState(() => {

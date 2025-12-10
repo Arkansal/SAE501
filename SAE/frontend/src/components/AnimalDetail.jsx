@@ -155,7 +155,7 @@ function AnimalDetailModal({ animal, onClose, favorites = new Set(), onToggleFav
                     <tr>
                       <td>20000</td>
                       <td>2250</td>
-                      <td>3k</td>
+                      <td>3k</td> 
                       <td>85</td>
                       <td>545</td>
                     </tr>
