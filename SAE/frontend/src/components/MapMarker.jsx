@@ -40,8 +40,8 @@ function AnimalMarker({ animal, position, onClick }) {
   })
 
   return (
-    <Marker 
-      position={position} 
+    <Marker
+      position={position}
       icon={customIcon}
       eventHandlers={{
         click: () => onClick(animal)

@@ -104,7 +104,7 @@ function Map() {
 
   const handleSearchChange = async (nouvelleValeur) => {
     setSearchTerm(nouvelleValeur)
-    
+
     if (nouvelleValeur && nouvelleValeur !== "") {
       try {
         const response = await fetch('http://127.0.0.1:8000/api/animalSearch/' + nouvelleValeur)
@@ -122,12 +122,12 @@ function Map() {
   const handleSuggestionClick = (animal) => {
     // 1. On ouvre la modale avec l'animal cliqué
     setSelectedAnimal(animal)
-    
+
     // 2. On ferme la liste de suggestions
     setSuggestions([])
-    
+
     // 3. Optionnel : On peut vider le champ de recherche pour faire plus propre
-    setSearchTerm('') 
+    setSearchTerm('')
   }
 
   return (
@@ -153,8 +153,8 @@ function Map() {
           minWidth: '200px'
         }}>
           {suggestions.map((animal, index) => (
-            <li 
-              key={animal.id || index} 
+            <li
+              key={animal.id || index}
               onClick={() => handleSuggestionClick(animal)}
               style={{ padding: '8px', cursor: 'pointer', borderBottom: '1px solid #eee' }}
             >

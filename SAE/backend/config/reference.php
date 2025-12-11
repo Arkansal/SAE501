@@ -474,7 +474,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         max_host_connections?: int, // The maximum number of connections to a single host.
  *         default_options?: array{
  *             headers?: array<string, mixed>,
- *             vars?: array<string, mixed>,
+ *             vars?: list<mixed>,
  *             max_redirects?: int, // The maximum number of redirects to follow.
  *             http_version?: scalar|null, // The default HTTP version, typically 1.1 or 2.0, leave to null for the best version.
  *             resolve?: array<string, scalar|null>,
@@ -497,7 +497,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *                 md5?: mixed,
  *             },
  *             crypto_method?: scalar|null, // The minimum version of TLS to accept; must be one of STREAM_CRYPTO_METHOD_TLSv*_CLIENT constants.
- *             extra?: array<string, mixed>,
+ *             extra?: list<mixed>,
  *             rate_limiter?: scalar|null, // Rate limiter name to use for throttling requests. // Default: null
  *             caching?: bool|array{ // Caching configuration.
  *                 enabled?: bool, // Default: false
@@ -550,7 +550,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *                 md5?: mixed,
  *             },
  *             crypto_method?: scalar|null, // The minimum version of TLS to accept; must be one of STREAM_CRYPTO_METHOD_TLSv*_CLIENT constants.
- *             extra?: array<string, mixed>,
+ *             extra?: list<mixed>,
  *             rate_limiter?: scalar|null, // Rate limiter name to use for throttling requests. // Default: null
  *             caching?: bool|array{ // Caching configuration.
  *                 enabled?: bool, // Default: false
@@ -775,10 +775,10 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *     },
  *     orm?: array{
  *         default_entity_manager?: scalar|null,
- *         enable_native_lazy_objects?: bool, // Deprecated: The "enable_native_lazy_objects" option is deprecated and will be removed in DoctrineBundle 4.0, as native lazy objects are now always enabled. // Default: true
+ *         enable_native_lazy_objects?: bool, // no-op, will be deprecated and removed in the future // Default: true
  *         controller_resolver?: bool|array{
  *             enabled?: bool, // Default: true
- *             auto_mapping?: bool, // Deprecated: The "auto_mapping" option is deprecated and will be removed in DoctrineBundle 4.0, as it only accepts `false` since 3.0. // Set to true to enable using route placeholders as lookup criteria when the primary key doesn't match the argument name // Default: false
+ *             auto_mapping?: bool, // Set to true to enable using route placeholders as lookup criteria when the primary key doesn't match the argument name // Default: false
  *             evict_cache?: bool, // Set to true to fetch the entity from the database instead of using the cache, if any // Default: false
  *         },
  *         entity_managers?: array<string, array{ // Default: []
@@ -1329,12 +1329,11 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *     handlers?: array<string, array{ // Default: []
  *         type: scalar|null,
  *         id?: scalar|null,
- *         enabled?: bool, // Default: true
  *         priority?: scalar|null, // Default: 0
  *         level?: scalar|null, // Default: "DEBUG"
  *         bubble?: bool, // Default: true
- *         interactive_only?: bool, // Default: false
  *         app_name?: scalar|null, // Default: null
+ *         fill_extra_context?: bool, // Default: false
  *         include_stacktraces?: bool, // Default: false
  *         process_psr_3_messages?: array{
  *             enabled?: bool|null, // Default: null
@@ -1354,6 +1353,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         activation_strategy?: scalar|null, // Default: null
  *         stop_buffering?: bool, // Default: true
  *         passthru_level?: scalar|null, // Default: null
+ *         excluded_404s?: list<scalar|null>,
  *         excluded_http_codes?: list<array{ // Default: []
  *             code?: scalar|null,
  *             urls?: list<scalar|null>,
@@ -1367,6 +1367,9 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         url?: scalar|null,
  *         exchange?: scalar|null,
  *         exchange_name?: scalar|null, // Default: "log"
+ *         room?: scalar|null,
+ *         message_format?: scalar|null, // Default: "text"
+ *         api_version?: scalar|null, // Default: null
  *         channel?: scalar|null, // Default: null
  *         bot_name?: scalar|null, // Default: "Monolog"
  *         use_attachment?: scalar|null, // Default: true
@@ -1374,7 +1377,9 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         include_extra?: scalar|null, // Default: false
  *         icon_emoji?: scalar|null, // Default: null
  *         webhook_url?: scalar|null,
- *         exclude_fields?: list<scalar|null>,
+ *         team?: scalar|null,
+ *         notify?: scalar|null, // Default: false
+ *         nickname?: scalar|null, // Default: "Monolog"
  *         token?: scalar|null,
  *         region?: scalar|null,
  *         source?: scalar|null,
@@ -1392,15 +1397,21 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         store?: scalar|null, // Default: null
  *         connection_timeout?: scalar|null,
  *         persistent?: bool,
+ *         dsn?: scalar|null,
+ *         hub_id?: scalar|null, // Default: null
+ *         client_id?: scalar|null, // Default: null
+ *         auto_log_stacks?: scalar|null, // Default: false
+ *         release?: scalar|null, // Default: null
+ *         environment?: scalar|null, // Default: null
  *         message_type?: scalar|null, // Default: 0
  *         parse_mode?: scalar|null, // Default: null
  *         disable_webpage_preview?: bool|null, // Default: null
  *         disable_notification?: bool|null, // Default: null
  *         split_long_messages?: bool, // Default: false
  *         delay_between_messages?: bool, // Default: false
- *         topic?: int, // Default: null
  *         factor?: int, // Default: 1
  *         tags?: list<scalar|null>,
+ *         console_formater_options?: mixed, // Deprecated: "monolog.handlers..console_formater_options.console_formater_options" is deprecated, use "monolog.handlers..console_formater_options.console_formatter_options" instead.
  *         console_formatter_options?: mixed, // Default: []
  *         formatter?: scalar|null,
  *         nested?: bool, // Default: false
@@ -1409,19 +1420,18 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *             hostname?: scalar|null,
  *             port?: scalar|null, // Default: 12201
  *             chunk_size?: scalar|null, // Default: 1420
- *             encoder?: "json"|"compressed_json",
  *         },
- *         mongodb?: string|array{
- *             id?: scalar|null, // ID of a MongoDB\Client service
- *             uri?: scalar|null,
- *             username?: scalar|null,
- *             password?: scalar|null,
+ *         mongo?: string|array{
+ *             id?: scalar|null,
+ *             host?: scalar|null,
+ *             port?: scalar|null, // Default: 27017
+ *             user?: scalar|null,
+ *             pass?: scalar|null,
  *             database?: scalar|null, // Default: "monolog"
  *             collection?: scalar|null, // Default: "logs"
  *         },
  *         elasticsearch?: string|array{
  *             id?: scalar|null,
- *             hosts?: list<scalar|null>,
  *             host?: scalar|null,
  *             port?: scalar|null, // Default: 9200
  *             transport?: scalar|null, // Default: "Http"
@@ -1453,6 +1463,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *             id: scalar|null,
  *             method?: scalar|null, // Default: null
  *         },
+ *         lazy?: bool, // Default: true
  *         verbosity_levels?: array{
  *             VERBOSITY_QUIET?: scalar|null, // Default: "ERROR"
  *             VERBOSITY_NORMAL?: scalar|null, // Default: "WARNING"

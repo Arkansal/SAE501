@@ -8,12 +8,14 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: FavoriteArticleRepository::class)]
 class FavoriteArticle
 {
-    #[ORM\ManyToOne(inversedBy: 'user_id')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\Id]
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(name: 'article_id', referencedColumnName: 'id', nullable: false)]
     private ?Article $article_id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'favoriteArticles')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\Id]
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: false)]
     private ?User $user_id = null;
 
     public function getArticleId(): ?Article
