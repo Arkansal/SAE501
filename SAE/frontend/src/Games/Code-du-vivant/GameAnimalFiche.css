@@ -1,0 +1,366 @@
+/* ===== FICHE MODALE - Réutilisation du style AnimalDetail ===== */
+
+.game-fiche-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: flex-end;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.game-fiche-content {
+  margin: auto;
+  background: white;
+  width: 60vw;
+  max-height: 73vh;
+  border-radius: 20px;
+  padding: 0;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== HEADER FIXE ===== */
+.game-fiche-header {
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  flex-shrink: 0;
+  background: white;
+}
+
+.game-fiche-close {
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  padding: 0;
+  transition: all 0.3s ease;
+  background: none;
+}
+
+.game-fiche-close svg {
+  width: 35px;
+  height: 35px;
+}
+
+/* ===== CONTENU SCROLLABLE ===== */
+.game-fiche-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Scrollbar stylisée */
+.game-fiche-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.game-fiche-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.game-fiche-scroll-container::-webkit-scrollbar-thumb {
+  background: #d0d0d0;
+  border-radius: 2px;
+  transition: background 0.3s ease;
+}
+
+.game-fiche-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+/* ===== TITRE ===== */
+.game-fiche-title-header {
+  text-align: center;
+  margin: 0;
+}
+
+.game-fiche-title-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2D2C7E;
+  margin: 0 0 4px 0;
+}
+
+.game-fiche-scientific-name {
+  color: #999;
+  font-style: italic;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* ===== BADGES D'EXTINCTION ===== */
+.game-fiche-extinction-badges {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.game-fiche-badge {
+  margin: 1%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.game-fiche-badge-active {
+  opacity: 1;
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== GRILLE IMAGE + INFOS ===== */
+.game-fiche-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.game-fiche-image-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.game-fiche-image {
+  width: 100%;
+  height: 150px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.game-fiche-image-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.game-fiche-image-btn {
+  background: #044a31;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.game-fiche-image-btn:hover {
+  background: #035a3f;
+  transform: scale(1.1);
+}
+
+.game-fiche-image-counter {
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+}
+
+.game-fiche-quick-info {
+  text-align: left;
+  font-size: 13px;
+  color: #333;
+}
+
+.game-fiche-quick-info p {
+  margin: 8px 0;
+}
+
+/* ===== SECTIONS ===== */
+.game-fiche-habitat-section {
+  margin-top: 16px;
+}
+
+.game-fiche-habitat-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2D2C7E;
+  margin: 0 0 12px 0;
+  border-bottom: 2px solid #3825A5;
+  padding-bottom: 8px;
+  text-align: left;
+}
+
+/* Pays */
+.game-fiche-countries-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.game-fiche-country-item {
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.game-fiche-country-item h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2D2C7E;
+  margin: 0 0 8px 0;
+}
+
+.game-fiche-country-item p {
+  font-size: 12px;
+  color: #666;
+  margin: 4px 0;
+}
+
+/* Environnements */
+.game-fiche-environments-names ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.game-fiche-environments-names li {
+  font-size: 12px;
+  color: #666;
+  margin: 6px 0;
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.game-fiche-environments-names strong {
+  color: #2D2C7E;
+  font-weight: 600;
+}
+
+.game-fiche-environments-names span {
+  color: #666;
+  margin-left: 4px;
+}
+
+.game-fiche-loading {
+  text-align: center;
+  padding: 40px 20px;
+  color: #3825A5;
+  font-weight: 600;
+}
+
+.no-data {
+  color: #999;
+  font-style: italic;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .game-fiche-content {
+    margin: auto;
+    background: white;
+    width: 90vw;
+    max-height: 73vh;
+    border-radius: 20px;
+    padding: 0;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+  }
+  .game-fiche-scroll-container {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .game-fiche-title-header h2 {
+    font-size: 20px;
+  }
+
+  .game-fiche-badge {
+    width: 35px;
+    height: 35px;
+    font-size: 10px;
+  }
+
+  .game-fiche-habitat-section h3 {
+    font-size: 14px;
+  }
+
+  .game-fiche-content-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .game-fiche-quick-info {
+    text-align: center;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .game-fiche-scroll-container {
+    padding: 12px;
+  }
+
+  .game-fiche-title-header h2 {
+    font-size: 18px;
+  }
+
+  .game-fiche-badge {
+    width: 32px;
+    height: 32px;
+  }
+
+  .game-fiche-extinction-badges {
+    gap: 8px;
+  }
+}

@@ -1,0 +1,308 @@
+[
+  {
+    "assessment_id":15951,
+    "class":"Mammalia",
+    "common_name":"Lion",
+    "scientific_name":"Panthera leo",
+    "family":"FELIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"VU",
+    "environment_name":"Savanna",
+    "environment_type":"Grassland",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/217176858/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/21762641/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/223957485/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/2261111/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/22702130/medium.jpg"
+    ]
+  },
+  {
+    "assessment_id":12392,
+    "class":"Mammalia",
+    "common_name":"Éléphant d'Afrique",
+    "scientific_name":"Loxodonta africana",
+    "family":"ELEPHANTIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"EN",
+    "environment_name":"Savanna",
+    "environment_type":"Grassland",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/10004390/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/10004709/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/10004728/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/10004734/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/10004739/medium.jpeg"
+    ]
+  },
+  {
+    "assessment_id":22696060,
+    "class":"Aves",
+    "common_name":"Aigle royal",
+    "scientific_name":"Aquila chrysaetos",
+    "family":"ACCIPITRIDAE",
+    "type":"AVES",
+    "extinct_level":"LC",
+    "environment_name":"Mountain",
+    "environment_type":"Rocky areas",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/10000112/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/10000114/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100062864/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100086359/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/101160978/medium.jpeg"
+    ]
+  },
+  {
+    "assessment_id":23062,
+    "class":"Mammalia",
+    "common_name":"Renard roux",
+    "scientific_name":"Vulpes vulpes",
+    "family":"CANIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"LC",
+    "environment_name":"Forest",
+    "environment_type":"Temperate Forest",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100002239/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/10001202/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/10002526/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100025287/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100026073/medium.jpeg"
+    ]
+  },
+  {
+    "assessment_id":19855,
+    "class":"Actinopterygii",
+    "common_name":"Saumon atlantique",
+    "scientific_name":"Salmo salar",
+    "family":"SALMONIDAE",
+    "type":"ACTINOPTERYGII",
+    "extinct_level":"LC",
+    "environment_name":"Rivers and Streams",
+    "environment_type":"Freshwater",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/216215805/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/216215890/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/216215985/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/216216084/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/216216363/medium.jpeg"
+    ]
+  },
+  {
+    "assessment_id":3746,
+    "class":"Mammalia",
+    "common_name":"Loup gris",
+    "scientific_name":"Canis lupus",
+    "family":"CANIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"LC",
+    "environment_name":"Forest",
+    "environment_type":"Boreal Forest",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/10005646/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/111418043/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/111418541/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/111444719/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/216154027/medium.png"
+    ]
+  },
+  {
+    "assessment_id":45354964,
+    "class":"Aves",
+    "common_name":"Faucon pèlerin",
+    "scientific_name":"Falco peregrinus",
+    "family":"FALCONIDAE",
+    "type":"AVES",
+    "extinct_level":"LC",
+    "environment_name":"Cliffs",
+    "environment_type":"Rocky areas",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100008689/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100022907/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100023053/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100044570/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100067544/medium.jpeg"
+    ]
+  },
+  {
+    "assessment_id":41688,
+    "class":"Mammalia",
+    "common_name":"Ours brun",
+    "scientific_name":"Ursus arctos",
+    "family":"URSIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"LC",
+    "environment_name":"Forest",
+    "environment_type":"Boreal Forest",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100102362/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/101235227/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/101238790/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/101238986/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/111405111/medium.jpg"
+    ]
+  },
+  {
+    "assessment_id":6557,
+    "class":"Mammalia",
+    "common_name":"Rhinocéros noir",
+    "scientific_name":"Diceros bicornis",
+    "family":"RHINOCEROTIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"CR",
+    "environment_name":"Savanna",
+    "environment_type":"Grassland",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/111519583/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/218397136/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/111952200/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/22326495/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/112201914/medium.jpeg"
+    ]
+  },
+  {
+    "assessment_id":15954,
+    "class":"Mammalia",
+    "common_name":"Léopard",
+    "scientific_name":"Panthera pardus",
+    "family":"FELIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"VU",
+    "environment_name":"Forest",
+    "environment_type":"Various habitats",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/217935825/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/217935868/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/219438005/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/219438046/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/219438118/medium.jpeg"
+    ]
+  },
+  {
+    "assessment_id":22103,
+    "class":"Mammalia",
+    "common_name":"Lamantin",
+    "scientific_name":"Trichechus manatus",
+    "family":"TRICHECHIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"VU",
+    "environment_name":"Marine Coastal",
+    "environment_type":"Marine",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/216664240/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/216667633/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/216807307/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/216807333/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/216807348/medium.gif/medium.jpg"
+    ]
+  },
+  {
+    "assessment_id":12519,
+    "class":"Mammalia",
+    "common_name":"Lynx boréal",
+    "scientific_name":"Lynx lynx",
+    "family":"FELIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"LC",
+    "environment_name":"Forest",
+    "environment_type":"Boreal Forest",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/111530551/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/111926648/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/222431597/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/222431618/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/222431638/medium.jpeg"
+    ]
+  },
+  {
+    "assessment_id":41775,
+    "class":"Mammalia",
+    "common_name":"Sanglier",
+    "scientific_name":"Sus scrofa",
+    "family":"SUIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"LC",
+    "environment_name":"Forest",
+    "environment_type":"Various habitats",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100038179/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100078900/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100078912/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100085537/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/100109317/medium.jpeg"
+    ]
+  },
+  {
+    "assessment_id":22724813,
+    "class":"Aves",
+    "common_name":"Perroquet gris",
+    "scientific_name":"Psittacus erithacus",
+    "family":"PSITTACIDAE",
+    "type":"AVES",
+    "extinct_level":"EN",
+    "environment_name":"Tropical Forest",
+    "environment_type":"Forest",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/224693957/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/229523211/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/229872850/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/232281265/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/234746826/medium.jpeg"
+    ]
+  },
+  {
+    "assessment_id":714,
+    "class":"Mammalia",
+    "common_name":"Panda roux",
+    "scientific_name":"Ailurus fulgens",
+    "family":"AILURIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"EN",
+    "environment_name":"Temperate Forest",
+    "environment_type":"Mountain Forest",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/339254284/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/349276096/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/349276382/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/355528100/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/355528152/medium.jpeg"
+    ]
+  },
+  {
+    "assessment_id":899,
+    "class":"Mammalia",
+    "common_name":"Renard polaire",
+    "scientific_name":"Vulpes lagopus",
+    "family":"CANIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"LC",
+    "environment_name":"Tundra",
+    "environment_type":"Arctic",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/111413310/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/111413312/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/21655582/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/21655585/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/216571004/medium.jpg"
+    ]
+  },
+  {
+    "assessment_id":22732,
+    "class":"Mammalia",
+    "common_name":"Léopard des neiges",
+    "scientific_name":"Panthera uncia",
+    "family":"FELIDAE",
+    "type":"MAMMALIA",
+    "extinct_level":"VU",
+    "environment_name":"Mountain",
+    "environment_type":"Alpine",
+    "photo_url":[
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/11139251/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/222177085/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/222177092/medium.jpeg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/22748345/medium.jpg",
+      "http://inaturalist-open-data.s3.amazonaws.com/photos/22748581/medium.jpg"
+    ]
+  }
+]

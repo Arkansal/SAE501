@@ -1,0 +1,1198 @@
+[
+    {
+        "animal_id": 503146,
+        "environment_id": "3_3"
+    },
+    {
+        "animal_id": 503146,
+        "environment_id": "4_1"
+    },
+    {
+        "animal_id": 503146,
+        "environment_id": "5_4"
+    },
+    {
+        "animal_id": 503146,
+        "environment_id": "4_2"
+    },
+    {
+        "animal_id": 503146,
+        "environment_id": "3_1"
+    },
+    {
+        "animal_id": 503908,
+        "environment_id": "3_4"
+    },
+    {
+        "animal_id": 503908,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 503908,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 509971,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 510082,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 510082,
+        "environment_id": "6"
+    },
+    {
+        "animal_id": 510082,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 513175,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 513175,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 513559,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 513559,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 513559,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 513663,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 513663,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 513663,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 513760,
+        "environment_id": "3_4"
+    },
+    {
+        "animal_id": 513760,
+        "environment_id": "14_3"
+    },
+    {
+        "animal_id": 513760,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 513760,
+        "environment_id": "3_8"
+    },
+    {
+        "animal_id": 513760,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 513760,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 513760,
+        "environment_id": "14_4"
+    },
+    {
+        "animal_id": 513760,
+        "environment_id": "14_5"
+    },
+    {
+        "animal_id": 513875,
+        "environment_id": "3_4"
+    },
+    {
+        "animal_id": 513875,
+        "environment_id": "14_3"
+    },
+    {
+        "animal_id": 513875,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 513875,
+        "environment_id": "3_8"
+    },
+    {
+        "animal_id": 513875,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 513980,
+        "environment_id": "14_3"
+    },
+    {
+        "animal_id": 513980,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 513980,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 513980,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 518440,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 518440,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 518440,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 518549,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 518549,
+        "environment_id": "7_1"
+    },
+    {
+        "animal_id": 518646,
+        "environment_id": "14_3"
+    },
+    {
+        "animal_id": 518646,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 518646,
+        "environment_id": "3_8"
+    },
+    {
+        "animal_id": 518646,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 518646,
+        "environment_id": "14_4"
+    },
+    {
+        "animal_id": 518646,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 518646,
+        "environment_id": "14_5"
+    },
+    {
+        "animal_id": 518740,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 518894,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 519016,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 519144,
+        "environment_id": "5_3"
+    },
+    {
+        "animal_id": 519247,
+        "environment_id": "6"
+    },
+    {
+        "animal_id": 544549,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 544549,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 544549,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 544742,
+        "environment_id": "5_6"
+    },
+    {
+        "animal_id": 544742,
+        "environment_id": "5_3"
+    },
+    {
+        "animal_id": 544742,
+        "environment_id": "5_4"
+    },
+    {
+        "animal_id": 544742,
+        "environment_id": "5_13"
+    },
+    {
+        "animal_id": 544742,
+        "environment_id": "5_2"
+    },
+    {
+        "animal_id": 544742,
+        "environment_id": "5_1"
+    },
+    {
+        "animal_id": 546843,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 546843,
+        "environment_id": "5"
+    },
+    {
+        "animal_id": 546843,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 546843,
+        "environment_id": "14_5"
+    },
+    {
+        "animal_id": 739675,
+        "environment_id": "1_5"
+    },
+    {
+        "animal_id": 739675,
+        "environment_id": "2_1"
+    },
+    {
+        "animal_id": 1306343,
+        "environment_id": "10_1"
+    },
+    {
+        "animal_id": 1306343,
+        "environment_id": "9_1"
+    },
+    {
+        "animal_id": 1306343,
+        "environment_id": "13_1"
+    },
+    {
+        "animal_id": 1306343,
+        "environment_id": "12_3"
+    },
+    {
+        "animal_id": 1306343,
+        "environment_id": "12_2"
+    },
+    {
+        "animal_id": 1306343,
+        "environment_id": "12_1"
+    },
+    {
+        "animal_id": 1306343,
+        "environment_id": "10_2"
+    },
+    {
+        "animal_id": 1306343,
+        "environment_id": "3_2"
+    },
+    {
+        "animal_id": 1306343,
+        "environment_id": "1_3"
+    },
+    {
+        "animal_id": 1380378,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 1380378,
+        "environment_id": "5"
+    },
+    {
+        "animal_id": 1380378,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 1424721,
+        "environment_id": "1_5"
+    },
+    {
+        "animal_id": 1424721,
+        "environment_id": "7_1"
+    },
+    {
+        "animal_id": 1424721,
+        "environment_id": "7_2"
+    },
+    {
+        "animal_id": 1737167,
+        "environment_id": "18"
+    },
+    {
+        "animal_id": 1956366,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 2729967,
+        "environment_id": "1_1"
+    },
+    {
+        "animal_id": 2772233,
+        "environment_id": "3_4"
+    },
+    {
+        "animal_id": 2772233,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 2772339,
+        "environment_id": "3_4"
+    },
+    {
+        "animal_id": 2772339,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 2772472,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 2773889,
+        "environment_id": "10_2"
+    },
+    {
+        "animal_id": 2775649,
+        "environment_id": "5_7"
+    },
+    {
+        "animal_id": 2775649,
+        "environment_id": "5_5"
+    },
+    {
+        "animal_id": 2775649,
+        "environment_id": "5_1"
+    },
+    {
+        "animal_id": 2782611,
+        "environment_id": "13_4"
+    },
+    {
+        "animal_id": 2782611,
+        "environment_id": "9_5"
+    },
+    {
+        "animal_id": 2782611,
+        "environment_id": "9_10"
+    },
+    {
+        "animal_id": 2782611,
+        "environment_id": "9_9"
+    },
+    {
+        "animal_id": 2782611,
+        "environment_id": "9_1"
+    },
+    {
+        "animal_id": 2785108,
+        "environment_id": "10_1"
+    },
+    {
+        "animal_id": 2785108,
+        "environment_id": "9_1"
+    },
+    {
+        "animal_id": 2785108,
+        "environment_id": "10_2"
+    },
+    {
+        "animal_id": 2789048,
+        "environment_id": "3_8"
+    },
+    {
+        "animal_id": 2789048,
+        "environment_id": "6"
+    },
+    {
+        "animal_id": 2789136,
+        "environment_id": "6"
+    },
+    {
+        "animal_id": 2791303,
+        "environment_id": "14_3"
+    },
+    {
+        "animal_id": 2791303,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 2791303,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 2791303,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 2791303,
+        "environment_id": "14_4"
+    },
+    {
+        "animal_id": 2791303,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 2791303,
+        "environment_id": "14_5"
+    },
+    {
+        "animal_id": 2791535,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 2791535,
+        "environment_id": "3_8"
+    },
+    {
+        "animal_id": 2791535,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 2791535,
+        "environment_id": "14_4"
+    },
+    {
+        "animal_id": 2791535,
+        "environment_id": "14_5"
+    },
+    {
+        "animal_id": 2792030,
+        "environment_id": "3_4"
+    },
+    {
+        "animal_id": 2792030,
+        "environment_id": "5_4"
+    },
+    {
+        "animal_id": 2792030,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 2792173,
+        "environment_id": "3_4"
+    },
+    {
+        "animal_id": 2792173,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 2792173,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 2792173,
+        "environment_id": "6"
+    },
+    {
+        "animal_id": 2896811,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 2896811,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 2896811,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 2896811,
+        "environment_id": "6"
+    },
+    {
+        "animal_id": 2896811,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 2952954,
+        "environment_id": "3_4"
+    },
+    {
+        "animal_id": 2952954,
+        "environment_id": "14_3"
+    },
+    {
+        "animal_id": 2952954,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 2952954,
+        "environment_id": "3_8"
+    },
+    {
+        "animal_id": 2952954,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 2952954,
+        "environment_id": "16"
+    },
+    {
+        "animal_id": 2952954,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 2952954,
+        "environment_id": "14_4"
+    },
+    {
+        "animal_id": 2952954,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 2952954,
+        "environment_id": "13_3"
+    },
+    {
+        "animal_id": 2953195,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 2953195,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 2953195,
+        "environment_id": "3_4"
+    },
+    {
+        "animal_id": 2953195,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 2953438,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 2953438,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 2953438,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 2953593,
+        "environment_id": "3_4"
+    },
+    {
+        "animal_id": 2953593,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 2953593,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 2953593,
+        "environment_id": "14_4"
+    },
+    {
+        "animal_id": 2953593,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 2953688,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 2953688,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 2953688,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 2953771,
+        "environment_id": "14_2"
+    },
+    {
+        "animal_id": 2953771,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 2953771,
+        "environment_id": "13_3"
+    },
+    {
+        "animal_id": 2955634,
+        "environment_id": "10_1"
+    },
+    {
+        "animal_id": 2955634,
+        "environment_id": "10_2"
+    },
+    {
+        "animal_id": 2955634,
+        "environment_id": "9_1"
+    },
+    {
+        "animal_id": 2955856,
+        "environment_id": "1_8"
+    },
+    {
+        "animal_id": 2955856,
+        "environment_id": "14_6"
+    },
+    {
+        "animal_id": 2955856,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 2955856,
+        "environment_id": "1_9"
+    },
+    {
+        "animal_id": 3031266,
+        "environment_id": "3_5"
+    },
+    {
+        "animal_id": 3031266,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 3031266,
+        "environment_id": "14_4"
+    },
+    {
+        "animal_id": 3031266,
+        "environment_id": "13_3"
+    },
+    {
+        "animal_id": 3031266,
+        "environment_id": "8_1"
+    },
+    {
+        "animal_id": 3139783,
+        "environment_id": "14_3"
+    },
+    {
+        "animal_id": 3139783,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 3139783,
+        "environment_id": "6"
+    },
+    {
+        "animal_id": 3139783,
+        "environment_id": "14_4"
+    },
+    {
+        "animal_id": 3153168,
+        "environment_id": "1_9"
+    },
+    {
+        "animal_id": 3153291,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 3153442,
+        "environment_id": "1_9"
+    },
+    {
+        "animal_id": 3153515,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 3153565,
+        "environment_id": "14_1"
+    },
+    {
+        "animal_id": 3153565,
+        "environment_id": "1_5"
+    },
+    {
+        "animal_id": 3153565,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 3153565,
+        "environment_id": "1_9"
+    },
+    {
+        "animal_id": 3153705,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 3153705,
+        "environment_id": "1_9"
+    },
+    {
+        "animal_id": 3153924,
+        "environment_id": "1_5"
+    },
+    {
+        "animal_id": 3154593,
+        "environment_id": "18"
+    },
+    {
+        "animal_id": 3155700,
+        "environment_id": "5_7"
+    },
+    {
+        "animal_id": 3155700,
+        "environment_id": "5_6"
+    },
+    {
+        "animal_id": 3155700,
+        "environment_id": "5_4"
+    },
+    {
+        "animal_id": 3155700,
+        "environment_id": "5_1"
+    },
+    {
+        "animal_id": 3155700,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 3155903,
+        "environment_id": "5_7"
+    },
+    {
+        "animal_id": 3155903,
+        "environment_id": "5_6"
+    },
+    {
+        "animal_id": 3155903,
+        "environment_id": "5_4"
+    },
+    {
+        "animal_id": 3155903,
+        "environment_id": "5_1"
+    },
+    {
+        "animal_id": 3155903,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 3156174,
+        "environment_id": "18"
+    },
+    {
+        "animal_id": 3156943,
+        "environment_id": "4_7"
+    },
+    {
+        "animal_id": 3156943,
+        "environment_id": "3_7"
+    },
+    {
+        "animal_id": 3156943,
+        "environment_id": "6"
+    },
+    {
+        "animal_id": 3156943,
+        "environment_id": "17"
+    },
+    {
+        "animal_id": 3157381,
+        "environment_id": "3_2"
+    },
+    {
+        "animal_id": 3157381,
+        "environment_id": "5_11"
+    },
+    {
+        "animal_id": 3157381,
+        "environment_id": "3_4"
+    },
+    {
+        "animal_id": 3157381,
+        "environment_id": "14_3"
+    },
+    {
+        "animal_id": 3157381,
+        "environment_id": "5_4"
+    },
+    {
+        "animal_id": 3157381,
+        "environment_id": "3_8"
+    },
+    {
+        "animal_id": 3157381,
+        "environment_id": "4_3"
+    },
+    {
+        "animal_id": 3157381,
+        "environment_id": "6"
+    },
+    {
+        "animal_id": 3157381,
+        "environment_id": "1_4"
+    },
+    {
+        "animal_id": 3157381,
+        "environment_id": "4_4"
+    },
+    {
+        "animal_id": 3157381,
+        "environment_id": "8_2"
+    },
+    {
+        "animal_id": 3157381,
+        "environment_id": "1_3"
+    },
+    {
+        "animal_id": 3162314,
+        "environment_id": "14_6"
+    },
+    {
+        "animal_id": 3162314,
+        "environment_id": "6"
+    },
+    {
+        "animal_id": 3162314,
+        "environment_id": "2_1"
+    },
+    {
+        "animal_id": 3162314,
+        "environment_id": "2_2"
+    },
+    {
+        "animal_id": 3162488,
+        "environment_id": "7_1"
+    },
+    {
+        "animal_id": 3162488,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 3162488,
+        "environment_id": "2_1"
+    },
+    {
+        "animal_id": 3162488,
+        "environment_id": "2_2"
+    },
+    {
+        "animal_id": 3162617,
+        "environment_id": "14_4"
+    },
+    {
+        "animal_id": 3162617,
+        "environment_id": "7_1"
+    },
+    {
+        "animal_id": 3162617,
+        "environment_id": "7_2"
+    },
+    {
+        "animal_id": 3162617,
+        "environment_id": "1_9"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "5_15"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "5_14"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "5_3"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "1_8"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "1_7"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "4_6"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "5_8"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "5_17"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "2_2"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "5_16"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "5_1"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "5_2"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "13_5"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "3_6"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "5_13"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "9_10"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "5_5"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "5_6"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "13_4"
+    },
+    {
+        "animal_id": 3162922,
+        "environment_id": "5_7"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "5_15"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "5_14"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "5_3"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "1_8"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "1_7"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "4_6"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "5_8"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "5_17"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "2_2"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "5_16"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "5_1"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "5_2"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "13_5"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "3_6"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "5_13"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "9_10"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "5_5"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "5_6"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "13_4"
+    },
+    {
+        "animal_id": 3163374,
+        "environment_id": "5_7"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "5_15"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "5_14"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "5_3"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "1_8"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "1_7"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "4_6"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "5_8"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "5_17"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "2_2"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "5_16"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "5_1"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "5_2"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "13_5"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "3_6"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "5_13"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "9_10"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "5_5"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "5_6"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "13_4"
+    },
+    {
+        "animal_id": 3163790,
+        "environment_id": "5_7"
+    },
+    {
+        "animal_id": 3164225,
+        "environment_id": "3_5"
+    },
+    {
+        "animal_id": 3164225,
+        "environment_id": "14_4"
+    },
+    {
+        "animal_id": 3164225,
+        "environment_id": "14_5"
+    },
+    {
+        "animal_id": 3164225,
+        "environment_id": "7_1"
+    },
+    {
+        "animal_id": 3164225,
+        "environment_id": "1_5"
+    },
+    {
+        "animal_id": 3164225,
+        "environment_id": "7_2"
+    },
+    {
+        "animal_id": 3164225,
+        "environment_id": "1_6"
+    },
+    {
+        "animal_id": 3164225,
+        "environment_id": "1_7"
+    },
+    {
+        "animal_id": 3164225,
+        "environment_id": "2_1"
+    },
+    {
+        "animal_id": 3164225,
+        "environment_id": "1_9"
+    }
+]

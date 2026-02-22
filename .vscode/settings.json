@@ -1,0 +1,7 @@
+{
+  "editor.formatOnSave": true,
+  "php.validate.enable": false,
+  "php.suggest.basic": false,
+  "debug.allowBreakpointsEverywhere": true
+}
+

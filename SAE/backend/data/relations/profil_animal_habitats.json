@@ -1,0 +1,172 @@
+[
+  {
+    "assessment_id": 15951,
+    "environment_name": "Savanna",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 15951,
+    "environment_name": "Grassland",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 12392,
+    "environment_name": "Savanna",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 12392,
+    "environment_name": "Forest",
+    "environment_type": "No"
+  },
+  {
+    "assessment_id": 22696060,
+    "environment_name": "Mountain",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 22696060,
+    "environment_name": "Rocky areas",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 23062,
+    "environment_name": "Forest - Temperate",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 23062,
+    "environment_name": "Grassland",
+    "environment_type": "No"
+  },
+  {
+    "assessment_id": 19855,
+    "environment_name": "Rivers and Streams",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 19855,
+    "environment_name": "Marine Coastal",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 3746,
+    "environment_name": "Forest - Boreal",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 3746,
+    "environment_name": "Tundra",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 45354964,
+    "environment_name": "Rocky areas",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 45354964,
+    "environment_name": "Urban areas",
+    "environment_type": "No"
+  },
+  {
+    "assessment_id": 41688,
+    "environment_name": "Forest - Boreal",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 41688,
+    "environment_name": "Tundra",
+    "environment_type": "No"
+  },
+  {
+    "assessment_id": 6557,
+    "environment_name": "Savanna",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 6557,
+    "environment_name": "Shrubland",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 15954,
+    "environment_name": "Forest",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 15954,
+    "environment_name": "Savanna",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 22103,
+    "environment_name": "Marine Coastal",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 22103,
+    "environment_name": "Wetlands (inland)",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 12519,
+    "environment_name": "Forest - Boreal",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 12519,
+    "environment_name": "Forest - Temperate",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 41775,
+    "environment_name": "Forest - Temperate",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 41775,
+    "environment_name": "Shrubland",
+    "environment_type": "No"
+  },
+  {
+    "assessment_id": 22724813,
+    "environment_name": "Forest - Tropical",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 22724813,
+    "environment_name": "Forest - Subtropical",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 714,
+    "environment_name": "Forest - Temperate",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 714,
+    "environment_name": "Mountain",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 899,
+    "environment_name": "Tundra",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 899,
+    "environment_name": "Marine Coastal",
+    "environment_type": "No"
+  },
+  {
+    "assessment_id": 22732,
+    "environment_name": "Mountain",
+    "environment_type": "Yes"
+  },
+  {
+    "assessment_id": 22732,
+    "environment_name": "Grassland - Alpine",
+    "environment_type": "Yes"
+  }
+]

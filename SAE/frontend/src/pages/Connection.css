@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+.connection-container {
+  min-height: 100vh;
+  padding: 0;
+  font-family: Quicksand, sans-serif;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 30vw;
+}
+
+.connection-content {
+  flex: 1;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* Header section */
+.connection-header-section h1 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #3825A5;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+/* Form styles */
+.connection-form {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.connection-form h2 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #FF0000;
+  margin: 16px 0 24px 0;
+  text-align: center;
+}
+
+.connection-input-group {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.connection-form-input {
+  width: 87%;
+  padding: 12px 16px;
+  border: 1px solid #E0EFFF;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-family: Quicksand, sans-serif;
+  background: #E0EFFF;
+  color: #2D2C7E;
+  outline: none;
+  transition: all 0.2s ease;
+  font-weight: 700;
+}
+
+.connection-form-input::placeholder {
+  color: #2D2C7E;
+  font-weight: 700;
+}
+
+.connection-form-input:focus {
+  border-color: #3825A5;
+  background: #fff;
+}
+
+/* Checkbox */
+.connection-checkbox-group {
+  display: inline-flex;
+  align-items: center;
+  margin: auto auto 16px auto;
+  gap: 8px;
+}
+
+.connection-checkbox-group input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #E0EFFF;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.connection-checkbox-group label {
+  font-size: 0.95rem;
+  color: #000000;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* Submit button */
+.connection-submit-button {
+  width: 80%;
+  padding: 14px;
+  background: #3825A5;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display:block;
+  margin:auto;
+  transition: all 0.3s ease;
+  font-family: Quicksand, sans-serif;
+}
+
+.connection-submit-button:hover {
+  background: #2D2C7E;
+}
+
+.connection-submit-button:active {
+  transform: translateY(0);
+}
+
+/* Form links */
+.connection-form-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.connection-forgot-password,
+.connection-create-account {
+  font-size: 0.8rem;
+  color: #2D2C7E;
+  text-decoration: none;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.connection-forgot-password:hover,
+.connection-create-account:hover {
+  text-decoration: underline;
+}
+
+/* Section logo */
+.connection-logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.connection-logo {
+  width: 140px;
+  height: 140px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.connection-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 880px) {  
+  .connection-container {
+    width: 50vw;
+  }
+  
+  .connection-header-section h1 {
+    font-size: 1.4rem;
+    margin-bottom: 0px;
+  }
+  
+  .connection-form h2 {
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+  }
+  
+  .connection-form-input {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+  
+  .connection-checkbox-group label {
+    font-size: 0.9rem;
+  }
+  
+  .connection-submit-button {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+  
+  .connection-forgot-password,
+  .connection-create-account {
+    font-size: 0.8rem;
+  }
+  
+  .connection-form-links {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .connection-logo {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* Pour très petits écrans */
+@media (max-width: 500px) {
+  .connection-container {
+    width: 80vw;
+  }
+  
+
+  .connection-header-section h1 {
+    font-size: 1.3rem;
+  }
+  
+  .connection-form h2 {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+  
+  .connection-form-input {
+    font-size: 0.85rem;
+  }
+  
+  .connection-checkbox-group label {
+    font-size: 0.85rem;
+  }
+  
+  .connection-submit-button {
+    font-size: 0.85rem;
+  }
+  
+  .connection-forgot-password,
+  .connection-create-account {
+    font-size: 0.8rem;
+  }
+  
+  .connection-logo {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Animation d'apparition */
+.connection-content {
+  animation: connection-fadeIn 0.6s ease-out;
+}
+
+@keyframes connection-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-message {
+  background-color: #fee;
+  color: #c33;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+}

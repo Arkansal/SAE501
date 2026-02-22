@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+.donation-cancel-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Quicksand', sans-serif;
+    padding: 20px;
+    background-color: #f8fbff;
+}
+
+.donation-cancel-content {
+    width: 100%;
+    max-width: 500px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.cancel-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(56, 37, 165, 0.1);
+    text-align: center;
+}
+
+/* Icône et Titre */
+.cancel-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: shake 0.5s ease-in-out;
+}
+
+.cancel-card h1 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #3825A5;
+    /* Ou rouge #FF0000 selon préférence, mais violet reste cohérent */
+    margin-bottom: 16px;
+}
+
+.cancel-message {
+    font-size: 1.1rem;
+    color: #2D2C7E;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+/* Info section */
+.cancel-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    background: #fff0f0;
+    /* Fond très léger rouge pour l'annulation */
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.cancel-info .logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    opacity: 0.8;
+}
+
+.cancel-info p {
+    font-size: 0.9rem;
+    color: #2D2C7E;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Actions Buttons */
+.cancel-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.retry-button {
+    width: 100%;
+    padding: 14px;
+    background: #3825A5;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.retry-button:hover {
+    background: #2D2C7E;
+    transform: translateY(-2px);
+}
+
+/* Bouton secondaire (Retour accueil) - Style Outline */
+.return-home-button {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    color: #3825A5;
+    border: 2px solid #3825A5;
+    /* Bordure pour différencier */
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.return-home-button:hover {
+    background: #E0EFFF;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .cancel-card {
+        padding: 24px;
+    }
+
+    .cancel-card h1 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,71 @@
+.warning-popup-content {
+    max-height: fit-content;
+    margin: auto;
+}
+
+.warning-icon-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.warning-title {
+    margin: 0;
+    font-size: 20px;
+    color: #2D2C7E;
+    flex-grow: 1;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.warning-body {
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    color: #333;
+    line-height: 1.5;
+}
+
+.warning-body p {
+    margin-bottom: 15px;
+}
+
+.warning-action {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.warning-confirm-btn {
+    background-color: #3825A5;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+}
+
+.warning-confirm-btn:hover {
+    background-color: #2D2C7E;
+    transform: scale(1.05);
+}
+
+.warning-confirm-btn:active {
+    transform: scale(0.95);
+}
+
+@media (max-width: 480px) {
+    .warning-popup-content {
+        width: 85vw;
+    }
+    
+    .warning-title {
+        font-size: 18px;
+    }
+    
+    .warning-body p {
+        font-size: 14px;
+    }
+}

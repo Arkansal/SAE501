@@ -1,0 +1,308 @@
+[
+  {
+    "assessment_id": 15951,
+    "code_iso": "ZA",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 15951,
+    "code_iso": "KE",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 15951,
+    "code_iso": "TZ",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 12392,
+    "code_iso": "ZA",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 12392,
+    "code_iso": "BW",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 12392,
+    "code_iso": "ZW",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 22696060,
+    "code_iso": "FR",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 22696060,
+    "code_iso": "US",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 22696060,
+    "code_iso": "CA",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 23062,
+    "code_iso": "FR",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 23062,
+    "code_iso": "GB",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 23062,
+    "code_iso": "DE",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 19855,
+    "code_iso": "NO",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 19855,
+    "code_iso": "CA",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 19855,
+    "code_iso": "IS",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 3746,
+    "code_iso": "CA",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 3746,
+    "code_iso": "RU",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 3746,
+    "code_iso": "US",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 45354964,
+    "code_iso": "FR",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 45354964,
+    "code_iso": "US",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 45354964,
+    "code_iso": "AU",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 41688,
+    "code_iso": "RU",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 41688,
+    "code_iso": "CA",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 41688,
+    "code_iso": "US",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 6557,
+    "code_iso": "ZA",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 6557,
+    "code_iso": "NA",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 6557,
+    "code_iso": "KE",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 15954,
+    "code_iso": "ZA",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 15954,
+    "code_iso": "IN",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 15954,
+    "code_iso": "CN",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 22103,
+    "code_iso": "US",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 22103,
+    "code_iso": "BR",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 22103,
+    "code_iso": "CU",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 12519,
+    "code_iso": "FR",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 12519,
+    "code_iso": "NO",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 12519,
+    "code_iso": "SE",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 41775,
+    "code_iso": "FR",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 41775,
+    "code_iso": "DE",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 41775,
+    "code_iso": "IT",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 22724813,
+    "code_iso": "GA",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 22724813,
+    "code_iso": "CG",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 22724813,
+    "code_iso": "CM",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 714,
+    "code_iso": "NP",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 714,
+    "code_iso": "CN",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 714,
+    "code_iso": "IN",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 899,
+    "code_iso": "NO",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 899,
+    "code_iso": "GL",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 899,
+    "code_iso": "CA",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 22732,
+    "code_iso": "NP",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 22732,
+    "code_iso": "CN",
+    "origin": "Native",
+    "presence_type": "Extant"
+  },
+  {
+    "assessment_id": 22732,
+    "code_iso": "MN",
+    "origin": "Native",
+    "presence_type": "Extant"
+  }
+]

@@ -1,0 +1,54 @@
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: "auto"
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+    firewalls:
+        dev:
+            pattern: ^/(_profiler|_wdt|assets|build)/
+            security: false
+        login:
+            pattern: ^/api/login
+            stateless: true
+            login_throttling:
+                max_attempts: 5
+                interval: "1 minute"
+            json_login:
+                check_path: /api/login_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        api:
+            pattern: ^/api
+            stateless: true
+            provider: app_user_provider
+            jwt: ~
+        main:
+            lazy: true
+            provider: app_user_provider
+    access_control:
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api/users, roles: PUBLIC_ACCESS, methods: [POST] }
+        - {
+              path: ^/api/(animals|animal_countries|animal_environments|articles|animalSearch|animalCountries|animalEnvironments|extinctLevel|randomAnimalWithExtinctionLevel),
+              roles: PUBLIC_ACCESS,
+              methods: [GET],
+          }
+        - { 
+            path: ^/api/(create-checkout-session),
+            roles: PUBLIC_ACCESS,
+            methods: [POST],
+        }
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+
+when@test:
+    security:
+        password_hashers:
+            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+                algorithm: auto
+                time_cost: 4
+                memory_cost: 1024
+                threads: 2

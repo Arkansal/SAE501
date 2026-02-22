@@ -1,0 +1,628 @@
+
+/* Quiz Totem Container */
+.quiz-totem-container {
+  font-family: Quicksand, sans-serif;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+  max-width: 550px;
+  overflow-y: hidden;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Import AnimalDetail styles for result */
+@import './../../components/animalDetail.css';
+
+/* Background decoration */
+.quiz-totem-container::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  pointer-events: none;
+
+}
+
+/* Introduction */
+.introduction {
+  background: white;
+  border-radius: 25px;
+  padding: 60px 40px;
+  text-align: center;
+  max-width: 550px;
+  animation: slideIn 0.6s ease-out;
+  position: relative;
+  z-index: 1;
+  font-family: Quicksand, sans-serif;
+}
+
+.introduction h1 {
+  font-size: 1.5em;
+  color: #044a31;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.introduction p {
+  font-size: 1em;
+  color: #044a31;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  padding: 14px 35px;
+  font-size: 1em;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-weight: 600;
+  font-family: Quicksand, sans-serif;
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+
+.start-btn:active {
+  transform: translateY(0);
+}
+
+/* Quiz Header */
+.quiz-top-bar {
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 20px;    
+  position: relative;
+  z-index: 1;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.quit-btn {
+  background: #F00707;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  font-size: 0.9em;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  text-align: left;
+  display:block;
+  font-family: Quicksand, sans-serif;
+}
+
+.quit-btn:hover {
+  background: #bd0606;
+  transform: translateY(-1px);
+}
+
+.game-title {
+  width: 100%;
+  max-width: 550px;
+  text-align: center;
+  color: #044a31;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px 35px;
+  font-family: Quicksand, sans-serif;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.game-title h3 {
+  font-size: 1.3em;
+  margin: 0;
+  font-weight: 700;
+}
+
+.game-title p {
+  font-size: 1em;
+  margin: 5px 0 5px 0;
+  opacity: 0.9;
+  font-weight: 600;
+  
+}
+
+.progress-bar {
+  width: 100%;
+  max-width: 550px;
+  height: 6px;
+  background: #044a31;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 1;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #35aa75 0%, #35aa75 100%);
+  transition: width 0.5s ease;
+  border-radius: 10px;
+}
+
+.question-counter {
+  color: white;
+  text-align: right;
+  font-size: 1em;
+  font-weight: 700;
+  min-width: 50px;
+}
+
+/* Question Container */
+.question-container {
+  max-width: 550px;
+  position: relative;
+  z-index: 1;
+}
+
+.question-container.hidden {
+  display: none;
+}
+
+.question-content h2 {
+  color: #044a31;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  font-weight: 700;
+  text-align: center;
+  background: white;
+  border-radius: 20px;
+  padding: 20px 35px;
+}
+
+/* Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-btn {
+  background: white;
+  padding: 16px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+  color: #044a31;
+  border: none;
+  font-family: Quicksand, sans-serif;
+}
+
+.option-btn:hover {
+  transform: translateX(3px);
+  font-weight: 700;
+}
+
+.option-btn:active .option-text {
+  color: white;
+  background-color:#045a41;
+}
+
+.option-traits {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.trait-badge {
+  background: rgba(4, 74, 49, 0.15);
+  color: #044a31;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  font-weight: 600;
+}
+
+.option-btn:active .trait-badge {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+/* Résultat */
+.result-container {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 35px;
+  max-width: 550px;
+  animation: slideUp 0.6s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.result-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.result-header h1 {
+  color: #044a31;
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.result-content {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  margin-bottom: 30px;
+}
+
+.animal-result {
+  text-align: center;
+  background: linear-gradient(135deg, #044a31 0%, #045a41 100%);
+  padding: 35px;
+  border-radius: 20px;
+  color: white;
+}
+
+.animal-name h2 {
+  font-size: 3em;
+  margin: 0;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.profile-type {
+  font-size: 1.1em;
+  margin-top: 12px;
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.profile-type p {
+  margin: 0;
+}
+
+/* Traits Summary */
+.traits-summary {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 20px;
+}
+
+.traits-summary h3 {
+  color: #044a31;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.traits-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.trait-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trait-name {
+  font-weight: 600;
+  color: #333;
+  min-width: 100px;
+  font-size: 0.9em;
+}
+
+.bar-container {
+  flex: 1;
+  height: 20px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.trait-score {
+  min-width: 30px;
+  text-align: right;
+  font-weight: 700;
+  color: #044a31;
+  font-size: 0.9em;
+}
+
+/* Restart Button */
+.restart-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  font-size: 1em;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-weight: 600;
+}
+
+.restart-btn:hover {
+  transform: translateY(-2px);
+}
+
+.restart-btn:active {
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+/* Tablettes et écrans larges */
+@media (max-width: 1024px) {
+  .quiz-totem-container {
+    padding: 1.5rem;
+  }
+}
+
+/* Tablettes */
+@media (max-width: 768px) {
+  .quiz-totem-container {
+    width: 95%;
+    padding: 1.2rem;
+    max-width: 100%;
+  }
+
+  .quiz-top-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .game-title {
+    padding: 18px 25px;
+  }
+
+  .game-title h3 {
+    font-size: 1.1em;
+  }
+
+  .game-title p {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 640px) {
+  .quiz-totem-container {
+    padding: 10px;
+    width: 100%;
+  }
+
+  .introduction,
+  .question-container,
+  .result-container {
+    border-radius: 20px;
+  }
+
+  .introduction h1 {
+    font-size: 1.8em;
+  }
+
+  .introduction p {
+    font-size: 1em;
+  }
+
+  .question-content h2 {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+  }
+
+  .option-btn {
+    padding: 14px;
+  }
+
+  .animal-name h2 {
+    font-size: 2.2em;
+  }
+
+  .result-header h1 {
+    font-size: 1.6em;
+  }
+
+  .trait-name {
+    min-width: 80px;
+  }
+
+  .traits-bars {
+    gap: 12px;
+  }
+
+  .quiz-top-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .quit-btn {
+    padding: 8px 16px;
+  }
+
+  .game-title {
+    padding: 16px 20px;
+  }
+
+  .game-title h3 {
+    font-size: 1em;
+  }
+
+  .game-title p {
+    font-size: 0.85em;
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-totem-container {
+    padding: 8px;
+  }
+
+  .question-container,
+  .introduction,
+  .result-container {
+    padding: 20px 15px;
+  }
+
+  .question-content h2 {
+    font-size: 1.05em;
+    margin-bottom: 20px;
+  }
+
+  .option-btn {
+    padding: 12px;
+    font-size: 0.85em;
+  }
+
+  .trait-badge {
+    padding: 2px 8px;
+    font-size: 0.7em;
+  }
+
+  .question-counter {
+    font-size: 0.9em;
+  }
+
+  .quiz-top-bar {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .quit-btn {
+    padding: 6px 12px;
+    font-size: 0.8em;
+  }
+
+  .game-title {
+    padding: 12px 16px;
+  }
+
+  .game-title h3 {
+    font-size: 0.95em;
+  }
+
+  .game-title p {
+    font-size: 0.8em;
+    margin: 3px 0;
+  }
+
+  .progress-bar {
+    max-width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .introduction {
+    padding: 25px 15px;
+  }
+
+  .introduction h1 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+  }
+
+  .introduction p {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 380px) {
+  .quiz-totem-container {
+    padding: 5px;
+  }
+
+  .introduction,
+  .question-container,
+  .result-container {
+    padding: 15px 12px;
+  }
+
+  .quiz-top-bar {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .game-title {
+    padding: 10px 12px;
+  }
+
+  .game-title h3 {
+    font-size: 0.9em;
+    margin: 0;
+  }
+
+  .game-title p {
+    font-size: 0.75em;
+  }
+
+  .option-btn {
+    padding: 10px;
+    font-size: 0.8em;
+  }
+
+  .start-btn,
+  .restart-btn {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+}
+
+/* Navigation images pour résultat du quiz */
+.detail-image-nav-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+ 

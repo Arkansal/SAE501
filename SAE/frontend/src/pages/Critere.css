@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+.critere-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  font-family: Quicksand, sans-serif;
+}
+
+/* ---------- HEADER ---------- */
+
+.critere-header {
+  background-color: #fff;
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.critere-back-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: #2D2C7E;
+  transition: opacity 0.2s;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.critere-back-button:hover {
+  opacity: 0.7;
+}
+
+.critere-back-button:active {
+  opacity: 0.5;
+}
+
+.critere-header-title {
+  text-align: center;
+}
+
+.critere-header-title h1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #3825A5;
+  margin: 0 0 2px 0;
+}
+
+.critere-header-title h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3825A5;
+  margin: 0;
+}
+
+/* ---------- LAYOUT PRINCIPAL ---------- */
+
+.critere-main {
+  display: flex;
+  gap: 16px;
+  padding: 20px 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ---------- PASTILLES ---------- */
+
+.critere-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.critere-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.critere-badge:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.critere-badge.active {
+  box-shadow: 0 0 0 3px rgba(56, 37, 165, 0.3);
+}
+
+/* Couleurs des pastilles */
+.ne { background-color: #bfbfbf; }
+.di { background-color: #d9d9d9; }
+.pm { background-color: #0c8f78; }
+.qm { background-color: #d7c926; }
+.vu { background-color: #e8a21a; }
+.ed { background-color: #f97b18; }
+.dc { background-color: #d90f0f; }
+.es { background-color: #951313; }
+.et { background-color: #000000; }
+
+/* ---------- CONTENU DYNAMIQUE ---------- */
+
+.critere-content {
+  flex: 1;
+}
+
+.critere-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #3825A5;
+  margin: 0 0 12px 0;
+}
+
+.critere-text {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  font-size: 14px;
+  color: #2D2C7E;
+  line-height: 1.6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.critere-paragraph {
+  margin: 0 0 16px 0;
+  font-weight: 500;
+}
+
+.critere-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.critere-subtitle {
+  font-weight: 600;
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.critere-list {
+  margin: 8px 0 16px 0;
+  padding-left: 20px;
+}
+
+.critere-list li {
+  margin-bottom: 6px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .critere-header {
+    padding: 12px 16px;
+  }
+
+  .critere-back-button {
+    left: 12px;
+  }
+
+  .critere-header-title h1 {
+    font-size: 16px;
+  }
+
+  .critere-header-title h2 {
+    font-size: 14px;
+  }
+
+  .critere-main {
+    gap: 12px;
+    padding: 16px 12px;
+  }
+
+  .critere-badge {
+    width: 40px;
+    height: 40px;
+    font-size: 13px;
+  }
+
+  .critere-text {
+    padding: 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 500px) {
+  .critere-header {
+    padding: 10px 12px;
+  }
+
+  .critere-back-button {
+    left: 8px;
+    padding: 6px;
+  }
+
+  .critere-back-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .critere-main {
+    gap: 10px;
+    padding: 12px 10px;
+  }
+
+  .critere-badge {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .critere-title {
+    font-size: 16px;
+  }
+
+  .critere-text {
+    padding: 14px;
+    font-size: 12px;
+  }
+}

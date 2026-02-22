@@ -1,0 +1,155 @@
+[
+    {
+        "assessment_id": 15951,
+        "class": "Mammalia",
+        "common_name": "Lion",
+        "scientific_name": "Panthera leo",
+        "family": "FELIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "VU"
+    },
+    {
+        "assessment_id": 12392,
+        "class": "Mammalia",
+        "common_name": "\u00c9l\u00e9phant d'Afrique",
+        "scientific_name": "Loxodonta africana",
+        "family": "ELEPHANTIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "EN"
+    },
+    {
+        "assessment_id": 22696060,
+        "class": "Aves",
+        "common_name": "Aigle royal",
+        "scientific_name": "Aquila chrysaetos",
+        "family": "ACCIPITRIDAE",
+        "type": "AVES",
+        "extinct_level": "LC"
+    },
+    {
+        "assessment_id": 23062,
+        "class": "Mammalia",
+        "common_name": "Renard roux",
+        "scientific_name": "Vulpes vulpes",
+        "family": "CANIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "LC"
+    },
+    {
+        "assessment_id": 19855,
+        "class": "Actinopterygii",
+        "common_name": "Saumon atlantique",
+        "scientific_name": "Salmo salar",
+        "family": "SALMONIDAE",
+        "type": "ACTINOPTERYGII",
+        "extinct_level": "LC"
+    },
+    {
+        "assessment_id": 3746,
+        "class": "Mammalia",
+        "common_name": "Loup gris",
+        "scientific_name": "Canis lupus",
+        "family": "CANIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "LC"
+    },
+    {
+        "assessment_id": 45354964,
+        "class": "Aves",
+        "common_name": "Faucon p\u00e8lerin",
+        "scientific_name": "Falco peregrinus",
+        "family": "FALCONIDAE",
+        "type": "AVES",
+        "extinct_level": "LC"
+    },
+    {
+        "assessment_id": 41688,
+        "class": "Mammalia",
+        "common_name": "Ours brun",
+        "scientific_name": "Ursus arctos",
+        "family": "URSIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "LC"
+    },
+    {
+        "assessment_id": 6557,
+        "class": "Mammalia",
+        "common_name": "Rhinoc\u00e9ros noir",
+        "scientific_name": "Diceros bicornis",
+        "family": "RHINOCEROTIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "CR"
+    },
+    {
+        "assessment_id": 15954,
+        "class": "Mammalia",
+        "common_name": "L\u00e9opard",
+        "scientific_name": "Panthera pardus",
+        "family": "FELIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "VU"
+    },
+    {
+        "assessment_id": 22103,
+        "class": "Mammalia",
+        "common_name": "Lamantin",
+        "scientific_name": "Trichechus manatus",
+        "family": "TRICHECHIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "VU"
+    },
+    {
+        "assessment_id": 12519,
+        "class": "Mammalia",
+        "common_name": "Lynx bor\u00e9al",
+        "scientific_name": "Lynx lynx",
+        "family": "FELIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "LC"
+    },
+    {
+        "assessment_id": 41775,
+        "class": "Mammalia",
+        "common_name": "Sanglier",
+        "scientific_name": "Sus scrofa",
+        "family": "SUIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "LC"
+    },
+    {
+        "assessment_id": 22724813,
+        "class": "Aves",
+        "common_name": "Perroquet gris",
+        "scientific_name": "Psittacus erithacus",
+        "family": "PSITTACIDAE",
+        "type": "AVES",
+        "extinct_level": "EN"
+    },
+    {
+        "assessment_id": 714,
+        "class": "Mammalia",
+        "common_name": "Panda roux",
+        "scientific_name": "Ailurus fulgens",
+        "family": "AILURIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "EN"
+    },
+    {
+        "assessment_id": 899,
+        "class": "Mammalia",
+        "common_name": "Renard polaire",
+        "scientific_name": "Vulpes lagopus",
+        "family": "CANIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "LC"
+    },
+    {
+        "assessment_id": 22732,
+        "class": "Mammalia",
+        "common_name": "L\u00e9opard des neiges",
+        "scientific_name": "Panthera uncia",
+        "family": "FELIDAE",
+        "type": "MAMMALIA",
+        "extinct_level": "VU"
+    }
+]
